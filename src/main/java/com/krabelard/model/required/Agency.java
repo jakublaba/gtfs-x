@@ -1,11 +1,11 @@
-package com.krabelard.model;
+package com.krabelard.model.required;
 
 import lombok.Builder;
 import lombok.Value;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
+// Required
 @Value
 @Builder
 public class Agency {

@@ -5,12 +5,30 @@ import lombok.Value;
 
 import java.util.Optional;
 
-// Optional
+/**
+ * Maps an entry from optional <code>areas.txt</code> file.
+ * <p>
+ * For full specification, visit <a href="https://gtfs.org/schedule/reference/#areastxt">the gtfs reference</a>
+ */
 @Value
 @Builder
 public class Area {
-    long id;        // Required
-    String name;    // Optional
+    /**
+     * <code>area_id</code>
+     * <p>
+     * <b>Required</b>
+     * <p>
+     * Identifies an area. Unique.
+     */
+    long id;
+    /**
+     * <code>agency_name</code>
+     * <p>
+     * <b>Optional</b>
+     * <p>
+     * The name of the area as displayed to the rider.
+     */
+    String name;
 
     public Optional<String> getName() {
         return Optional.ofNullable(name);

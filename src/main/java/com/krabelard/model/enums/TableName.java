@@ -2,6 +2,9 @@ package com.krabelard.model.enums;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Representation for {@link com.krabelard.model.optional.Translation#tableName}.
+ */
 @RequiredArgsConstructor
 public enum TableName {
     Agency("agency"),

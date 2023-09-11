@@ -5,6 +5,7 @@ import lombok.Value;
 
 import java.util.Optional;
 
+// TODO Add docs to Attribution entity
 // Optional
 @Value
 @Builder

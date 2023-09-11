@@ -1,7 +1,6 @@
 # GTFS parser
 
-This project is aimed to provide a flexible open-source tool for mapping gtfs feeds to POJOs \
-Name *"gtfs-x"* is pronounced "gtfs-ex", meaning "gtfs explorer".
+This project is aimed to provide a flexible open-source tool for mapping gtfs feeds to POJOs
 
 ## Origin of the idea
 Idea for this library is a byproduct of our other project, where we encountered difficulties interacting with gtfs data and weren't able to find any well-documented library for this task, so we were forced to write all the logic by hand. \

@@ -1,4 +1,5 @@
 # GTFS parser
+
 This project is aimed to provide a flexible open-source tool for mapping gtfs feeds to POJOs \
 Name *"gtfs-x"* is pronounced "gtfs-ex", meaning "gtfs explorer".
 
@@ -14,7 +15,3 @@ The reason for that decision, is for users to be able to refer to the official d
 Javadocs for POJOs are either a copy of [gtfs specification](https://gtfs.org/schedule/reference), or shortened version.
 File names are replaced with names of entities from this library.
 Each POJO javadoc links to the official docs.
-
-## Test data
-
-- `sample-feed-1.zip` - from [gtfs.org](https://gtfs.org)

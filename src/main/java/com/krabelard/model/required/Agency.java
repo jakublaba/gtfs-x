@@ -20,7 +20,7 @@ public class Agency {
      * <p>
      * Required when the dataset contains data for multiple transit agencies.
      */
-    Long id;
+    String id;
     /**
      * <code>agency_name</code>
      * <p>

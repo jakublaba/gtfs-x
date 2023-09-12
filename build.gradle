@@ -1,6 +1,7 @@
 plugins {
-    id 'java'
-    id 'io.freefair.lombok' version '8.3'
+    id('java')
+    id('io.freefair.lombok') version('8.3')
+    id('jacoco')
 }
 
 group = 'com.krabelard'
@@ -12,7 +13,7 @@ repositories {
 
 dependencies {
     // CSV parser
-    implementation 'org.apache.commons:commons-csv:1.10'
+    implementation('org.apache.commons:commons-csv:1.10.0')
 
     // Logging
     implementation(
@@ -22,9 +23,17 @@ dependencies {
 
     // Testing
     testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter',
+            'org.assertj:assertj-core:3.24.2'
+    )
 }
 
 test {
     useJUnitPlatform()
+    finalizedBy(jacocoTestReport)
+}
+
+jacocoTestReport {
+    dependsOn(test)
 }

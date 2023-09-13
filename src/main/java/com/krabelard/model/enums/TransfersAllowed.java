@@ -23,4 +23,14 @@ public enum TransfersAllowed {
     Unlimited(3);
 
     private final int transfersAllowed;
+
+    public static TransfersAllowed from(String s) {
+        var value = Integer.parseInt(s);
+        for (var e : values()) {
+            if (e.transfersAllowed == value) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException(value + " doesn't map to any TransfersAllowed option");
+    }
 }

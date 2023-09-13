@@ -30,7 +30,7 @@ public class FareAttribute {
      * <p>
      * Identifies a fare class.
      */
-    long id;
+    String id;
     /**
      * <code>price</code>
      * <p>
@@ -72,7 +72,7 @@ public class FareAttribute {
      * <br>
      * Required if multiple {@link Agency} entities are present.
      */
-    Long agencyId;
+    String agencyId;
     /**
      * <code>transfer_duration</code>
      * <p>
@@ -83,7 +83,7 @@ public class FareAttribute {
      */
     Integer transferDuration;
 
-    public Optional<Long> getAgencyId() {
+    public Optional<String> getAgencyId() {
         return Optional.ofNullable(agencyId);
     }
 

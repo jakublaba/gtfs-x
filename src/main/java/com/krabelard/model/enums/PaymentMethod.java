@@ -1,8 +1,8 @@
 package com.krabelard.model.enums;
 
+import com.krabelard.model.optional.gtfs_fares_v1.FareAttribute;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import com.krabelard.model.optional.gtfs_fares_v1.FareAttribute;
 
 /**
  * Representation for {@link FareAttribute#paymentMethod}.
@@ -18,4 +18,14 @@ public enum PaymentMethod {
     BeforeBoarding(1);
 
     private final int paymentMethod;
+
+    public static PaymentMethod from(String s) {
+        var value = Integer.parseInt(s);
+        for (var e : values()) {
+            if (e.paymentMethod == value) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException(s + " doesn't map to any PaymentMethod option");
+    }
 }

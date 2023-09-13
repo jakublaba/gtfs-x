@@ -1,8 +1,8 @@
 package com.krabelard.model.enums;
 
-import lombok.AllArgsConstructor;
-import com.krabelard.model.required.Stop;
 import com.krabelard.model.optional.Pathway;
+import com.krabelard.model.required.Stop;
+import lombok.AllArgsConstructor;
 
 /**
  * Representation for {@link Stop#locationType}.
@@ -25,4 +25,16 @@ public enum LocationType {
     BoardingArea(4);
 
     private final int locationType;
+
+    public static LocationType from(Integer value) {
+        if (value == null) {
+            return null;
+        }
+        for (var e : values()) {
+            if (e.locationType == value) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException(value + " doesn't map to any LocationType option");
+    }
 }

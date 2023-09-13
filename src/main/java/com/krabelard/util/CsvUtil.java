@@ -57,7 +57,23 @@ public final class CsvUtil {
         return result;
     }
 
-    public static <T extends CsvHeaders> String[] headersAsStrings(T[] headerValues) {
+    public static Integer parseNullableInt(String s) {
+        try {
+            return Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    public static Double parseNullableDouble(String s) {
+        try {
+            return Double.parseDouble(s);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    public static String[] headersAsStrings(CsvHeaders[] headerValues) {
         return Arrays.stream(headerValues)
                 .map(CsvHeaders::getValue)
                 .toArray(String[]::new);

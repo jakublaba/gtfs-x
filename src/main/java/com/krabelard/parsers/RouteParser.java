@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collection;
 
 @Slf4j
@@ -45,23 +44,15 @@ public class RouteParser implements GtfsCsvParser<Route> {
                                 .url(values.get(Headers.RouteUrl.value))
                                 .color(values.get(Headers.RouteColor.value))
                                 .textColor(values.get(Headers.RouteTextColor.value))
-                                .sortOrder(parseNullableInt(values.get(Headers.RouteSortOrder.value)))
-                                .continuousPickup(PickupType.from(parseNullableInt(values.get(Headers.ContinuousPickup.value))))
-                                .continuousDropOff(DropOffType.from(parseNullableInt(values.get(Headers.ContinuousDropOff.value))))
+                                .sortOrder(CsvUtil.parseNullableInt(values.get(Headers.RouteSortOrder.value)))
+                                .continuousPickup(PickupType.from(CsvUtil.parseNullableInt(values.get(Headers.ContinuousPickup.value))))
+                                .continuousDropOff(DropOffType.from(CsvUtil.parseNullableInt(values.get(Headers.ContinuousDropOff.value))))
                                 .networkId(values.get(Headers.NetworkId.value))
                                 .build();
                     })
                     .toList();
         } catch (IOException e) {
             throw new GtfsParsingException(csv, e);
-        }
-    }
-
-    private Integer parseNullableInt(String s) {
-        try {
-            return Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            return null;
         }
     }
 
@@ -83,12 +74,5 @@ public class RouteParser implements GtfsCsvParser<Route> {
         NetworkId("network_id");
 
         private final String value;
-    }
-
-    public static void main(String[] args) throws GtfsParsingException {
-        var dir = "C:/Users/Kuba/Desktop/sample-feed";
-        var parser = RouteParser.of(dir);
-        var routes = parser.parse();
-        routes.forEach(System.out::println);
     }
 }

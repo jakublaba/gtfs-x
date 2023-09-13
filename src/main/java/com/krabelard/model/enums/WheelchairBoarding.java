@@ -1,7 +1,7 @@
 package com.krabelard.model.enums;
 
-import lombok.RequiredArgsConstructor;
 import com.krabelard.model.required.Stop;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Representation for {@link Stop#wheelchairBoarding}.
@@ -28,4 +28,16 @@ public enum WheelchairBoarding {
     NotPossible(2);
 
     private final int wheelchairBoarding;
+
+    public static WheelchairBoarding from(Integer value) {
+        if (value == null) {
+            return null;
+        }
+        for (var e : values()) {
+            if (e.wheelchairBoarding == value) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException(value + " doesn't map to any WheelchairBoarding option");
+    }
 }

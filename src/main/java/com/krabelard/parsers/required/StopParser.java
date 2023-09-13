@@ -45,10 +45,10 @@ public class StopParser implements GtfsCsvParser<Stop> {
                                 .longitude(CsvUtil.parseNullableDouble(values.get(Headers.StopLongitude.value)))
                                 .zoneId(values.get(Headers.ZoneId.value))
                                 .url(values.get(Headers.StopUrl.value))
-                                .locationType(LocationType.from(CsvUtil.parseNullableInt(values.get(Headers.LocationType.value))))
+                                .locationType(LocationType.from(values.get(Headers.LocationType.value)))
                                 .parentId(values.get(Headers.ParentStation.value))
                                 .timezone(values.get(Headers.StopTimezone.value))
-                                .wheelchairBoarding(WheelchairBoarding.from(CsvUtil.parseNullableInt(values.get(Headers.WheelchairBoarding.value))))
+                                .wheelchairBoarding(WheelchairBoarding.from(values.get(Headers.WheelchairBoarding.value)))
                                 .levelId(values.get(Headers.LevelId.value))
                                 .platformCode(values.get(Headers.PlatformCode.value))
                                 .build();

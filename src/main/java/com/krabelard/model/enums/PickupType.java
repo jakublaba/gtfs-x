@@ -1,9 +1,10 @@
 package com.krabelard.model.enums;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import com.krabelard.model.required.Route;
 import com.krabelard.model.required.StopTime;
+import com.krabelard.util.CsvUtil;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Representation for {@link Route#continuousPickup}, {@link StopTime#pickupType}, {@link StopTime#continuousPickup}.
@@ -24,7 +25,8 @@ public enum PickupType {
 
     private final int pickupType;
 
-    public static PickupType from(Integer value) {
+    public static PickupType from(String s) {
+        var value = CsvUtil.parseNullableInt(s);
         if (value == null) {
             return null;
         }
@@ -33,6 +35,6 @@ public enum PickupType {
                 return e;
             }
         }
-        throw new IllegalArgumentException(value + " doesn't map to any PickupType option");
+        throw new IllegalArgumentException(s + " doesn't map to any PickupType option");
     }
 }

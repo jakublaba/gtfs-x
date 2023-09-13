@@ -2,6 +2,7 @@ package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Route;
 import com.krabelard.model.required.StopTime;
+import com.krabelard.util.CsvUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +25,8 @@ public enum DropOffType {
 
     private final int pickupType;
 
-    public static DropOffType from(Integer value) {
+    public static DropOffType from(String s) {
+        var value = CsvUtil.parseNullableInt(s);
         if (value == null) {
             return null;
         }
@@ -33,6 +35,6 @@ public enum DropOffType {
                 return e;
             }
         }
-        throw new IllegalArgumentException(value + " doesn't map to any DropOffType option");
+        throw new IllegalArgumentException(s + " doesn't map to any DropOffType option");
     }
 }

@@ -1,6 +1,7 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Trip;
+import com.krabelard.util.CsvUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +22,8 @@ public enum BikesAllowed {
 
     private final int bikesAllowed;
 
-    public static BikesAllowed from(Integer value) {
+    public static BikesAllowed from(String s) {
+        var value = CsvUtil.parseNullableInt(s);
         if (value == null) {
             return null;
         }
@@ -30,6 +32,6 @@ public enum BikesAllowed {
                 return e;
             }
         }
-        throw new IllegalArgumentException(value + " doesn't map to any BikesAllowed option");
+        throw new IllegalArgumentException(s + " doesn't map to any BikesAllowed option");
     }
 }

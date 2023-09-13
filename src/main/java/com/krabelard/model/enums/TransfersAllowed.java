@@ -31,6 +31,6 @@ public enum TransfersAllowed {
                 return e;
             }
         }
-        throw new IllegalArgumentException(value + " doesn't map to any TransfersAllowed option");
+        throw new IllegalArgumentException(s + " doesn't map to any TransfersAllowed option");
     }
 }

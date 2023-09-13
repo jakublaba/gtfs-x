@@ -1,6 +1,7 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Stop;
+import com.krabelard.util.CsvUtil;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -29,7 +30,8 @@ public enum WheelchairBoarding {
 
     private final int wheelchairBoarding;
 
-    public static WheelchairBoarding from(Integer value) {
+    public static WheelchairBoarding from(String s) {
+        var value = CsvUtil.parseNullableInt(s);
         if (value == null) {
             return null;
         }
@@ -38,6 +40,6 @@ public enum WheelchairBoarding {
                 return e;
             }
         }
-        throw new IllegalArgumentException(value + " doesn't map to any WheelchairBoarding option");
+        throw new IllegalArgumentException(s + " doesn't map to any WheelchairBoarding option");
     }
 }

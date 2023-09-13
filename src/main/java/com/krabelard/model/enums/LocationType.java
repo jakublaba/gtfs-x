@@ -2,6 +2,7 @@ package com.krabelard.model.enums;
 
 import com.krabelard.model.optional.Pathway;
 import com.krabelard.model.required.Stop;
+import com.krabelard.util.CsvUtil;
 import lombok.AllArgsConstructor;
 
 /**
@@ -26,7 +27,8 @@ public enum LocationType {
 
     private final int locationType;
 
-    public static LocationType from(Integer value) {
+    public static LocationType from(String s) {
+        var value = CsvUtil.parseNullableInt(s);
         if (value == null) {
             return null;
         }
@@ -35,6 +37,6 @@ public enum LocationType {
                 return e;
             }
         }
-        throw new IllegalArgumentException(value + " doesn't map to any LocationType option");
+        throw new IllegalArgumentException(s + " doesn't map to any LocationType option");
     }
 }

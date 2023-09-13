@@ -1,6 +1,7 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Trip;
+import com.krabelard.util.CsvUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +20,8 @@ public enum Direction {
 
     private final int direction;
 
-    public static Direction from(Integer value) {
+    public static Direction from(String s) {
+        var value = CsvUtil.parseNullableInt(s);
         if (value == null) {
             return null;
         }
@@ -28,6 +30,6 @@ public enum Direction {
                 return e;
             }
         }
-        throw new IllegalArgumentException(value + " doesn't map to any Direction option");
+        throw new IllegalArgumentException(s + " doesn't map to any Direction option");
     }
 }

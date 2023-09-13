@@ -21,7 +21,7 @@ public class Pathway {
      * <p>
      * Identifies a pathway. Used by systems as an internal identifier for the record. Must be unique in the dataset.
      */
-    long id;
+    String id;
     /**
      * <code>from_stop_id</code>
      * <p>
@@ -35,7 +35,7 @@ public class Pathway {
      * <p>
      * Values for {@link com.krabelard.model.enums.LocationType#Station} are forbidden.
      */
-    long fromStopId;
+    String fromStopId;
     /**
      * <code>to_stop_id</code>
      * <p>
@@ -45,7 +45,7 @@ public class Pathway {
      * <p>
      * See {@link Pathway#fromStopId}.
      */
-    long toStopId;
+    String toStopId;
     /**
      * <code>pathway_mode</code>
      * <p>

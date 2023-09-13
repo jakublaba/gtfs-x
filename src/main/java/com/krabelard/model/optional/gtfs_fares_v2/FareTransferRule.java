@@ -34,7 +34,7 @@ public class FareTransferRule {
      * An empty entry in this field corresponds to all leg groups defined under {@link FareLegRule#legGroupId} excluding
      * the ones listed under this field.
      */
-    Long fromLegGroupId;
+    String fromLegGroupId;
     /**
      * <code>to_leg_group_id</code>
      * <p>
@@ -48,7 +48,7 @@ public class FareTransferRule {
      * An empty entry in this field corresponds to all leg groups defined under {@link FareLegRule#legGroupId} excluding
      * the ones listed under this field.
      */
-    Long toLegGroupId;
+    String toLegGroupId;
     /**
      * <code>transfer_count</code>
      * <p>
@@ -97,13 +97,13 @@ public class FareTransferRule {
      * <p>
      * The fare product required to transfer between two fare legs. If empty, the cost of the transfer rule is 0.
      */
-    Long fareProductId;
+    String fareProductId;
 
-    public Optional<Long> getFromLegGroupId() {
+    public Optional<String> getFromLegGroupId() {
         return Optional.ofNullable(fromLegGroupId);
     }
 
-    public Optional<Long> getToLegGroupId() {
+    public Optional<String> getToLegGroupId() {
         return Optional.ofNullable(toLegGroupId);
     }
 
@@ -119,7 +119,7 @@ public class FareTransferRule {
         return Optional.ofNullable(durationLimitType);
     }
 
-    public Optional<Long> getFareProductId() {
+    public Optional<String> getFareProductId() {
         return Optional.ofNullable(fareProductId);
     }
 }

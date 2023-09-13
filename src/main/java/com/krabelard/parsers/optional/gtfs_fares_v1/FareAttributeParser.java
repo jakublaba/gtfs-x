@@ -30,11 +30,11 @@ public class FareAttributeParser implements GtfsCsvParser<FareAttribute> {
     @Override
     public Collection<FareAttribute> parse() throws GtfsParsingException {
         try {
+            log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.values());
             return CsvUtil.parseCsv(csv)
                     .stream()
                     .map(r -> {
-                        log.info(r.toString());
                         var values = CsvUtil.extractValues(r, headers);
                         return FareAttribute.builder()
                                 .id(values.get(Headers.FareId.value))

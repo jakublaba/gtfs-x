@@ -27,7 +27,7 @@ public class FareRule {
      * <p>
      * Identifies a fare class.
      */
-    long fareId;
+    String fareId;
     /**
      * <code>route_id</code>
      * <p>
@@ -36,7 +36,7 @@ public class FareRule {
      * Identifies a route associated with the fare class. If several routes with the same fare attributes exists, create
      * a {@link FareRule} entity for each one.
      */
-    Long routeId;
+    String routeId;
     /**
      * <code>origin_id</code>
      * <p>
@@ -44,7 +44,7 @@ public class FareRule {
      * <p>
      * Identifies an origin zone. If a fare class has multiple origin zones, create a {@link FareRule} entity for each one.
      */
-    Long originId;
+    String originId;
     /**
      * <code>destination_id</code>
      * <p>
@@ -52,7 +52,7 @@ public class FareRule {
      * <p>
      * Identifies a destination zone. If a fare class has multiple destination zones, create a {@link FareRule} entity for each one.
      */
-    Long destinationId;
+    String destinationId;
     /**
      * <code>contains_id</code>
      * <p>
@@ -61,21 +61,21 @@ public class FareRule {
      * Identifies the zones that a rider will enter while using a given fare class. Used in some systems to calculate correct
      * fare class.
      */
-    Long containsId;
+    String containsId;
 
-    public Optional<Long> getRouteId() {
+    public Optional<String> getRouteId() {
         return Optional.ofNullable(routeId);
     }
 
-    public Optional<Long> getOriginId() {
+    public Optional<String> getOriginId() {
         return Optional.ofNullable(originId);
     }
 
-    public Optional<Long> getDestinationId() {
+    public Optional<String> getDestinationId() {
         return Optional.ofNullable(destinationId);
     }
 
-    public Optional<Long> getContainsId() {
+    public Optional<String> getContainsId() {
         return Optional.ofNullable(containsId);
     }
 }

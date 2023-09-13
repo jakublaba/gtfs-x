@@ -27,7 +27,7 @@ public class CalendarDate {
      * If {@link CalendarDate#serviceId} appears also in {@link Calendar}, the information in this entity
      * modifies data from {@link Calendar}.
      */
-    long serviceId;
+    String serviceId;
     /**
      * <code>date</code>
      * <p>

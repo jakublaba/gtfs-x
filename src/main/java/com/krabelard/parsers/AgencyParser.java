@@ -25,6 +25,7 @@ public class AgencyParser implements GtfsCsvParser<Agency> {
     @Override
     public List<Agency> parse() throws GtfsParsingException {
         try {
+            log.info("Parsing {}", csv);
             var headers = Arrays.stream(Headers.values())
                     .map(h -> h.value)
                     .toArray(String[]::new);
@@ -32,7 +33,6 @@ public class AgencyParser implements GtfsCsvParser<Agency> {
                     .stream()
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
-                        log.info(values.toString());
                         return Agency.builder()
                                 .id(values.get(Headers.AgencyId.value))
                                 .name(values.get(Headers.AgencyName.value))

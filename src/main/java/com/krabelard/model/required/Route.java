@@ -24,7 +24,7 @@ public class Route {
      * <p>
      * Identifies a route
      */
-    long id;
+    String id;
     /**
      * <code>agency_id</code>
      * <p>

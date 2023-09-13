@@ -21,7 +21,7 @@ public class Calendar {
      * <p>
      * Identifies a set of dates when service is available for one or more routes. Unique.
      */
-    long serviceId;
+    String serviceId;
     /**
      * <code>monday</code>
      * <p>

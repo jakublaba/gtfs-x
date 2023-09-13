@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 import java.util.Collection;
 
 @Slf4j
@@ -26,7 +27,7 @@ public class FareRuleParser implements GtfsCsvParser<FareRule> {
     }
 
     @Override
-    public Collection<FareRule> parse() throws GtfsParsingException {
+    public Collection<FareRule> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.values());
@@ -43,6 +44,8 @@ public class FareRuleParser implements GtfsCsvParser<FareRule> {
                                 .build();
                     })
                     .toList();
+        } catch (NoSuchFileException e) {
+            throw e;
         } catch (IOException e) {
             throw new GtfsParsingException(csv, e);
         }

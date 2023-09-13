@@ -3,8 +3,6 @@ package com.krabelard.model.optional.gtfs_fares_v2;
 import lombok.Builder;
 import lombok.Value;
 
-import java.math.BigDecimal;
-
 /**
  * Maps an entry from optional <code>fare_products.txt</code> file.
  * <p>
@@ -27,7 +25,7 @@ public class FareProduct {
      * <p>
      * Identifies a fare product.
      */
-    long id;
+    String id;
     /**
      * <code>fare_product_name</code>
      * <p>
@@ -44,7 +42,7 @@ public class FareProduct {
      * Identifies a fare media that can be employed to use the fare product during the trip. When this field is empty,
      * it is considered that the fare media is unknown.
      */
-    Long fareMediaId;
+    String fareMediaId;
     /**
      * <code>amount</code>
      * <p>
@@ -53,7 +51,7 @@ public class FareProduct {
      * The cost of the fare product. May be negative to represent transfer discounts. May be zero to represent a fare
      * product that is free.
      */
-    BigDecimal amount;
+    double amount;
     /**
      * <code>currency</code>
      * <p>

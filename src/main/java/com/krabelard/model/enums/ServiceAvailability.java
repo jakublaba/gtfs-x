@@ -1,7 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Calendar;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -16,8 +15,7 @@ import lombok.RequiredArgsConstructor;
  * </li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum ServiceAvailability implements Parsable<ServiceAvailability, Integer> {
+public enum ServiceAvailability implements Parsable<Integer> {
     NotAvailable(0),
     Available(1);
 

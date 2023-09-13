@@ -80,7 +80,7 @@ public final class CsvUtil {
         }
     }
 
-    public static <E extends Enum<E> & Parsable<E, V>, V> E parseEnum(Class<E> enumClass, V value) {
+    public static <E extends Enum<E> & Parsable<V>, V> E parseEnum(Class<E> enumClass, V value) {
         for (var e : enumClass.getEnumConstants()) {
             if (e.value().equals(value)) {
                 return e;

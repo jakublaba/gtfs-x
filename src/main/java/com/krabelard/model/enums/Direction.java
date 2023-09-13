@@ -1,7 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Trip;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -12,8 +11,7 @@ import lombok.RequiredArgsConstructor;
  * <li><code>1</code> - Travel in the opposite direction (e.g. inbound travel)</li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum Direction implements Parsable<Direction, Integer> {
+public enum Direction implements Parsable<Integer> {
     Outbound(0),
     Inbound(1);
 

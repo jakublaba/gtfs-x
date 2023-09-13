@@ -1,7 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.StopTime;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -12,8 +11,7 @@ import lombok.RequiredArgsConstructor;
  * <li><code>1</code> or empty - Times are considered exact.</li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum TimePoint implements Parsable<TimePoint, Integer> {
+public enum TimePoint implements Parsable<Integer> {
     Approximate(0),
     Exact(1);
 

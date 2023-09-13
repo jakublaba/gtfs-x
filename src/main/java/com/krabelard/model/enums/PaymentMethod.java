@@ -1,7 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.optional.gtfs_fares_v1.FareAttribute;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -12,8 +11,7 @@ import lombok.RequiredArgsConstructor;
  * <li><code>1</code> - Fare must be paid before boarding.</li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum PaymentMethod implements Parsable<PaymentMethod, Integer> {
+public enum PaymentMethod implements Parsable<Integer> {
     OnBoard(0),
     BeforeBoarding(1);
 

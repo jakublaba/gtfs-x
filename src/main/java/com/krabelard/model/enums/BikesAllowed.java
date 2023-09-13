@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
  * <li><code>2</code> - No bicycles are allowed on this trip.</li>
  */
 @RequiredArgsConstructor
-public enum BikesAllowed implements Parsable<BikesAllowed, Integer> {
+public enum BikesAllowed implements Parsable<Integer> {
     NoInfo(0),
     Allowed(1),
     NotAllowed(2);

@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
  * <li><code>2</code> - No accessible path from station entrance to stops/platforms.</li>
  */
 @RequiredArgsConstructor
-public enum WheelchairBoarding implements Parsable<WheelchairBoarding, Integer> {
+public enum WheelchairBoarding implements Parsable<Integer> {
     NoInfoOrInherit(0),
     Possible(1),
     NotPossible(2);

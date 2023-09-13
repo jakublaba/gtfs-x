@@ -62,10 +62,4 @@ public class CalendarDateParser implements GtfsCsvParser<CalendarDate> {
 
         private final String value;
     }
-
-    public static void main(String[] args) throws GtfsParsingException {
-        CalendarDateParser.of("C:\\Users\\Kuba\\Desktop\\sample-feed")
-                .parse()
-                .forEach(System.out::println);
-    }
 }

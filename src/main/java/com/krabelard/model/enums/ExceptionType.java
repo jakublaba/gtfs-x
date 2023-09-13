@@ -1,7 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.CalendarDate;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -16,8 +15,7 @@ import lombok.RequiredArgsConstructor;
  * </li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum ExceptionType implements Parsable<ExceptionType, Integer> {
+public enum ExceptionType implements Parsable<Integer> {
     Added(1),
     Removed(2);
 

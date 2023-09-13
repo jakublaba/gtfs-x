@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
  * <li><code>4</code> - <b>Boarding Area</b>. A specific location on a platform, where passengers can board and/or alight vehicles.</li>
  */
 @AllArgsConstructor
-public enum LocationType implements Parsable<LocationType, Integer> {
+public enum LocationType implements Parsable<Integer> {
     StopOrPlatform(0),
     Station(1),
     EntranceOrExit(2),

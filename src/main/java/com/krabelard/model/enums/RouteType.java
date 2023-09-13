@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
  * <li><code>12</code> - Monorail. Railway in which the track consists of a single rail or a beam.</li>
  */
 @RequiredArgsConstructor
-public enum RouteType implements Parsable<RouteType, Integer> {
+public enum RouteType implements Parsable<Integer> {
     LightRail(0),
     UndergroundRail(1),
     Rail(2),

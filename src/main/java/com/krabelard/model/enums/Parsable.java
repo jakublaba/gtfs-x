@@ -1,5 +1,5 @@
 package com.krabelard.model.enums;
 
-public interface Parsable<E extends Enum<E> & Parsable<E, V>, V> {
+public interface Parsable<V> {
     V value();
 }

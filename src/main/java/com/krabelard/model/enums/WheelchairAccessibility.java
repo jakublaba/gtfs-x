@@ -1,8 +1,8 @@
 package com.krabelard.model.enums;
 
+import com.krabelard.model.required.Trip;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import com.krabelard.model.required.Trip;
 
 /**
  * Representation for {@link Trip#wheelchairAccessible}.
@@ -20,4 +20,16 @@ public enum WheelchairAccessibility {
     NotAccessible(2);
 
     private final int accessibility;
+
+    public static WheelchairAccessibility from(Integer value) {
+        if (value == null) {
+            return null;
+        }
+        for (var e : values()) {
+            if (e.accessibility == value) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException(value + " doesn't map to any WheelchairAccessibility option");
+    }
 }

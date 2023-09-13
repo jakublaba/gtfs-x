@@ -20,4 +20,16 @@ public enum BikesAllowed {
     NotAllowed(2);
 
     private final int bikesAllowed;
+
+    public static BikesAllowed from(Integer value) {
+        if (value == null) {
+            return null;
+        }
+        for (var e : values()) {
+            if (e.bikesAllowed == value) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException(value + " doesn't map to any BikesAllowed option");
+    }
 }

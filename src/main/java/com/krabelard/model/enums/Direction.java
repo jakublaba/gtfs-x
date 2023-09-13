@@ -1,8 +1,8 @@
 package com.krabelard.model.enums;
 
+import com.krabelard.model.required.Trip;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import com.krabelard.model.required.Trip;
 
 /**
  * Representation for {@link Trip#direction}.
@@ -18,4 +18,16 @@ public enum Direction {
     Inbound(1);
 
     private final int direction;
+
+    public static Direction from(Integer value) {
+        if (value == null) {
+            return null;
+        }
+        for (var e : values()) {
+            if (e.direction == value) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException(value + " doesn't map to any Direction option");
+    }
 }

@@ -34,7 +34,7 @@ public class Route {
      * <br>
      * Required if multiple {@link Agency} entities are present.
      */
-    Long agencyId;
+    String agencyId;
     /**
      * <code>route_short_name</code>
      * <p>
@@ -141,9 +141,9 @@ public class Route {
      * <p>
      * Identifies a group of routes. Multiple {@link Route} entities may have the same {@link Route#networkId}
      */
-    Long networkId;
+    String networkId;
 
-    public Optional<Long> getAgencyId() {
+    public Optional<String> getAgencyId() {
         return Optional.ofNullable(agencyId);
     }
 
@@ -183,7 +183,7 @@ public class Route {
         return Optional.ofNullable(continuousDropOff);
     }
 
-    public Optional<Long> getNetworkId() {
+    public Optional<String> getNetworkId() {
         return Optional.ofNullable(networkId);
     }
 }

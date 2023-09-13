@@ -23,4 +23,16 @@ public enum PickupType {
     MustCoordinateWithDriver(3);
 
     private final int pickupType;
+
+    public static PickupType from(Integer value) {
+        if (value == null) {
+            return null;
+        }
+        for (var e : values()) {
+            if (e.pickupType == value) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException(value + " doesn't map to any PickupType option");
+    }
 }

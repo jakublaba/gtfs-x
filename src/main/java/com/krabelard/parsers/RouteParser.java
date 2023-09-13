@@ -1,5 +1,8 @@
 package com.krabelard.parsers;
 
+import com.krabelard.model.enums.DropOffType;
+import com.krabelard.model.enums.PickupType;
+import com.krabelard.model.enums.RouteType;
 import com.krabelard.model.required.Route;
 import com.krabelard.util.CsvUtil;
 import lombok.RequiredArgsConstructor;
@@ -35,12 +38,31 @@ public class RouteParser implements GtfsCsvParser<Route> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Route.builder()
                                 .id(values.get(Headers.RouteId.value))
-                                // TODO left off here
+                                .agencyId(values.get(Headers.AgencyId.value))
+                                .shortName(values.get(Headers.RouteShortName.value))
+                                .longName(values.get(Headers.RouteLongName.value))
+                                .description(values.get(Headers.RouteDescription.value))
+                                .type(RouteType.from(values.get(Headers.RouteType.value)))
+                                .url(values.get(Headers.RouteUrl.value))
+                                .color(values.get(Headers.RouteColor.value))
+                                .textColor(values.get(Headers.RouteTextColor.value))
+                                .sortOrder(parseNullableInt(values.get(Headers.RouteSortOrder.value)))
+                                .continuousPickup(PickupType.from(parseNullableInt(values.get(Headers.ContinuousPickup.value))))
+                                .continuousDropOff(DropOffType.from(parseNullableInt(values.get(Headers.ContinuousDropOff.value))))
+                                .networkId(values.get(Headers.NetworkId.value))
                                 .build();
                     })
                     .toList();
         } catch (IOException e) {
             throw new GtfsParsingException(csv, e);
+        }
+    }
+
+    private Integer parseNullableInt(String s) {
+        try {
+            return Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return null;
         }
     }
 
@@ -61,5 +83,12 @@ public class RouteParser implements GtfsCsvParser<Route> {
         NetworkId("network_id");
 
         private final String value;
+    }
+
+    public static void main(String[] args) throws GtfsParsingException {
+        var dir = "C:/Users/Kuba/Desktop/sample-feed";
+        var parser = RouteParser.of(dir);
+        var routes = parser.parse();
+        routes.forEach(System.out::println);
     }
 }

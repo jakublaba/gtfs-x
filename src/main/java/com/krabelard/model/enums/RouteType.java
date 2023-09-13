@@ -32,4 +32,14 @@ public enum RouteType {
     Monorail(12);
 
     private final int routeType;
+
+    public static RouteType from(String s) {
+        var value = Integer.parseInt(s);
+        for (var e : values()) {
+            if (e.routeType == value) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException(s + " doesn't map to any RouteType option");
+    }
 }

@@ -31,7 +31,7 @@ public class FareLegRule {
      * Multiple {@link FareLegRule} entities may belong to the same {@link FareLegRule#legGroupId}.
      * The same {@link FareLegRule} entity must not belong belong to multiple {@link FareLegRule#legGroupId}.
      */
-    Long legGroupId;
+    String legGroupId;
     /**
      * <code>network_id</code>
      * <p>
@@ -42,7 +42,7 @@ public class FareLegRule {
      * If there are no matching {@link FareLegRule#networkId} values to the <code>networkId</code> being filtered,
      * empty {@link FareLegRule#networkId} will be matched by default.
      */
-    Long networkId;
+    String networkId;
     /**
      * <code>from_area_id</code>
      * <p>
@@ -53,7 +53,7 @@ public class FareLegRule {
      * If there are no matching {@link FareLegRule#fromAreaId} values to the <code>fromAreaId</code> being filtered,
      * empty {@link FareLegRule#fromAreaId} will be matched by default.
      */
-    Long fromAreaId;
+    String fromAreaId;
     /**
      * <code>to_area_id</code>
      * <p>
@@ -64,7 +64,7 @@ public class FareLegRule {
      * If there are not matching {@link FareLegRule#toAreaId} values to the <code>toAreaId</code> being filtered,
      * empty {@link FareLegRule#toAreaId} will be matched by default.
      */
-    Long toAreaId;
+    String toAreaId;
     /**
      * <code>fare_product_id</code>
      * <p>
@@ -72,21 +72,21 @@ public class FareLegRule {
      * <p>
      * The fare product required to travel the leg.
      */
-    long fareProductId;
+    String fareProductId;
 
-    public Optional<Long> getLegGroupId() {
+    public Optional<String> getLegGroupId() {
         return Optional.ofNullable(legGroupId);
     }
 
-    public Optional<Long> getNetworkId() {
+    public Optional<String> getNetworkId() {
         return Optional.ofNullable(networkId);
     }
 
-    public Optional<Long> getFromAreaId() {
+    public Optional<String> getFromAreaId() {
         return Optional.ofNullable(fromAreaId);
     }
 
-    public Optional<Long> getToAreaId() {
+    public Optional<String> getToAreaId() {
         return Optional.ofNullable(toAreaId);
     }
 }

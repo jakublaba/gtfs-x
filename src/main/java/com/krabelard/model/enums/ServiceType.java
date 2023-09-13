@@ -13,9 +13,14 @@ import lombok.RequiredArgsConstructor;
  * {@link com.krabelard.model.optional.Frequency#startTime} + {@link com.krabelard.model.optional.Frequency#headwaySecs}</li>
  */
 @RequiredArgsConstructor
-public enum ServiceType {
+public enum ServiceType implements Parsable<Integer> {
     FrequencyBased(0),
     ScheduleBased(1);
 
     private final int serviceType;
+
+    @Override
+    public Integer value() {
+        return serviceType;
+    }
 }

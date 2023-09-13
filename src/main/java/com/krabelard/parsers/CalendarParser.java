@@ -3,6 +3,7 @@ package com.krabelard.parsers;
 import com.krabelard.model.enums.ServiceAvailability;
 import com.krabelard.model.required.Calendar;
 import com.krabelard.util.CsvUtil;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,9 +30,7 @@ public class CalendarParser implements GtfsCsvParser<Calendar> {
     public Collection<Calendar> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
-            var headers = Arrays.stream(Headers.values())
-                    .map(h -> h.value)
-                    .toArray(String[]::new);
+            var headers = CsvUtil.headersAsStrings(Headers.values());
             var formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
             return CsvUtil.parseCsv(csv)
                     .stream()
@@ -57,7 +56,8 @@ public class CalendarParser implements GtfsCsvParser<Calendar> {
     }
 
     @RequiredArgsConstructor
-    private enum Headers {
+    @Getter
+    private enum Headers implements CsvHeaders {
         ServiceId("service_id"),
         Monday("monday"),
         Tuesday("tuesday"),

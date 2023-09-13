@@ -5,6 +5,7 @@ import com.krabelard.model.enums.PickupType;
 import com.krabelard.model.enums.RouteType;
 import com.krabelard.model.required.Route;
 import com.krabelard.util.CsvUtil;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,9 +30,7 @@ public class RouteParser implements GtfsCsvParser<Route> {
     public Collection<Route> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
-            var headers = Arrays.stream(Headers.values())
-                    .map(h -> h.value)
-                    .toArray(String[]::new);
+            var headers = CsvUtil.headersAsStrings(Headers.values());
             return CsvUtil.parseCsv(csv)
                     .stream()
                     .map(r -> {
@@ -67,7 +66,8 @@ public class RouteParser implements GtfsCsvParser<Route> {
     }
 
     @RequiredArgsConstructor
-    private enum Headers {
+    @Getter
+    private enum Headers implements CsvHeaders {
         RouteId("route_id"),
         AgencyId("agency_id"),
         RouteShortName("route_short_name"),

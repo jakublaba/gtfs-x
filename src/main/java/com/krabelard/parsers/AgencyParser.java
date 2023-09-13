@@ -2,6 +2,7 @@ package com.krabelard.parsers;
 
 import com.krabelard.model.required.Agency;
 import com.krabelard.util.CsvUtil;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,9 +27,7 @@ public class AgencyParser implements GtfsCsvParser<Agency> {
     public List<Agency> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
-            var headers = Arrays.stream(Headers.values())
-                    .map(h -> h.value)
-                    .toArray(String[]::new);
+            var headers = CsvUtil.headersAsStrings(Headers.values());
             return CsvUtil.parseCsv(csv)
                     .stream()
                     .map(r -> {
@@ -51,7 +50,8 @@ public class AgencyParser implements GtfsCsvParser<Agency> {
     }
 
     @RequiredArgsConstructor
-    private enum Headers {
+    @Getter
+    private enum Headers implements CsvHeaders {
         AgencyId("agency_id"),
         AgencyName("agency_name"),
         AgencyUrl("agency_url"),

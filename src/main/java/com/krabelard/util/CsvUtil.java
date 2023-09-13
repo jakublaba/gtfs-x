@@ -1,5 +1,6 @@
 package com.krabelard.util;
 
+import com.krabelard.parsers.CsvHeaders;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,5 +55,11 @@ public final class CsvUtil {
         }
 
         return result;
+    }
+
+    public static <T extends CsvHeaders> String[] headersAsStrings(T[] headerValues) {
+        return Arrays.stream(headerValues)
+                .map(CsvHeaders::getValue)
+                .toArray(String[]::new);
     }
 }

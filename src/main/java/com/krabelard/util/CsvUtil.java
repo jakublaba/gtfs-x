@@ -58,6 +58,9 @@ public final class CsvUtil {
     }
 
     public static Integer parseNullableInt(String s) {
+        if (s == null) {
+            return null;
+        }
         try {
             return Integer.parseInt(s);
         } catch (NumberFormatException e) {
@@ -66,6 +69,9 @@ public final class CsvUtil {
     }
 
     public static Double parseNullableDouble(String s) {
+        if (s == null) {
+            return null;
+        }
         try {
             return Double.parseDouble(s);
         } catch (NumberFormatException e) {

@@ -1,9 +1,12 @@
-package com.krabelard.parsers;
+package com.krabelard.parsers.required;
 
 import com.krabelard.model.enums.BikesAllowed;
 import com.krabelard.model.enums.Direction;
 import com.krabelard.model.enums.WheelchairAccessibility;
 import com.krabelard.model.required.Trip;
+import com.krabelard.parsers.CsvHeaders;
+import com.krabelard.parsers.GtfsCsvParser;
+import com.krabelard.parsers.GtfsParsingException;
 import com.krabelard.util.CsvUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

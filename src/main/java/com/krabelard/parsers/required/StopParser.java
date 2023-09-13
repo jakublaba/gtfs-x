@@ -1,8 +1,11 @@
-package com.krabelard.parsers;
+package com.krabelard.parsers.required;
 
 import com.krabelard.model.enums.LocationType;
 import com.krabelard.model.enums.WheelchairBoarding;
 import com.krabelard.model.required.Stop;
+import com.krabelard.parsers.CsvHeaders;
+import com.krabelard.parsers.GtfsCsvParser;
+import com.krabelard.parsers.GtfsParsingException;
 import com.krabelard.util.CsvUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

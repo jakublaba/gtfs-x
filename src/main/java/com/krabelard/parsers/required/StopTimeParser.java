@@ -1,9 +1,12 @@
-package com.krabelard.parsers;
+package com.krabelard.parsers.required;
 
 import com.krabelard.model.enums.DropOffType;
 import com.krabelard.model.enums.PickupType;
 import com.krabelard.model.enums.TimePoint;
 import com.krabelard.model.required.StopTime;
+import com.krabelard.parsers.CsvHeaders;
+import com.krabelard.parsers.GtfsCsvParser;
+import com.krabelard.parsers.GtfsParsingException;
 import com.krabelard.util.CsvUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

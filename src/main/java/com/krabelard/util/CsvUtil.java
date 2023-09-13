@@ -80,6 +80,10 @@ public final class CsvUtil {
         }
     }
 
+    public static boolean parse01Boolean(String s) {
+        return Integer.parseInt(s) == 1;
+    }
+
     public static <E extends Enum<E> & Parsable<V>, V> E parseEnum(Class<E> enumClass, V value) {
         for (var e : enumClass.getEnumConstants()) {
             if (e.value().equals(value)) {

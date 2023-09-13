@@ -6,14 +6,15 @@ import lombok.Value;
 import java.util.Optional;
 
 // TODO Add docs to Attribution entity
+// I forgor xd
 // Optional
 @Value
 @Builder
 public class Attribution {
-    Long id;                    // Optional
-    Long agencyId;              // Optional
-    Long routeId;               // Optional
-    Long tripId;                // Optional
+    String id;                    // Optional
+    String agencyId;              // Optional
+    String routeId;               // Optional
+    String tripId;                // Optional
     String organizationName;    // Required
     boolean isProducer;         // Optional in gtfs feed but defaults to false if not present
     boolean isOperator;         // Optional in gtfs feed but defaults to false if not present
@@ -23,19 +24,19 @@ public class Attribution {
     String email;               // Optional
     String phone;               // Optional
 
-    public Optional<Long> getId() {
+    public Optional<String> getId() {
         return Optional.ofNullable(id);
     }
 
-    public Optional<Long> getAgencyId() {
+    public Optional<String> getAgencyId() {
         return Optional.ofNullable(agencyId);
     }
 
-    public Optional<Long> getRouteId() {
+    public Optional<String> getRouteId() {
         return Optional.ofNullable(routeId);
     }
 
-    public Optional<Long> getTripId() {
+    public Optional<String> getTripId() {
         return Optional.ofNullable(tripId);
     }
 

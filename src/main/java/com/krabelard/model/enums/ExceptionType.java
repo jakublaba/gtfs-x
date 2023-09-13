@@ -17,19 +17,14 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @Getter
-public enum ExceptionType {
+public enum ExceptionType implements Parsable<ExceptionType, Integer> {
     Added(1),
     Removed(2);
 
     private final int exceptionType;
 
-    public static ExceptionType from(String s) {
-        var value = Integer.parseInt(s);
-        for (var e : values()) {
-            if (e.exceptionType == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any ExceptionType option");
+    @Override
+    public Integer value() {
+        return exceptionType;
     }
 }

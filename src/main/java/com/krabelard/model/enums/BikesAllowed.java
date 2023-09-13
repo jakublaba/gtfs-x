@@ -1,8 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Trip;
-import com.krabelard.util.CsvUtil;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -14,24 +12,14 @@ import lombok.RequiredArgsConstructor;
  * <li><code>2</code> - No bicycles are allowed on this trip.</li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum BikesAllowed {
+public enum BikesAllowed implements Parsable<BikesAllowed, Integer> {
     NoInfo(0),
     Allowed(1),
     NotAllowed(2);
 
     private final int bikesAllowed;
 
-    public static BikesAllowed from(String s) {
-        var value = CsvUtil.parseNullableInt(s);
-        if (value == null) {
-            return null;
-        }
-        for (var e : values()) {
-            if (e.bikesAllowed == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any BikesAllowed option");
+    public Integer value() {
+        return bikesAllowed;
     }
 }

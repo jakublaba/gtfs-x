@@ -15,22 +15,18 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @Getter
-public enum TransfersAllowed {
+public enum TransfersAllowed implements Parsable<TransfersAllowed, Integer> {
     NotAllowed(0),
     Once(1),
     Twice(2),
-    // TODO - gtfs specification says that empty field means unlimited transfers, so this has to be mapped on library level
-    Unlimited(3);
+    // According to GTFS reference, empty field means unlimited transfers
+    // TODO - this case probably will need some special handling in CsvUtil#parseEnum
+    Unlimited(null);
 
-    private final int transfersAllowed;
+    private final Integer transfersAllowed;
 
-    public static TransfersAllowed from(String s) {
-        var value = Integer.parseInt(s);
-        for (var e : values()) {
-            if (e.transfersAllowed == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any TransfersAllowed option");
+    @Override
+    public Integer value() {
+        return transfersAllowed;
     }
 }

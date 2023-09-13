@@ -40,8 +40,14 @@ public class FareAttributeParser implements GtfsCsvParser<FareAttribute> {
                                 .id(values.get(Headers.FareId.value))
                                 .price(Double.parseDouble(values.get(Headers.Price.value)))
                                 .currency(values.get(Headers.CurrencyType.value))
-                                .paymentMethod(PaymentMethod.from(values.get(Headers.PaymentMethod.value)))
-                                .transfers(TransfersAllowed.from(values.get(Headers.Transfers.value)))
+                                .paymentMethod(CsvUtil.parseEnum(
+                                        PaymentMethod.class,
+                                        Integer.parseInt(values.get(Headers.PaymentMethod.value))
+                                ))
+                                .transfers(CsvUtil.parseEnum(
+                                        TransfersAllowed.class,
+                                        Integer.parseInt(values.get(Headers.Transfers.value))
+                                ))
                                 .agencyId(values.get(Headers.AgencyId.value))
                                 .transferDuration(CsvUtil.parseNullableInt(values.get(Headers.TransferDuration.value)))
                                 .build();

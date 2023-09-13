@@ -1,5 +1,6 @@
 package com.krabelard.util;
 
+import com.krabelard.model.enums.Parsable;
 import com.krabelard.parsers.CsvHeaders;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -77,6 +78,15 @@ public final class CsvUtil {
         } catch (NumberFormatException e) {
             return null;
         }
+    }
+
+    public static <E extends Enum<E> & Parsable<E, V>, V> E parseEnum(Class<E> enumClass, V value) {
+        for (var e : enumClass.getEnumConstants()) {
+            if (e.value().equals(value)) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException(String.format("%s doesn't map to any %s option", value, enumClass));
     }
 
     public static String[] headersAsStrings(CsvHeaders[] headerValues) {

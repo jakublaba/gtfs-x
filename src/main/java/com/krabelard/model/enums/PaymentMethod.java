@@ -13,19 +13,14 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @Getter
-public enum PaymentMethod {
+public enum PaymentMethod implements Parsable<PaymentMethod, Integer> {
     OnBoard(0),
     BeforeBoarding(1);
 
     private final int paymentMethod;
 
-    public static PaymentMethod from(String s) {
-        var value = Integer.parseInt(s);
-        for (var e : values()) {
-            if (e.paymentMethod == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any PaymentMethod option");
+    @Override
+    public Integer value() {
+        return paymentMethod;
     }
 }

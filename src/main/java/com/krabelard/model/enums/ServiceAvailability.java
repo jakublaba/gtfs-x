@@ -17,19 +17,14 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @Getter
-public enum ServiceAvailability {
+public enum ServiceAvailability implements Parsable<ServiceAvailability, Integer> {
     NotAvailable(0),
     Available(1);
 
     private final int availability;
 
-    public static ServiceAvailability from(String s) {
-        var value = Integer.parseInt(s);
-        for (var e : values()) {
-            if (e.availability == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any ServiceAvailability option");
+    @Override
+    public Integer value() {
+        return availability;
     }
 }

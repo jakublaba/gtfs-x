@@ -1,7 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.StopTime;
-import com.krabelard.util.CsvUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -14,22 +13,14 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @Getter
-public enum TimePoint {
+public enum TimePoint implements Parsable<TimePoint, Integer> {
     Approximate(0),
     Exact(1);
 
     private final int timePoint;
 
-    public static TimePoint from(String s) {
-        var value = CsvUtil.parseNullableInt(s);
-        if (value == null) {
-            return null;
-        }
-        for (var e : values()) {
-            if (e.timePoint == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any Timepoint option");
+    @Override
+    public Integer value() {
+        return timePoint;
     }
 }

@@ -40,13 +40,34 @@ public class CalendarParser implements GtfsCsvParser<Calendar> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Calendar.builder()
                                 .serviceId(values.get(Headers.ServiceId.value))
-                                .monday(ServiceAvailability.from(values.get(Headers.Monday.value)))
-                                .tuesday(ServiceAvailability.from(values.get(Headers.Tuesday.value)))
-                                .wednesday(ServiceAvailability.from(values.get(Headers.Wednesday.value)))
-                                .thursday(ServiceAvailability.from(values.get(Headers.Thursday.value)))
-                                .friday(ServiceAvailability.from(values.get(Headers.Friday.value)))
-                                .saturday(ServiceAvailability.from(values.get(Headers.Saturday.value)))
-                                .sunday(ServiceAvailability.from(values.get(Headers.Sunday.value)))
+                                .monday(CsvUtil.parseEnum(
+                                        ServiceAvailability.class,
+                                        Integer.parseInt(values.get(Headers.Monday.value))
+                                ))
+                                .tuesday(CsvUtil.parseEnum(
+                                        ServiceAvailability.class,
+                                        Integer.parseInt(values.get(Headers.Tuesday.value))
+                                ))
+                                .wednesday(CsvUtil.parseEnum(
+                                        ServiceAvailability.class,
+                                        Integer.parseInt(values.get(Headers.Wednesday.value))
+                                ))
+                                .thursday(CsvUtil.parseEnum(
+                                        ServiceAvailability.class,
+                                        Integer.parseInt(values.get(Headers.Thursday.value))
+                                ))
+                                .friday(CsvUtil.parseEnum(
+                                        ServiceAvailability.class,
+                                        Integer.parseInt(values.get(Headers.Friday.value))
+                                ))
+                                .saturday(CsvUtil.parseEnum(
+                                        ServiceAvailability.class,
+                                        Integer.parseInt(values.get(Headers.Saturday.value))
+                                ))
+                                .sunday(CsvUtil.parseEnum(
+                                        ServiceAvailability.class,
+                                        Integer.parseInt(values.get(Headers.Sunday.value))
+                                ))
                                 .startDate(LocalDate.parse(values.get(Headers.StartDate.value), formatter))
                                 .endDate(LocalDate.parse(values.get(Headers.EndDate.value), formatter))
                                 .build();

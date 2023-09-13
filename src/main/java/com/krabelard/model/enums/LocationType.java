@@ -2,7 +2,6 @@ package com.krabelard.model.enums;
 
 import com.krabelard.model.optional.Pathway;
 import com.krabelard.model.required.Stop;
-import com.krabelard.util.CsvUtil;
 import lombok.AllArgsConstructor;
 
 /**
@@ -18,7 +17,7 @@ import lombok.AllArgsConstructor;
  * <li><code>4</code> - <b>Boarding Area</b>. A specific location on a platform, where passengers can board and/or alight vehicles.</li>
  */
 @AllArgsConstructor
-public enum LocationType {
+public enum LocationType implements Parsable<LocationType, Integer> {
     StopOrPlatform(0),
     Station(1),
     EntranceOrExit(2),
@@ -27,16 +26,8 @@ public enum LocationType {
 
     private final int locationType;
 
-    public static LocationType from(String s) {
-        var value = CsvUtil.parseNullableInt(s);
-        if (value == null) {
-            return null;
-        }
-        for (var e : values()) {
-            if (e.locationType == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any LocationType option");
+    @Override
+    public Integer value() {
+        return locationType;
     }
 }

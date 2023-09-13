@@ -43,11 +43,20 @@ public class TripParser implements GtfsCsvParser<Trip> {
                                 .id(values.get(Headers.TripId.value))
                                 .headSign(values.get(Headers.TripHeadsign.value))
                                 .shortName(values.get(Headers.TripShortName.value))
-                                .direction(Direction.from(values.get(Headers.DirectionId.value)))
+                                .direction(CsvUtil.parseEnum(
+                                        Direction.class,
+                                        CsvUtil.parseNullableInt(values.get(Headers.DirectionId.value))
+                                ))
                                 .blockId(values.get(Headers.BlockId.value))
                                 .shapeId(values.get(Headers.ShapeId.value))
-                                .wheelchairAccessible(WheelchairAccessibility.from(values.get(Headers.WheelchairAccessible.value)))
-                                .bikesAllowed(BikesAllowed.from(values.get(Headers.BikesAllowed.value)))
+                                .wheelchairAccessible(CsvUtil.parseEnum(
+                                        WheelchairAccessibility.class,
+                                        CsvUtil.parseNullableInt(values.get(Headers.WheelchairAccessible.value))
+                                ))
+                                .bikesAllowed(CsvUtil.parseEnum(
+                                        BikesAllowed.class,
+                                        CsvUtil.parseNullableInt(values.get(Headers.BikesAllowed.value))
+                                ))
                                 .build();
                     })
                     .toList();

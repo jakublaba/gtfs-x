@@ -43,13 +43,22 @@ public class RouteParser implements GtfsCsvParser<Route> {
                                 .shortName(values.get(Headers.RouteShortName.value))
                                 .longName(values.get(Headers.RouteLongName.value))
                                 .description(values.get(Headers.RouteDescription.value))
-                                .type(RouteType.from(values.get(Headers.RouteType.value)))
+                                .type(CsvUtil.parseEnum(
+                                        RouteType.class,
+                                        Integer.parseInt(values.get(Headers.RouteType.value))
+                                ))
                                 .url(values.get(Headers.RouteUrl.value))
                                 .color(values.get(Headers.RouteColor.value))
                                 .textColor(values.get(Headers.RouteTextColor.value))
                                 .sortOrder(CsvUtil.parseNullableInt(values.get(Headers.RouteSortOrder.value)))
-                                .continuousPickup(PickupType.from(values.get(Headers.ContinuousPickup.value)))
-                                .continuousDropOff(DropOffType.from(values.get(Headers.ContinuousDropOff.value)))
+                                .continuousPickup(CsvUtil.parseEnum(
+                                        PickupType.class,
+                                        CsvUtil.parseNullableInt(values.get(Headers.ContinuousPickup.value))
+                                ))
+                                .continuousDropOff(CsvUtil.parseEnum(
+                                        DropOffType.class,
+                                        CsvUtil.parseNullableInt(values.get(Headers.ContinuousDropOff.value))
+                                ))
                                 .networkId(values.get(Headers.NetworkId.value))
                                 .build();
                     })

@@ -1,7 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Trip;
-import com.krabelard.util.CsvUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -15,23 +14,15 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @Getter
-public enum WheelchairAccessibility {
+public enum WheelchairAccessibility implements Parsable<WheelchairAccessibility, Integer> {
     NoInfo(0),
     Accessible(1),
     NotAccessible(2);
 
     private final int accessibility;
 
-    public static WheelchairAccessibility from(String s) {
-        var value = CsvUtil.parseNullableInt(s);
-        if (value == null) {
-            return null;
-        }
-        for (var e : values()) {
-            if (e.accessibility == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any WheelchairAccessibility option");
+    @Override
+    public Integer value() {
+        return accessibility;
     }
 }

@@ -1,7 +1,7 @@
 package com.krabelard.model.enums;
 
-import lombok.RequiredArgsConstructor;
 import com.krabelard.model.required.Route;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Representation for {@link Route#type}.
@@ -19,7 +19,7 @@ import com.krabelard.model.required.Route;
  * <li><code>12</code> - Monorail. Railway in which the track consists of a single rail or a beam.</li>
  */
 @RequiredArgsConstructor
-public enum RouteType {
+public enum RouteType implements Parsable<RouteType, Integer> {
     LightRail(0),
     UndergroundRail(1),
     Rail(2),
@@ -33,13 +33,8 @@ public enum RouteType {
 
     private final int routeType;
 
-    public static RouteType from(String s) {
-        var value = Integer.parseInt(s);
-        for (var e : values()) {
-            if (e.routeType == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any RouteType option");
+    @Override
+    public Integer value() {
+        return routeType;
     }
 }

@@ -41,7 +41,10 @@ public class CalendarDateParser implements GtfsCsvParser<CalendarDate> {
                         return CalendarDate.builder()
                                 .serviceId(values.get(Headers.ServiceId.value))
                                 .date(LocalDate.parse(values.get(Headers.Date.value), format))
-                                .exceptionType(ExceptionType.from(values.get(Headers.ExceptionType.value)))
+                                .exceptionType(CsvUtil.parseEnum(
+                                        ExceptionType.class,
+                                        Integer.parseInt(values.get(Headers.ExceptionType.value))
+                                ))
                                 .build();
                     })
                     .toList();
@@ -58,5 +61,11 @@ public class CalendarDateParser implements GtfsCsvParser<CalendarDate> {
         ExceptionType("exception_type");
 
         private final String value;
+    }
+
+    public static void main(String[] args) throws GtfsParsingException {
+        CalendarDateParser.of("C:\\Users\\Kuba\\Desktop\\sample-feed")
+                .parse()
+                .forEach(System.out::println);
     }
 }

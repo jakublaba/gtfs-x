@@ -1,7 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Stop;
-import com.krabelard.util.CsvUtil;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -23,23 +22,15 @@ import lombok.RequiredArgsConstructor;
  * <li><code>2</code> - No accessible path from station entrance to stops/platforms.</li>
  */
 @RequiredArgsConstructor
-public enum WheelchairBoarding {
+public enum WheelchairBoarding implements Parsable<WheelchairBoarding, Integer> {
     NoInfoOrInherit(0),
     Possible(1),
     NotPossible(2);
 
     private final int wheelchairBoarding;
 
-    public static WheelchairBoarding from(String s) {
-        var value = CsvUtil.parseNullableInt(s);
-        if (value == null) {
-            return null;
-        }
-        for (var e : values()) {
-            if (e.wheelchairBoarding == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any WheelchairBoarding option");
+    @Override
+    public Integer value() {
+        return wheelchairBoarding;
     }
 }

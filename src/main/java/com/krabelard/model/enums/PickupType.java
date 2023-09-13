@@ -2,7 +2,6 @@ package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Route;
 import com.krabelard.model.required.StopTime;
-import com.krabelard.util.CsvUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +16,7 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @Getter
-public enum PickupType {
+public enum PickupType implements Parsable<PickupType, Integer> {
     Pickup(0),
     NoPickup(1),
     MustPhoneAgency(2),
@@ -25,16 +24,8 @@ public enum PickupType {
 
     private final int pickupType;
 
-    public static PickupType from(String s) {
-        var value = CsvUtil.parseNullableInt(s);
-        if (value == null) {
-            return null;
-        }
-        for (var e : values()) {
-            if (e.pickupType == value) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException(s + " doesn't map to any PickupType option");
+    @Override
+    public Integer value() {
+        return pickupType;
     }
 }

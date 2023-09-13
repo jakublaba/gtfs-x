@@ -20,7 +20,7 @@ public class Area {
      * <p>
      * Identifies an area. Unique.
      */
-    long id;
+    String id;
     /**
      * <code>agency_name</code>
      * <p>

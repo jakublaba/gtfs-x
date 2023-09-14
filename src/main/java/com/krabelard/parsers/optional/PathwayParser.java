@@ -1,5 +1,6 @@
 package com.krabelard.parsers.optional;
 
+import com.krabelard.model.enums.PathwayMode;
 import com.krabelard.model.optional.Pathway;
 import com.krabelard.parsers.CsvHeaders;
 import com.krabelard.parsers.GtfsCsvParser;
@@ -36,7 +37,21 @@ public class PathwayParser implements GtfsCsvParser<Pathway> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Pathway.builder()
-                                // TODO finish
+                                .id(values.get(Headers.PathwayId.value))
+                                .fromStopId(values.get(Headers.FromStopId.value))
+                                .toStopId(values.get(Headers.ToStopId.value))
+                                .mode(CsvUtil.parseEnum(
+                                        PathwayMode.class,
+                                        Integer.parseInt(values.get(Headers.PathwayMode.value))
+                                ))
+                                .isBidirectional(CsvUtil.parse01Boolean(values.get(Headers.IsBidirectional.value)))
+                                .length(CsvUtil.parseNullableDouble(values.get(Headers.Length.value)))
+                                .traversalTime(CsvUtil.parseNullableInt(values.get(Headers.TraversalTime.value)))
+                                .stairCount(CsvUtil.parseNullableInt(values.get(Headers.StairCount.value)))
+                                .maxSlope(CsvUtil.parseNullableFloat(values.get(Headers.MaxSlope.value)))
+                                .minWidth(CsvUtil.parseNullableFloat(values.get(Headers.MinWidth.value)))
+                                .signpostedAs(values.get(Headers.SignpostedAs.value))
+                                .reverseSignpostedAs(values.get(Headers.ReversedSignpostedAs.value))
                                 .build();
                     })
                     .toList();

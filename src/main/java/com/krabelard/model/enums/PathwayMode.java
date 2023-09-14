@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
  * required to cross.</li>
  */
 @RequiredArgsConstructor
-public enum PathwayMode {
+public enum PathwayMode implements Parsable<Integer> {
     Walkway(1),
     Stairs(2),
     MovingSidewalk(3),
@@ -30,4 +30,9 @@ public enum PathwayMode {
     ExitGate(7);
 
     private final int pathwayMode;
+
+    @Override
+    public Integer value() {
+        return pathwayMode;
+    }
 }

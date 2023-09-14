@@ -69,6 +69,17 @@ public final class CsvUtil {
         }
     }
 
+    public static Float parseNullableFloat(String s) {
+        if (s == null) {
+            return null;
+        }
+        try {
+            return Float.parseFloat(s);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
     public static Double parseNullableDouble(String s) {
         if (s == null) {
             return null;

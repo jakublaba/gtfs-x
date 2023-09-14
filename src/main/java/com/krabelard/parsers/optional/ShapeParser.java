@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class ShapeParser implements GtfsCsvParser<Shape> {
@@ -27,7 +27,7 @@ public class ShapeParser implements GtfsCsvParser<Shape> {
     }
 
     @Override
-    public Collection<Shape> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<Shape> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);

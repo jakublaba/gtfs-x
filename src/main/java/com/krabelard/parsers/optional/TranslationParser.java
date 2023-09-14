@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class TranslationParser implements GtfsCsvParser<Translation> {
@@ -28,7 +28,7 @@ public class TranslationParser implements GtfsCsvParser<Translation> {
     }
 
     @Override
-    public Collection<Translation> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<Translation> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);
@@ -44,9 +44,9 @@ public class TranslationParser implements GtfsCsvParser<Translation> {
                                 .fieldName(values.get(Headers.FieldName.value))
                                 .language(values.get(Headers.Language.value))
                                 .translation(values.get(Headers.Translation.value))
-                                .recordId(values.get(Headers.RecordId.value))
-                                .recordSubId(values.get(Headers.RecordSubId.value))
-                                .fieldValue(values.get(Headers.FieldValue.value))
+                                .recordId(CsvUtil.parseNullableString(values.get(Headers.RecordId.value)))
+                                .recordSubId(CsvUtil.parseNullableString(values.get(Headers.RecordSubId.value)))
+                                .fieldValue(CsvUtil.parseNullableString(values.get(Headers.FieldValue.value)))
                                 .build();
                     })
                     .toList();

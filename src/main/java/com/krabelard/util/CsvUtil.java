@@ -12,6 +12,9 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -59,14 +62,25 @@ public final class CsvUtil {
     }
 
     /**
+     * Converts empty strings to nulls, which provides behavior needed to handle loading optional fields from
+     * csv files in GTFS feeds
+     *
+     * @param s {@link String} to parse
+     * @return Original string or <code>null</code> if the input was <code>null</code> or empty
+     */
+    public static String parseNullableString(String s) {
+        return (s == null || s.isEmpty()) ? null : s;
+    }
+
+    /**
      * Wrapper around {@link Integer#parseInt(String)}, which provides behavior needed to handle loading optional
      * fields from csv files in GTFS feeds
      *
      * @param s {@link String} to parse
-     * @return Parsed value or <code>null</code> if the input was <code>null</code>.
+     * @return Parsed value or <code>null</code> if the input was <code>null</code> or empty
      */
     public static Integer parseNullableInt(String s) {
-        if (s == null) {
+        if (s == null || s.isEmpty()) {
             return null;
         }
         return Integer.parseInt(s);
@@ -77,10 +91,10 @@ public final class CsvUtil {
      * fields from csv files in GTFS feeds
      *
      * @param s {@link String} to parse
-     * @return Parsed value or <code>null</code> if the input was <code>null</code>
+     * @return Parsed value or <code>null</code> if the input was <code>null</code> or empty
      */
     public static Float parseNullableFloat(String s) {
-        if (s == null) {
+        if (s == null || s.isEmpty()) {
             return null;
         }
         return Float.parseFloat(s);
@@ -91,18 +105,49 @@ public final class CsvUtil {
      * fields from csv files in GTFS feeds
      *
      * @param s {@link String} to parse
-     * @return Parsed value or <code>null</code> if the input was <code>null</code>
+     * @return Parsed value or <code>null</code> if the input was <code>null</code> or empty
      */
     public static Double parseNullableDouble(String s) {
-        if (s == null) {
+        if (s == null || s.isEmpty()) {
             return null;
         }
         return Double.parseDouble(s);
     }
 
     /**
+     * Wrapper around {@link LocalTime#parse(CharSequence)}, which provides behavior needed to handle loading
+     * optional fields from csv files in GTFS feeds
+     *
+     * @param s      {@link String} to parse
+     * @param format Desired format to parse
+     * @return Parsed value or {@code null} if the input was {@code null} or empty
+     */
+    public static LocalTime parseNullableLocalTime(String s, DateTimeFormatter format) {
+        if (s == null || s.isEmpty()) {
+            return null;
+        }
+        return LocalTime.parse(s, format);
+    }
+
+    /**
+     * Wrapper around {@link LocalDate#parse(CharSequence)}, which provides behavior needed to handle loading
+     * optional fields from csv files in GTFS feeds
+     *
+     * @param s      {@link String} to parse
+     * @param format Desired format to parse
+     * @return Parsed value or <code>null</code> if the input was <code>null</code> or empty
+     */
+    public static LocalDate parseNullableLocalDate(String s, DateTimeFormatter format) {
+        if (s == null || s.isEmpty()) {
+            return null;
+        }
+        return LocalDate.parse(s, format);
+    }
+
+    /**
      * Method for parsing booleans from 0/1 string representation. Only "0" and "1" arguments are acceptable,
-     * other values will throw.
+     * other values will throw {@link IllegalArgumentException}. Values which cannot be parsed to <code>int</code>
+     * will throw {@link NumberFormatException}
      *
      * @param s {@link String to parse}
      * @return Parsed value
@@ -133,6 +178,10 @@ public final class CsvUtil {
             if (e.value().equals(value)) {
                 return e;
             }
+        }
+        // Null check after checking enum constants, because one of the enums maps null to a constant
+        if (value == null) {
+            return null;
         }
         throw new IllegalArgumentException(String.format("%s doesn't map to any %s option", value, enumClass));
     }

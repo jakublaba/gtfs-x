@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class FeedInfoParser implements GtfsCsvParser<FeedInfo> {
@@ -29,7 +29,7 @@ public class FeedInfoParser implements GtfsCsvParser<FeedInfo> {
     }
 
     @Override
-    public Collection<FeedInfo> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<FeedInfo> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);

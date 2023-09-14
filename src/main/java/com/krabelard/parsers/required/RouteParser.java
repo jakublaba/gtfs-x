@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class RouteParser implements GtfsCsvParser<Route> {
@@ -29,7 +29,7 @@ public class RouteParser implements GtfsCsvParser<Route> {
     }
 
     @Override
-    public Collection<Route> parse() throws GtfsParsingException {
+    public List<Route> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);
@@ -39,17 +39,17 @@ public class RouteParser implements GtfsCsvParser<Route> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Route.builder()
                                 .id(values.get(Headers.RouteId.value))
-                                .agencyId(values.get(Headers.AgencyId.value))
-                                .shortName(values.get(Headers.RouteShortName.value))
-                                .longName(values.get(Headers.RouteLongName.value))
-                                .description(values.get(Headers.RouteDescription.value))
+                                .agencyId(CsvUtil.parseNullableString(values.get(Headers.AgencyId.value)))
+                                .shortName(CsvUtil.parseNullableString(values.get(Headers.RouteShortName.value)))
+                                .longName(CsvUtil.parseNullableString(values.get(Headers.RouteLongName.value)))
+                                .description(CsvUtil.parseNullableString(values.get(Headers.RouteDescription.value)))
                                 .type(CsvUtil.parseEnum(
                                         RouteType.class,
                                         Integer.parseInt(values.get(Headers.RouteType.value))
                                 ))
-                                .url(values.get(Headers.RouteUrl.value))
-                                .color(values.get(Headers.RouteColor.value))
-                                .textColor(values.get(Headers.RouteTextColor.value))
+                                .url(CsvUtil.parseNullableString(values.get(Headers.RouteUrl.value)))
+                                .color(CsvUtil.parseNullableString(values.get(Headers.RouteColor.value)))
+                                .textColor(CsvUtil.parseNullableString(values.get(Headers.RouteTextColor.value)))
                                 .sortOrder(CsvUtil.parseNullableInt(values.get(Headers.RouteSortOrder.value)))
                                 .continuousPickup(CsvUtil.parseEnum(
                                         PickupType.class,
@@ -59,7 +59,7 @@ public class RouteParser implements GtfsCsvParser<Route> {
                                         DropOffType.class,
                                         CsvUtil.parseNullableInt(values.get(Headers.ContinuousDropOff.value))
                                 ))
-                                .networkId(values.get(Headers.NetworkId.value))
+                                .networkId(CsvUtil.parseNullableString(values.get(Headers.NetworkId.value)))
                                 .build();
                     })
                     .toList();

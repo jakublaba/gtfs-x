@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class StopParser implements GtfsCsvParser<Stop> {
@@ -28,7 +28,7 @@ public class StopParser implements GtfsCsvParser<Stop> {
     }
 
     @Override
-    public Collection<Stop> parse() throws GtfsParsingException {
+    public List<Stop> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);
@@ -38,25 +38,26 @@ public class StopParser implements GtfsCsvParser<Stop> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Stop.builder()
                                 .id(values.get(Headers.StopId.value))
-                                .code(values.get(Headers.StopCode.value))
-                                .name(values.get(Headers.StopName.value))
-                                .description(values.get(Headers.StopDescription.value))
+                                .code(CsvUtil.parseNullableString(values.get(Headers.StopCode.value)))
+                                .name(CsvUtil.parseNullableString(values.get(Headers.StopName.value)))
+                                .ttsName(CsvUtil.parseNullableString(values.get(Headers.TtsStopName.value)))
+                                .description(CsvUtil.parseNullableString(values.get(Headers.StopDescription.value)))
                                 .latitude(CsvUtil.parseNullableDouble(values.get(Headers.StopLatitude.value)))
                                 .longitude(CsvUtil.parseNullableDouble(values.get(Headers.StopLongitude.value)))
-                                .zoneId(values.get(Headers.ZoneId.value))
-                                .url(values.get(Headers.StopUrl.value))
+                                .zoneId(CsvUtil.parseNullableString(values.get(Headers.ZoneId.value)))
+                                .url(CsvUtil.parseNullableString(values.get(Headers.StopUrl.value)))
                                 .locationType(CsvUtil.parseEnum(
                                         LocationType.class,
                                         CsvUtil.parseNullableInt(values.get(Headers.LocationType.value))
                                 ))
-                                .parentId(values.get(Headers.ParentStation.value))
-                                .timezone(values.get(Headers.StopTimezone.value))
+                                .parentId(CsvUtil.parseNullableString(values.get(Headers.ParentStation.value)))
+                                .timezone(CsvUtil.parseNullableString(values.get(Headers.StopTimezone.value)))
                                 .wheelchairBoarding(CsvUtil.parseEnum(
                                         WheelchairBoarding.class,
                                         CsvUtil.parseNullableInt(values.get(Headers.WheelchairBoarding.value))
                                 ))
-                                .levelId(values.get(Headers.LevelId.value))
-                                .platformCode(values.get(Headers.PlatformCode.value))
+                                .levelId(CsvUtil.parseNullableString(values.get(Headers.LevelId.value)))
+                                .platformCode(CsvUtil.parseNullableString(values.get(Headers.PlatformCode.value)))
                                 .build();
                     })
                     .toList();
@@ -71,6 +72,7 @@ public class StopParser implements GtfsCsvParser<Stop> {
         StopId("stop_id"),
         StopCode("stop_code"),
         StopName("stop_name"),
+        TtsStopName("tts_stop_name"),
         StopDescription("stop_desc"),
         StopLatitude("stop_lat"),
         StopLongitude("stop_lon"),

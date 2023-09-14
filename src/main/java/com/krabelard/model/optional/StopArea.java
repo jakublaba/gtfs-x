@@ -19,8 +19,8 @@ public class StopArea {
      * <p>
      * Identifies an area to which multiple {@link com.krabelard.model.required.Stop#id}s belong.
      * The same {@link com.krabelard.model.required.Stop#id} may be defined in many {@link StopArea#areaId}s.
-     * */
-    long areaId;
+     */
+    String areaId;
     /**
      * <code>stop_id</code>
      * <p>
@@ -31,5 +31,5 @@ public class StopArea {
      * that have this station defined as {@link com.krabelard.model.required.Stop#parentId}) are part of the same area.
      * This behavior can be overridden by assigning platforms to other areas.
      */
-    long stopId;
+    String stopId;
 }

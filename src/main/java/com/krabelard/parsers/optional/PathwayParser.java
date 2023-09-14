@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class PathwayParser implements GtfsCsvParser<Pathway> {
@@ -28,7 +28,7 @@ public class PathwayParser implements GtfsCsvParser<Pathway> {
     }
 
     @Override
-    public Collection<Pathway> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<Pathway> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);

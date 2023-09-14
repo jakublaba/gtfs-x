@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class CalendarDateParser implements GtfsCsvParser<CalendarDate> {
@@ -29,7 +29,7 @@ public class CalendarDateParser implements GtfsCsvParser<CalendarDate> {
     }
 
     @Override
-    public Collection<CalendarDate> parse() throws GtfsParsingException {
+    public List<CalendarDate> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);

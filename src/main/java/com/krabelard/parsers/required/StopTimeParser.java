@@ -13,9 +13,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class StopTimeParser implements GtfsCsvParser<StopTime> {
@@ -31,7 +30,7 @@ public class StopTimeParser implements GtfsCsvParser<StopTime> {
     }
 
     @Override
-    public Collection<StopTime> parse() throws GtfsParsingException {
+    public List<StopTime> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);
@@ -42,11 +41,11 @@ public class StopTimeParser implements GtfsCsvParser<StopTime> {
                         var values = CsvUtil.extractValues(r, headers);
                         return StopTime.builder()
                                 .tripId(values.get(Headers.TripId.value))
-                                .arrivalTime(LocalTime.parse(values.get(Headers.ArrivalTime.value), format))
-                                .departureTime(LocalTime.parse(values.get(Headers.DepartureTime.value), format))
+                                .arrivalTime(CsvUtil.parseNullableLocalTime(values.get(Headers.ArrivalTime.value), format))
+                                .departureTime(CsvUtil.parseNullableLocalTime(values.get(Headers.DepartureTime.value), format))
                                 .stopId(values.get(Headers.StopId.value))
                                 .stopSequence(Integer.parseInt(values.get(Headers.StopSequence.value)))
-                                .stopHeadSign(values.get(Headers.StopHeadsign.value))
+                                .stopHeadSign(CsvUtil.parseNullableString(values.get(Headers.StopHeadsign.value)))
                                 .pickupType(CsvUtil.parseEnum(
                                         PickupType.class,
                                         CsvUtil.parseNullableInt(values.get(Headers.PickupType.value))

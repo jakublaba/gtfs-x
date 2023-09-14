@@ -33,20 +33,25 @@ class ZipHandlerTest {
         @Test
         @SneakyThrows
         void should_unZIPArchive_whenItExists() {
-            var zip = "src/test/resources/sample-feed-1.ZIP";
+            var zip = "src/test/resources/sample-feed.zip";
             assertDoesNotThrow(() -> ZipHandler.unzip(zip));
 
             var expectedFiles = Set.of(
                     "agency.txt",
+                    "attributions.txt",
                     "calendar.txt",
                     "calendar_dates.txt",
                     "fare_attributes.txt",
                     "fare_rules.txt",
                     "frequencies.txt",
+                    "levels.txt",
+                    "pathways.txt",
                     "routes.txt",
                     "shapes.txt",
                     "stop_times.txt",
                     "stops.txt",
+                    "transfers.txt",
+                    "translations.txt",
                     "trips.txt"
             );
             Files.walkFileTree(
@@ -54,6 +59,7 @@ class ZipHandlerTest {
                     new SimpleFileVisitor<>() {
                         @Override
                         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+                            log.info(file.toString());
                             if (file.endsWith(".txt")) {
                                 assertTrue(expectedFiles.contains(file.getFileName().toString()));
                             }
@@ -69,7 +75,7 @@ class ZipHandlerTest {
         @Test
         @SneakyThrows
         void should_removeFiles() {
-            var zip = "sample-feed-1.zip";
+            var zip = "sample-feed.zip";
             var resource = Objects.requireNonNull(ZipHandler.class.getClassLoader().getResource(zip));
             var dir = Paths.get(resource.toURI()).getParent();
 

@@ -22,7 +22,7 @@ public class Transfer {
      * Identifies a stop or station where a connection between routes begins. If this field refers to a station, the transfer
      * rule applies to all its child stops. Referring to a station if forbidden for {@link TransferType#InSeat} and {@link TransferType#ReBoard}.
      */
-    Long fromStopId;
+    String fromStopId;
     /**
      * <code>to_stop_id</code>
      * <p>
@@ -31,7 +31,7 @@ public class Transfer {
      * Identifies a stop or station where a connection between routes ends. If this field refers to a station, the transfer
      * rule applies to all its child stops. Referring to a station is forbidden for {@link TransferType#InSeat} and {@link TransferType#ReBoard}.
      */
-    Long toStopId;
+    String toStopId;
     /**
      * <code>from_route_id</code>
      * <p>
@@ -44,7 +44,7 @@ public class Transfer {
      * If both {@link Transfer#fromTripId} and {@link Transfer#fromRouteId} are defined, the {@link com.krabelard.model.required.Trip#id}
      * must belong the the {@link com.krabelard.model.required.Route#id}, and {@link Transfer#fromTripId} will take precedence.
      */
-    Long fromRouteId;
+    String fromRouteId;
     /**
      * <code>to_route_id</code>
      * <p>
@@ -57,7 +57,7 @@ public class Transfer {
      * If both {@link Transfer#fromTripId} and this field are defined, the {@link com.krabelard.model.required.Trip#id}
      * must belong to the {@link com.krabelard.model.required.Route#id}, and {@link Transfer#fromTripId} will take precedence.
      */
-    Long toRouteId;
+    String toRouteId;
     /**
      * <code>from_trip_id</code>
      * <p>
@@ -70,7 +70,7 @@ public class Transfer {
      * If both this field and {@link Transfer#fromRouteId} are defined, the {@link com.krabelard.model.required.Trip#id}
      * must belong to the {@link com.krabelard.model.required.Route#id}, and this field will take precedence.
      */
-    Long fromTripId;
+    String fromTripId;
     /**
      * <code>to_trip_id</code>
      * <p>
@@ -84,8 +84,8 @@ public class Transfer {
      * must belong to the {@link com.krabelard.model.required.Route#id}, and {@link Transfer#fromTripId} will take precedence.
      * <p>
      * <b>Required</b> for {@link TransferType#InSeat} and {@link TransferType#ReBoard}.
-     * */
-    Long toTripId;
+     */
+    String toTripId;
     /**
      * <code>transfer_type</code>
      * <p>
@@ -105,27 +105,27 @@ public class Transfer {
      */
     Integer minTransferTime;
 
-    public Optional<Long> getFromStopId() {
+    public Optional<String> getFromStopId() {
         return Optional.ofNullable(fromStopId);
     }
 
-    public Optional<Long> getToStopId() {
+    public Optional<String> getToStopId() {
         return Optional.ofNullable(toStopId);
     }
 
-    public Optional<Long> getFromRouteId() {
+    public Optional<String> getFromRouteId() {
         return Optional.ofNullable(fromRouteId);
     }
 
-    public Optional<Long> getToRouteId() {
+    public Optional<String> getToRouteId() {
         return Optional.ofNullable(toRouteId);
     }
 
-    public Optional<Long> getFromTripId() {
+    public Optional<String> getFromTripId() {
         return Optional.ofNullable(fromTripId);
     }
 
-    public Optional<Long> getToTripId() {
+    public Optional<String> getToTripId() {
         return Optional.ofNullable(toTripId);
     }
 

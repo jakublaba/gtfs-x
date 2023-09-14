@@ -33,7 +33,7 @@ public class FrequencyParser implements GtfsCsvParser<Frequency> {
     public Collection<Frequency> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
-            var headers = CsvUtil.headersAsStrings(Headers.values());
+            var headers = CsvUtil.headersAsStrings(Headers.class);
             var format = DateTimeFormatter.ofPattern("H:mm:ss");
             return CsvUtil.parseCsv(csv)
                     .stream()

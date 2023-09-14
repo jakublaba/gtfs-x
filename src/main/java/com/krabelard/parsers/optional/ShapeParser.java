@@ -30,7 +30,7 @@ public class ShapeParser implements GtfsCsvParser<Shape> {
     public Collection<Shape> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
-            var headers = CsvUtil.headersAsStrings(Headers.values());
+            var headers = CsvUtil.headersAsStrings(Headers.class);
             return CsvUtil.parseCsv(csv)
                     .stream()
                     .map(r -> {

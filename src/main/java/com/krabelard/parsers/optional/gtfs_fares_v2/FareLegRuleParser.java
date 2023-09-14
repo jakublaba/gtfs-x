@@ -30,7 +30,7 @@ public class FareLegRuleParser implements GtfsCsvParser<FareLegRule> {
     public Collection<FareLegRule> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
-            var headers = CsvUtil.headersAsStrings(Headers.values());
+            var headers = CsvUtil.headersAsStrings(Headers.class);
             return CsvUtil.parseCsv(csv)
                     .stream()
                     .map(r -> {

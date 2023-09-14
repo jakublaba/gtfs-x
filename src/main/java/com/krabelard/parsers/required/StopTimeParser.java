@@ -34,7 +34,7 @@ public class StopTimeParser implements GtfsCsvParser<StopTime> {
     public Collection<StopTime> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
-            var headers = CsvUtil.headersAsStrings(Headers.values());
+            var headers = CsvUtil.headersAsStrings(Headers.class);
             var format = DateTimeFormatter.ofPattern("H:mm:ss");
             return CsvUtil.parseCsv(csv)
                     .stream()

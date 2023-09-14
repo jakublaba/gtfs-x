@@ -29,7 +29,7 @@ public class AgencyParser implements GtfsCsvParser<Agency> {
     public List<Agency> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
-            var headers = CsvUtil.headersAsStrings(Headers.values());
+            var headers = CsvUtil.headersAsStrings(Headers.class);
             return CsvUtil.parseCsv(csv)
                     .stream()
                     .map(r -> {

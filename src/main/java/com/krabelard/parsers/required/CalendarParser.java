@@ -32,7 +32,7 @@ public class CalendarParser implements GtfsCsvParser<Calendar> {
     public Collection<Calendar> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
-            var headers = CsvUtil.headersAsStrings(Headers.values());
+            var headers = CsvUtil.headersAsStrings(Headers.class);
             var formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
             return CsvUtil.parseCsv(csv)
                     .stream()

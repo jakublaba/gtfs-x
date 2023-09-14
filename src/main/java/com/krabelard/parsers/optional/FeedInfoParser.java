@@ -32,7 +32,7 @@ public class FeedInfoParser implements GtfsCsvParser<FeedInfo> {
     public Collection<FeedInfo> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
-            var headers = CsvUtil.headersAsStrings(Headers.values());
+            var headers = CsvUtil.headersAsStrings(Headers.class);
             var format = DateTimeFormatter.ofPattern("yyyyMMdd");
             return CsvUtil.parseCsv(csv)
                     .stream()

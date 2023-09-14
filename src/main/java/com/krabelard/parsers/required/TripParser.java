@@ -32,7 +32,7 @@ public class TripParser implements GtfsCsvParser<Trip> {
     public Collection<Trip> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
-            var headers = CsvUtil.headersAsStrings(Headers.values());
+            var headers = CsvUtil.headersAsStrings(Headers.class);
             return CsvUtil.parseCsv(csv)
                     .stream()
                     .map(r -> {

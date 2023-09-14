@@ -67,7 +67,7 @@ public class Translation {
      * <li><b>Forbidden</b> if {@link Translation#fieldValue} is defined.</li>
      * <li><b>Required</b> if {@link Translation#fieldValue} is empty.</li>
      */
-    Long recordId;
+    String recordId;
     /**
      * <code>record_sub_id</code>
      * <p>
@@ -81,7 +81,7 @@ public class Translation {
      * <li><b>Forbidden</b> if {@link Translation#fieldValue} is defined</li>
      * <li><b>Required</b> if {@link Translation#fieldValue} is not defined</li>
      */
-    Long recordSubId;
+    String recordSubId;
     /**
      * <code>field_value</code>
      * <p>
@@ -105,11 +105,11 @@ public class Translation {
      */
     String fieldValue;
 
-    public Optional<Long> getRecordId() {
+    public Optional<String> getRecordId() {
         return Optional.ofNullable(recordId);
     }
 
-    public Optional<Long> getRecordSubId() {
+    public Optional<String> getRecordSubId() {
         return Optional.ofNullable(recordSubId);
     }
 

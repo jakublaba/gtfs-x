@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
  * Representation for {@link com.krabelard.model.optional.Translation#tableName}.
  */
 @RequiredArgsConstructor
-public enum TableName {
+public enum TableName implements Parsable<String> {
     Agency("agency"),
     Stops("stops"),
     Routes("routes"),
@@ -18,4 +18,9 @@ public enum TableName {
     Attributions("attributions");
 
     private final String tableName;
+
+    @Override
+    public String value() {
+        return tableName;
+    }
 }

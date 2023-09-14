@@ -6,14 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import testutil.TestConstants;
 
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Objects;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -25,7 +24,7 @@ class ZipHandlerTest {
     @AfterAll
     @SneakyThrows
     static void cleanUp() {
-        ZipHandler.cleanUp("src/test/resources", ".txt");
+        ZipHandler.cleanUp(TestConstants.ZIP_DIR, ".txt");
     }
 
     @Nested
@@ -33,7 +32,7 @@ class ZipHandlerTest {
         @Test
         @SneakyThrows
         void should_unZIPArchive_whenItExists() {
-            var zip = "src/test/resources/sample-feed.zip";
+            var zip = TestConstants.ZIP_DIR + "/" + TestConstants.ZIP_NAME;
             assertDoesNotThrow(() -> ZipHandler.unzip(zip));
 
             var expectedFiles = Set.of(
@@ -55,7 +54,7 @@ class ZipHandlerTest {
                     "trips.txt"
             );
             Files.walkFileTree(
-                    Paths.get(zip).getParent(),
+                    Path.of(TestConstants.ZIP_DIR),
                     new SimpleFileVisitor<>() {
                         @Override
                         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
@@ -75,13 +74,9 @@ class ZipHandlerTest {
         @Test
         @SneakyThrows
         void should_removeFiles() {
-            var zip = "sample-feed.zip";
-            var resource = Objects.requireNonNull(ZipHandler.class.getClassLoader().getResource(zip));
-            var dir = Paths.get(resource.toURI()).getParent();
-
-            assertDoesNotThrow(() -> ZipHandler.cleanUp(dir.toString(), ".txt"));
+            assertDoesNotThrow(() -> ZipHandler.cleanUp(TestConstants.ZIP_DIR, ".txt"));
             Files.walkFileTree(
-                    dir,
+                    Path.of(TestConstants.ZIP_DIR),
                     new SimpleFileVisitor<>() {
                         @Override
                         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {

@@ -1,7 +1,7 @@
 package com.krabelard.model.enums;
 
-import lombok.RequiredArgsConstructor;
 import com.krabelard.model.required.Stop;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Representation for {@link Stop#wheelchairBoarding}.
@@ -22,10 +22,15 @@ import com.krabelard.model.required.Stop;
  * <li><code>2</code> - No accessible path from station entrance to stops/platforms.</li>
  */
 @RequiredArgsConstructor
-public enum WheelchairBoarding {
+public enum WheelchairBoarding implements Parsable<Integer> {
     NoInfoOrInherit(0),
     Possible(1),
     NotPossible(2);
 
     private final int wheelchairBoarding;
+
+    @Override
+    public Integer value() {
+        return wheelchairBoarding;
+    }
 }

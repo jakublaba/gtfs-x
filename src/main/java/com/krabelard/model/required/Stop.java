@@ -25,7 +25,7 @@ public class Stop {
      * Identifies a location: stop/platform, station, entrance/exit, generic node or boarding area.
      * Multiple routes may use the same {@link Stop#id}
      */
-    long id;
+    String id;
     /**
      * <code>stop_code</code>
      * <p>
@@ -106,7 +106,7 @@ public class Stop {
      * <br>
      * Required if providing fare information using {@link FareRule} entities.
      */
-    Long zoneId;
+    String zoneId;
     /**
      * <code>stop_url</code>
      * <p>
@@ -134,7 +134,7 @@ public class Stop {
      * <li>{@link LocationType#EntranceOrExit} or {@link LocationType#GenericNode} - contains ID of a parent station.</li>
      * <li>{@link LocationType#BoardingArea} - contains ID of a parent platform.</li>
      */
-    Long parentId;
+    String parentId;
     /**
      * <code>stop_timezone</code>
      * <p>
@@ -162,7 +162,7 @@ public class Stop {
      * <p>
      * Level of the location. The same level may be used by multiple unlinked stations.
      */
-    Long levelId;
+    String levelId;
     /**
      * <code>platform_code</code>
      * <p>
@@ -198,7 +198,7 @@ public class Stop {
         return Optional.ofNullable(longitude);
     }
 
-    public Optional<Long> getZoneId() {
+    public Optional<String> getZoneId() {
         return Optional.ofNullable(zoneId);
     }
 
@@ -206,7 +206,7 @@ public class Stop {
         return Optional.ofNullable(url);
     }
 
-    public Optional<Long> getParentId() {
+    public Optional<String> getParentId() {
         return Optional.ofNullable(parentId);
     }
 
@@ -214,7 +214,7 @@ public class Stop {
         return Optional.ofNullable(timezone);
     }
 
-    public Optional<Long> getLevelId() {
+    public Optional<String> getLevelId() {
         return Optional.ofNullable(levelId);
     }
 

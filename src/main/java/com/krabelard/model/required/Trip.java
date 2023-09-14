@@ -2,9 +2,9 @@ package com.krabelard.model.required;
 
 import com.krabelard.model.enums.BikesAllowed;
 import com.krabelard.model.enums.Direction;
+import com.krabelard.model.enums.TransferType;
 import com.krabelard.model.enums.WheelchairAccessibility;
 import com.krabelard.model.optional.Transfer;
-import com.krabelard.model.enums.TransferType;
 import lombok.Builder;
 import lombok.Value;
 
@@ -25,7 +25,7 @@ public class Trip {
      * <p>
      * Identifies a route.
      */
-    long routeId;
+    String routeId;
     /**
      * <code>service_id</code>
      * <p>
@@ -33,7 +33,7 @@ public class Trip {
      * <p>
      * Identifies a set of dates when service is available for one or more routes.
      */
-    long serviceId;
+    String serviceId;
     /**
      * <code>trip_id</code>
      * <p>
@@ -41,7 +41,7 @@ public class Trip {
      * <p>
      * Identifies a trip.
      */
-    long id;
+    String id;
     /**
      * <code>trip_headsign</code>
      * <p>
@@ -83,7 +83,7 @@ public class Trip {
      * To provide in-seat transfers information, {@link Transfer} entities or <code>{@link Transfer#transferType}={@link TransferType#InSeat}</code>
      * should be provided instead.
      */
-    Long blockId;
+    String blockId;
     /**
      * <code>shape_id</code>
      * <p>
@@ -93,7 +93,7 @@ public class Trip {
      * <br>
      * Required if the trip has a continuous pickup or drop-off behavior defined either in {@link Route} or {@link StopTime} entities.
      */
-    Long shapeId;
+    String shapeId;
     /**
      * <code>wheelchair_accessible</code>
      * <p>
@@ -123,11 +123,11 @@ public class Trip {
         return Optional.ofNullable(direction);
     }
 
-    public Optional<Long> getBlockId() {
+    public Optional<String> getBlockId() {
         return Optional.ofNullable(blockId);
     }
 
-    public Optional<Long> getShapeId() {
+    public Optional<String> getShapeId() {
         return Optional.ofNullable(shapeId);
     }
 

@@ -1,8 +1,7 @@
 package com.krabelard.model.enums;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import com.krabelard.model.required.Trip;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Representation for {@link Trip#wheelchairAccessible}.
@@ -13,11 +12,15 @@ import com.krabelard.model.required.Trip;
  * <li><code>2</code> - No riders in wheelchair can be accommodated on this trip.</li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum WheelchairAccessibility {
+public enum WheelchairAccessibility implements Parsable<Integer> {
     NoInfo(0),
     Accessible(1),
     NotAccessible(2);
 
     private final int accessibility;
+
+    @Override
+    public Integer value() {
+        return accessibility;
+    }
 }

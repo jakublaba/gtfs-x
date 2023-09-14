@@ -1,9 +1,8 @@
 package com.krabelard.model.enums;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import com.krabelard.model.required.Route;
 import com.krabelard.model.required.StopTime;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Representation for {@link Route#continuousPickup}, {@link StopTime#pickupType}, {@link StopTime#continuousPickup}.
@@ -15,12 +14,16 @@ import com.krabelard.model.required.StopTime;
  * <li><code>3</code> - Must coordinate with driver to arrange (continuous stopping) pickup.</li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum PickupType {
+public enum PickupType implements Parsable<Integer> {
     Pickup(0),
     NoPickup(1),
     MustPhoneAgency(2),
     MustCoordinateWithDriver(3);
 
     private final int pickupType;
+
+    @Override
+    public Integer value() {
+        return pickupType;
+    }
 }

@@ -20,7 +20,7 @@ public class Shape {
      * <p>
      * Identifies a shape.
      */
-    long id;
+    String id;
     /**
      * <code>shape_pt_lat</code>
      * <p>

@@ -1,7 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Trip;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -13,11 +12,14 @@ import lombok.RequiredArgsConstructor;
  * <li><code>2</code> - No bicycles are allowed on this trip.</li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum BikesAllowed {
+public enum BikesAllowed implements Parsable<Integer> {
     NoInfo(0),
     Allowed(1),
     NotAllowed(2);
 
     private final int bikesAllowed;
+
+    public Integer value() {
+        return bikesAllowed;
+    }
 }

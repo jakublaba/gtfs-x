@@ -1,8 +1,8 @@
 package com.krabelard.model.enums;
 
+import com.krabelard.model.optional.gtfs_fares_v2.FareMedia;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import com.krabelard.model.optional.gtfs_fares_v2.FareMedia;
 
 /**
  * Representation for {@link FareMedia#mediaType}.
@@ -16,11 +16,16 @@ import com.krabelard.model.optional.gtfs_fares_v2.FareMedia;
  */
 @RequiredArgsConstructor
 @Getter
-public enum FareMediaType {
+public enum FareMediaType implements Parsable<Integer> {
     None(0),
     PhysicalTransitCard(2),
     cEMV(3),
     MobileApp(4);
 
     private final int fareMediaType;
+
+    @Override
+    public Integer value() {
+        return fareMediaType;
+    }
 }

@@ -2,7 +2,6 @@ package com.krabelard.model.enums;
 
 import com.krabelard.model.required.Route;
 import com.krabelard.model.required.StopTime;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -15,12 +14,16 @@ import lombok.RequiredArgsConstructor;
  * <li><code>3</code> - Must coordinate with driver to arrange (continuous stopping) drop off.</li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum DropOffType {
+public enum DropOffType implements Parsable<Integer> {
     DropOff(0),
     NoDropOff(1),
     MustPhoneAgency(2),
     MustCoordinateWithDriver(3);
 
     private final int pickupType;
+
+    @Override
+    public Integer value() {
+        return pickupType;
+    }
 }

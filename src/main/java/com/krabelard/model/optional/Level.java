@@ -20,7 +20,7 @@ public class Level {
      * <p>
      * Identifies a level in a station.
      */
-    long id;
+    String id;
     /**
      * <code>level_index</code>
      * <p>

@@ -1,8 +1,7 @@
 package com.krabelard.model.enums;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import com.krabelard.model.optional.gtfs_fares_v1.FareAttribute;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Representation for {@link FareAttribute#paymentMethod}.
@@ -12,10 +11,14 @@ import com.krabelard.model.optional.gtfs_fares_v1.FareAttribute;
  * <li><code>1</code> - Fare must be paid before boarding.</li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum PaymentMethod {
+public enum PaymentMethod implements Parsable<Integer> {
     OnBoard(0),
     BeforeBoarding(1);
 
     private final int paymentMethod;
+
+    @Override
+    public Integer value() {
+        return paymentMethod;
+    }
 }

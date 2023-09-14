@@ -22,7 +22,7 @@ public class Frequency {
      * <p>
      * Identifies a trip to which the specified headway of service applies.
      */
-    long tripId;
+    String tripId;
     /**
      * <code>start_time</code>
      * <p>

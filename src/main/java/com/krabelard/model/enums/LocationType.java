@@ -1,8 +1,8 @@
 package com.krabelard.model.enums;
 
-import lombok.AllArgsConstructor;
-import com.krabelard.model.required.Stop;
 import com.krabelard.model.optional.Pathway;
+import com.krabelard.model.required.Stop;
+import lombok.AllArgsConstructor;
 
 /**
  * Representation for {@link Stop#locationType}.
@@ -17,7 +17,7 @@ import com.krabelard.model.optional.Pathway;
  * <li><code>4</code> - <b>Boarding Area</b>. A specific location on a platform, where passengers can board and/or alight vehicles.</li>
  */
 @AllArgsConstructor
-public enum LocationType {
+public enum LocationType implements Parsable<Integer> {
     StopOrPlatform(0),
     Station(1),
     EntranceOrExit(2),
@@ -25,4 +25,9 @@ public enum LocationType {
     BoardingArea(4);
 
     private final int locationType;
+
+    @Override
+    public Integer value() {
+        return locationType;
+    }
 }

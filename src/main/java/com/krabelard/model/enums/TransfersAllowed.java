@@ -1,7 +1,6 @@
 package com.krabelard.model.enums;
 
 import com.krabelard.model.optional.gtfs_fares_v1.FareAttribute;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -14,13 +13,17 @@ import lombok.RequiredArgsConstructor;
  * <li>empty - Unlimited transfers are permitted</li>
  */
 @RequiredArgsConstructor
-@Getter
-public enum TransfersAllowed {
+public enum TransfersAllowed implements Parsable<Integer> {
     NotAllowed(0),
     Once(1),
     Twice(2),
-    // TODO - gtfs specification says that empty field means unlimited transfers, so this has to be mapped on library level
-    Unlimited(3);
+    // According to GTFS reference, empty field means unlimited transfers
+    Unlimited(null);
 
-    private final int transfersAllowed;
+    private final Integer transfersAllowed;
+
+    @Override
+    public Integer value() {
+        return transfersAllowed;
+    }
 }

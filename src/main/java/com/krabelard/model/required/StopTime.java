@@ -1,10 +1,10 @@
 package com.krabelard.model.required;
 
 import com.krabelard.model.enums.DropOffType;
+import com.krabelard.model.enums.LocationType;
 import com.krabelard.model.enums.PickupType;
 import com.krabelard.model.enums.TimePoint;
 import com.krabelard.model.optional.Shape;
-import com.krabelard.model.enums.LocationType;
 import lombok.Builder;
 import lombok.Value;
 
@@ -26,7 +26,7 @@ public class StopTime {
      * <p>
      * Identifies a trip.
      */
-    long tripId;
+    String tripId;
     /**
      * <code>arrival_time</code>
      * <p>
@@ -70,7 +70,7 @@ public class StopTime {
      * Referenced locations must be stops/platforms (<code>{@link Stop#locationType}={@link LocationType#StopOrPlatform}</code>).
      * A stop may be serviced multiple times in the same trip, and multiple trips and routes may service the same stop.
      */
-    long stopId;
+    String stopId;
     /**
      * <code>stop_sequence</code>
      * <p>

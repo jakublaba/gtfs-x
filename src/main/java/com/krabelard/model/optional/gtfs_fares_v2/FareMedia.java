@@ -28,7 +28,7 @@ public class FareMedia {
      * <p>
      * Identifies a fare media.
      */
-    long id;
+    String id;
     /**
      * <code>fare_media_name</code>
      * <p>

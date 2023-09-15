@@ -1,5 +1,6 @@
 package com.krabelard.parsers.required;
 
+import com.krabelard.model.enums.Direction;
 import com.krabelard.model.required.Trip;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -12,15 +13,16 @@ public class TripParserTest {
     @SneakyThrows
     void shouldParseCsvCorrectly() {
         var trips = TripParser.of(TestConstants.FEED_DIR).parse();
-        var expectedSize = 2;
+        var expectedSize = 3;
         var expectedTrip = Trip.builder()
-                .routeId("A")
-                .serviceId("WE")
-                .id("AWE1")
-                .headSign("Downtown")
-                .blockId("1")
+                .routeId("303-20670")
+                .serviceId("weekend_service")
+                .id("60270564")
+                .headSign("MAX ORANGE SADDLETOWNE")
+                .direction(Direction.Outbound)
+                .shapeId("3030026")
                 .build();
-        assertEquals(trips.size(), expectedSize);
-        assertEquals(trips.get(0), expectedTrip);
+        assertEquals(expectedSize, trips.size());
+        assertEquals(expectedTrip, trips.get(0));
     }
 }

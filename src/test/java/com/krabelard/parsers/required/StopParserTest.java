@@ -1,6 +1,5 @@
 package com.krabelard.parsers.required;
 
-import com.krabelard.model.enums.LocationType;
 import com.krabelard.model.required.Stop;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -13,13 +12,12 @@ public class StopParserTest {
     @SneakyThrows
     void shouldParseCsvCorrectly() {
         var stops = StopParser.of(TestConstants.FEED_DIR).parse();
-        var expectedSize = 16;
+        var expectedSize = 7;
         var expectedStop = Stop.builder()
-                .id("F12")
-                .name("5 Av/53 St")
-                .latitude(40.760167)
-                .longitude(-73.975224)
-                .locationType(LocationType.Station)
+                .id("A")
+                .name("Victoriaville Transfer Station")
+                .latitude(34.514356)
+                .longitude(-117.318323)
                 .build();
         assertEquals(expectedSize, stops.size());
         assertEquals(expectedStop, stops.get(0));

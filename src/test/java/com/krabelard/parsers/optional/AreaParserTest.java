@@ -15,10 +15,9 @@ public class AreaParserTest {
     @SneakyThrows
     void shouldParseCsvCorrectly() {
         var areas = AreaParser.of(TestConstants.FEED_DIR).parse();
-        var expectedSize = 1;
+        var expectedSize = 3;
         var expectedArea = Area.builder()
-                .id("EA")
-                .name("Example Area")
+                .id("ASHB")
                 .build();
         assertEquals(expectedSize, areas.size());
         assertEquals(expectedArea, areas.get(0));

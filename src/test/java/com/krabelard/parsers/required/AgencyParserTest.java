@@ -15,12 +15,11 @@ class AgencyParserTest {
         var agencies = AgencyParser.of(TestConstants.FEED_DIR).parse();
         var expectedSize = 1;
         var expectedAgency = Agency.builder()
-                .id("FunBus")
-                .name("The Fun Bus")
-                .url("https://www.thefunbus.org")
-                .timezone("America/Los_Angeles")
-                .phone("(310) 555-0222")
-                .language("en")
+                .id("CT")
+                .name("Calgary Transit")
+                .url("http://www.calgarytransit.com")
+                .timezone("America/Edmonton")
+                .phone("403-262-1000")
                 .build();
         assertEquals(expectedSize, agencies.size());
         assertEquals(expectedAgency, agencies.get(0));

@@ -16,9 +16,9 @@ public class CalendarParserTest {
     @SneakyThrows
     void shouldParseCsvCorrectly() {
         var calendars = CalendarParser.of(TestConstants.FEED_DIR).parse();
-        var expectedSize = 2;
+        var expectedSize = 1;
         var expectedCalendar = Calendar.builder()
-                .serviceId("WE")
+                .serviceId("weekend_service")
                 .monday(ServiceAvailability.NotAvailable)
                 .tuesday(ServiceAvailability.NotAvailable)
                 .wednesday(ServiceAvailability.NotAvailable)
@@ -26,8 +26,8 @@ public class CalendarParserTest {
                 .friday(ServiceAvailability.NotAvailable)
                 .saturday(ServiceAvailability.Available)
                 .sunday(ServiceAvailability.Available)
-                .startDate(LocalDate.of(2006, Month.JULY, 1))
-                .endDate(LocalDate.of(2006, Month.JULY, 31))
+                .startDate(LocalDate.of(2022, Month.JUNE, 23))
+                .endDate(LocalDate.of(2022, Month.SEPTEMBER, 3))
                 .build();
         assertEquals(expectedSize, calendars.size());
         assertEquals(expectedCalendar, calendars.get(0));

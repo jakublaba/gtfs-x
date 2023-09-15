@@ -37,7 +37,7 @@ public class AreaParser implements GtfsCsvParser<Area> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Area.builder()
                                 .id(values.get(Headers.AreaId.value))
-                                .name(values.get(Headers.AreaName.value))
+                                .name(CsvUtil.parseNullableString(values.get(Headers.AreaName.value)))
                                 .build();
                     })
                     .toList();

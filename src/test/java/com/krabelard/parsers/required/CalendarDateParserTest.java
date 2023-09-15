@@ -16,10 +16,10 @@ public class CalendarDateParserTest {
     @SneakyThrows
     void shouldParseCsvCorrectly() {
         var calendarDates = CalendarDateParser.of(TestConstants.FEED_DIR).parse();
-        var expectedSize = 4;
+        var expectedSize = 1;
         var expectedCalendarDate = CalendarDate.builder()
-                .serviceId("WD")
-                .date(LocalDate.of(2006, Month.JULY, 3))
+                .serviceId("weekend_service")
+                .date(LocalDate.of(2022, Month.JUNE, 23))
                 .exceptionType(ExceptionType.Removed)
                 .build();
         assertEquals(expectedSize, calendarDates.size());

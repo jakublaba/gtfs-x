@@ -54,6 +54,14 @@ public class StopTimeParser implements GtfsCsvParser<StopTime> {
                                         DropOffType.class,
                                         CsvUtil.parseNullableInt(values.get(Headers.DropOffType.value))
                                 ))
+                                .continuousPickup(CsvUtil.parseEnum(
+                                        PickupType.class,
+                                        CsvUtil.parseNullableInt(values.get(Headers.ContinuousPickup.value))
+                                ))
+                                .continuousDropOff(CsvUtil.parseEnum(
+                                        DropOffType.class,
+                                        CsvUtil.parseNullableInt(values.get(Headers.ContinuousDropOff.value))
+                                ))
                                 .shapeDistanceTraveled(CsvUtil.parseNullableDouble(values.get(Headers.ShapeDistanceTraveled.value)))
                                 .timePoint(CsvUtil.parseEnum(
                                         TimePoint.class,

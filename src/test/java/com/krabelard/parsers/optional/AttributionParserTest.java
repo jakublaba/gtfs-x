@@ -15,14 +15,14 @@ public class AttributionParserTest {
     @SneakyThrows
     void shouldParseCsvCorrectly() {
         var attributions = AttributionParser.of(TestConstants.FEED_DIR).parse();
-        var expectedSize = 2;
+        var expectedSize = 1;
         var expectedAttribution = Attribution.builder()
-                .id("attribution001")
+                .id("rp")
+                .organizationName("Rejseplanen")
+                .url("https://www.rejseplanen.dk")
                 .isProducer(true)
                 .isOperator(false)
                 .isAuthority(false)
-                .organizationName("Transit Feed Solutions USA")
-                .agencyId("agency001")
                 .build();
         assertEquals(expectedSize, attributions.size());
         assertEquals(expectedAttribution, attributions.get(0));

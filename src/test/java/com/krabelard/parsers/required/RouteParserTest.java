@@ -13,13 +13,16 @@ public class RouteParserTest {
     @SneakyThrows
     void shouldParseCsvCorrectly() {
         var routes = RouteParser.of(TestConstants.FEED_DIR).parse();
-        var expectedSize = 1;
+        var expectedSize = 2;
         var expectedRoute = Route.builder()
-                .id("A")
-                .shortName("17")
-                .longName("Mission")
-                .description("The \"A\" route travels from lower Mission to Downtown.")
+                .agencyId("CT")
+                .id("303-20670")
+                .shortName("303")
+                .longName("MAX Orange Brentwood/Saddletowne")
                 .type(RouteType.Bus)
+                .url("www.calgarytransit.com/content/transit/en/home/rider-information/max.html")
+                .color("#ff8000")
+                .textColor("#ffffff")
                 .build();
         assertEquals(expectedSize, routes.size());
         assertEquals(expectedRoute, routes.get(0));

@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
  * vehicle and re-board. More details about this type of transfer can be found <a href=https://gtfs.org/schedule/reference/#linked-trips>here</a></li>
  */
 @RequiredArgsConstructor
-public enum TransferType {
+public enum TransferType implements Parsable<Integer> {
     Recommended(0),
     Timed(1),
     RequiresMinimumTime(2),
@@ -27,4 +27,9 @@ public enum TransferType {
     ReBoard(5);
 
     private final int transferType;
+
+    @Override
+    public Integer value() {
+        return transferType;
+    }
 }

@@ -1,5 +1,6 @@
 package com.krabelard.parsers.optional;
 
+import com.krabelard.model.enums.TransferType;
 import com.krabelard.model.optional.Transfer;
 import com.krabelard.parsers.CsvHeaders;
 import com.krabelard.parsers.GtfsCsvParser;
@@ -42,6 +43,10 @@ public class TransferParser implements GtfsCsvParser<Transfer> {
                                 .toRouteId(CsvUtil.parseNullableString(values.get(Headers.ToRouteId.value)))
                                 .fromTripId(CsvUtil.parseNullableString(values.get(Headers.FromTripId.value)))
                                 .toTripId(CsvUtil.parseNullableString(values.get(Headers.ToTripId.value)))
+                                .transferType(CsvUtil.parseEnum(
+                                        TransferType.class,
+                                        Integer.parseInt(values.get(Headers.TransferType.value))
+                                ))
                                 .minTransferTime(CsvUtil.parseNullableInt(values.get(Headers.MinTransferTime.value)))
                                 .build();
                     })
@@ -62,6 +67,7 @@ public class TransferParser implements GtfsCsvParser<Transfer> {
         ToRouteId("to_route_id"),
         FromTripId("from_trip_id"),
         ToTripId("to_trip_id"),
+        TransferType("transfer_type"),
         MinTransferTime("min_transfer_time");
 
         private final String value;

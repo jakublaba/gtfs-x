@@ -81,10 +81,4 @@ public class TripParser implements GtfsCsvParser<Trip> {
 
         private final String value;
     }
-
-    public static void main(String[] args) throws GtfsParsingException {
-        TripParser.of("C:\\Users\\Kuba\\Desktop\\sample-feed")
-                .parse()
-                .forEach(System.out::println);
-    }
 }

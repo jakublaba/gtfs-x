@@ -145,7 +145,8 @@ public final class CsvUtil {
     }
 
     /**
-     * Method for parsing booleans from 0/1 string representation. Only "0" and "1" arguments are acceptable,
+     * Method for parsing booleans from 0/1 string representation. According to GTFS specification, non-present fields
+     * default to {@code false}. Besides that, only "0" and "1" arguments are acceptable,
      * other values will throw {@link IllegalArgumentException}. Values which cannot be parsed to <code>int</code>
      * will throw {@link NumberFormatException}
      *
@@ -153,6 +154,9 @@ public final class CsvUtil {
      * @return Parsed value
      */
     public static boolean parse01Boolean(String s) {
+        if (s == null || s.isEmpty()) {
+            return false;
+        }
         var value = Integer.parseInt(s);
         if (value == 0) {
             return false;

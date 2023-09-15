@@ -1,3 +1,2 @@
-attribution_id,is_producer,is_operator,organization_name,agency_id
-attribution001,1,0,Transit Feed Solutions USA,agency001
-attribution002,0,1,Transit Bus Operations USA ,agency001
+attribution_id,organization_name,attribution_url,is_producer,is_operator,is_authority
+rp,Rejseplanen,https://www.rejseplanen.dk,1,,

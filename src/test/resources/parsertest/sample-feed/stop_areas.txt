@@ -1,0 +1,4 @@
+area_id,stop_id
+ASHB,ASHB
+GLEN,GLEN
+OAKL,OAKL

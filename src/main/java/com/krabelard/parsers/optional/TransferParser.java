@@ -1,5 +1,6 @@
 package com.krabelard.parsers.optional;
 
+import com.krabelard.model.enums.TransferType;
 import com.krabelard.model.optional.Transfer;
 import com.krabelard.parsers.CsvHeaders;
 import com.krabelard.parsers.GtfsCsvParser;
@@ -11,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class TransferParser implements GtfsCsvParser<Transfer> {
@@ -27,7 +28,7 @@ public class TransferParser implements GtfsCsvParser<Transfer> {
     }
 
     @Override
-    public Collection<Transfer> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<Transfer> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);
@@ -36,12 +37,16 @@ public class TransferParser implements GtfsCsvParser<Transfer> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Transfer.builder()
-                                .fromStopId(values.get(Headers.FromStopId.value))
-                                .toStopId(values.get(Headers.ToStopId.value))
-                                .fromRouteId(values.get(Headers.FromRouteId.value))
-                                .toRouteId(values.get(Headers.ToRouteId.value))
-                                .fromTripId(values.get(Headers.FromTripId.value))
-                                .toTripId(values.get(Headers.ToTripId.value))
+                                .fromStopId(CsvUtil.parseNullableString(values.get(Headers.FromStopId.value)))
+                                .toStopId(CsvUtil.parseNullableString(values.get(Headers.ToStopId.value)))
+                                .fromRouteId(CsvUtil.parseNullableString(values.get(Headers.FromRouteId.value)))
+                                .toRouteId(CsvUtil.parseNullableString(values.get(Headers.ToRouteId.value)))
+                                .fromTripId(CsvUtil.parseNullableString(values.get(Headers.FromTripId.value)))
+                                .toTripId(CsvUtil.parseNullableString(values.get(Headers.ToTripId.value)))
+                                .transferType(CsvUtil.parseEnum(
+                                        TransferType.class,
+                                        Integer.parseInt(values.get(Headers.TransferType.value))
+                                ))
                                 .minTransferTime(CsvUtil.parseNullableInt(values.get(Headers.MinTransferTime.value)))
                                 .build();
                     })
@@ -62,6 +67,7 @@ public class TransferParser implements GtfsCsvParser<Transfer> {
         ToRouteId("to_route_id"),
         FromTripId("from_trip_id"),
         ToTripId("to_trip_id"),
+        TransferType("transfer_type"),
         MinTransferTime("min_transfer_time");
 
         private final String value;

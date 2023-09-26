@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class TripParser implements GtfsCsvParser<Trip> {
@@ -29,7 +29,7 @@ public class TripParser implements GtfsCsvParser<Trip> {
     }
 
     @Override
-    public Collection<Trip> parse() throws GtfsParsingException {
+    public List<Trip> parse() throws GtfsParsingException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);
@@ -41,14 +41,14 @@ public class TripParser implements GtfsCsvParser<Trip> {
                                 .routeId(values.get(Headers.RouteId.value))
                                 .serviceId(values.get(Headers.ServiceId.value))
                                 .id(values.get(Headers.TripId.value))
-                                .headSign(values.get(Headers.TripHeadsign.value))
-                                .shortName(values.get(Headers.TripShortName.value))
+                                .headSign(CsvUtil.parseNullableString(values.get(Headers.TripHeadsign.value)))
+                                .shortName(CsvUtil.parseNullableString(values.get(Headers.TripShortName.value)))
                                 .direction(CsvUtil.parseEnum(
                                         Direction.class,
                                         CsvUtil.parseNullableInt(values.get(Headers.DirectionId.value))
                                 ))
-                                .blockId(values.get(Headers.BlockId.value))
-                                .shapeId(values.get(Headers.ShapeId.value))
+                                .blockId(CsvUtil.parseNullableString(values.get(Headers.BlockId.value)))
+                                .shapeId(CsvUtil.parseNullableString(values.get(Headers.ShapeId.value)))
                                 .wheelchairAccessible(CsvUtil.parseEnum(
                                         WheelchairAccessibility.class,
                                         CsvUtil.parseNullableInt(values.get(Headers.WheelchairAccessible.value))
@@ -80,11 +80,5 @@ public class TripParser implements GtfsCsvParser<Trip> {
         BikesAllowed("bikes_allowed");
 
         private final String value;
-    }
-
-    public static void main(String[] args) throws GtfsParsingException {
-        TripParser.of("C:\\Users\\Kuba\\Desktop\\sample-feed")
-                .parse()
-                .forEach(System.out::println);
     }
 }

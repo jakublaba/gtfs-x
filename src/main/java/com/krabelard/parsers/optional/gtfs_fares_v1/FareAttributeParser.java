@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class FareAttributeParser implements GtfsCsvParser<FareAttribute> {
@@ -29,7 +29,7 @@ public class FareAttributeParser implements GtfsCsvParser<FareAttribute> {
     }
 
     @Override
-    public Collection<FareAttribute> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<FareAttribute> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);

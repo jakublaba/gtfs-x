@@ -4,7 +4,6 @@ import com.krabelard.model.enums.Parsable;
 import com.krabelard.parsers.CsvHeaders;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -12,12 +11,14 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CsvUtil {
     private static final CSVFormat GTFS_CSV = CSVFormat.DEFAULT
@@ -59,14 +60,25 @@ public final class CsvUtil {
     }
 
     /**
+     * Converts empty strings to nulls, which provides behavior needed to handle loading optional fields from
+     * csv files in GTFS feeds
+     *
+     * @param s {@link String} to parse
+     * @return Original string or <code>null</code> if the input was <code>null</code> or empty
+     */
+    public static String parseNullableString(String s) {
+        return (s == null || s.isEmpty()) ? null : s;
+    }
+
+    /**
      * Wrapper around {@link Integer#parseInt(String)}, which provides behavior needed to handle loading optional
      * fields from csv files in GTFS feeds
      *
      * @param s {@link String} to parse
-     * @return Parsed value or <code>null</code> if the input was <code>null</code>.
+     * @return Parsed value or <code>null</code> if the input was <code>null</code> or empty
      */
     public static Integer parseNullableInt(String s) {
-        if (s == null) {
+        if (s == null || s.isEmpty()) {
             return null;
         }
         return Integer.parseInt(s);
@@ -77,10 +89,10 @@ public final class CsvUtil {
      * fields from csv files in GTFS feeds
      *
      * @param s {@link String} to parse
-     * @return Parsed value or <code>null</code> if the input was <code>null</code>
+     * @return Parsed value or <code>null</code> if the input was <code>null</code> or empty
      */
     public static Float parseNullableFloat(String s) {
-        if (s == null) {
+        if (s == null || s.isEmpty()) {
             return null;
         }
         return Float.parseFloat(s);
@@ -91,23 +103,58 @@ public final class CsvUtil {
      * fields from csv files in GTFS feeds
      *
      * @param s {@link String} to parse
-     * @return Parsed value or <code>null</code> if the input was <code>null</code>
+     * @return Parsed value or <code>null</code> if the input was <code>null</code> or empty
      */
     public static Double parseNullableDouble(String s) {
-        if (s == null) {
+        if (s == null || s.isEmpty()) {
             return null;
         }
         return Double.parseDouble(s);
     }
 
     /**
-     * Method for parsing booleans from 0/1 string representation. Only "0" and "1" arguments are acceptable,
-     * other values will throw.
+     * Wrapper around {@link LocalTime#parse(CharSequence)}, which provides behavior needed to handle loading
+     * optional fields from csv files in GTFS feeds
+     *
+     * @param s      {@link String} to parse
+     * @param format Desired format to parse
+     * @return Parsed value or {@code null} if the input was {@code null} or empty
+     */
+    public static LocalTime parseNullableLocalTime(String s, DateTimeFormatter format) {
+        if (s == null || s.isEmpty()) {
+            return null;
+        }
+        return LocalTime.parse(s, format);
+    }
+
+    /**
+     * Wrapper around {@link LocalDate#parse(CharSequence)}, which provides behavior needed to handle loading
+     * optional fields from csv files in GTFS feeds
+     *
+     * @param s      {@link String} to parse
+     * @param format Desired format to parse
+     * @return Parsed value or <code>null</code> if the input was <code>null</code> or empty
+     */
+    public static LocalDate parseNullableLocalDate(String s, DateTimeFormatter format) {
+        if (s == null || s.isEmpty()) {
+            return null;
+        }
+        return LocalDate.parse(s, format);
+    }
+
+    /**
+     * Method for parsing booleans from 0/1 string representation. According to GTFS specification, non-present fields
+     * default to {@code false}. Besides that, only "0" and "1" arguments are acceptable,
+     * other values will throw {@link IllegalArgumentException}. Values which cannot be parsed to <code>int</code>
+     * will throw {@link NumberFormatException}
      *
      * @param s {@link String to parse}
      * @return Parsed value
      */
     public static boolean parse01Boolean(String s) {
+        if (s == null || s.isEmpty()) {
+            return false;
+        }
         var value = Integer.parseInt(s);
         if (value == 0) {
             return false;
@@ -130,9 +177,20 @@ public final class CsvUtil {
      */
     public static <E extends Enum<E> & Parsable<V>, V> E parseEnum(Class<E> enumClass, V value) {
         for (var e : enumClass.getEnumConstants()) {
+            // Special case because an enum might map null
+            if (e.value() == null) {
+                if (value == null) {
+                    return e;
+                }
+                continue;
+            }
             if (e.value().equals(value)) {
                 return e;
             }
+        }
+        // Null check after checking enum constants, because one of the enums maps null to a constant
+        if (value == null) {
+            return null;
         }
         throw new IllegalArgumentException(String.format("%s doesn't map to any %s option", value, enumClass));
     }

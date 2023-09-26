@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class FrequencyParser implements GtfsCsvParser<Frequency> {
@@ -30,7 +30,7 @@ public class FrequencyParser implements GtfsCsvParser<Frequency> {
     }
 
     @Override
-    public Collection<Frequency> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<Frequency> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);

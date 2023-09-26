@@ -1,0 +1,8 @@
+stop_id,stop_name,stop_lat,stop_lon
+A,Victoriaville Transfer Station,34.514356,-117.318323
+B,Dante St & Venus Ave,34.564499,-117.287097
+C,Victorville Transportation Center,34.538433,-117.294703
+X,Local/County Fare Boundary,34.566224,-117.318357
+D,National Trails Highway - Air Expressway,34.567536,-117.319716
+E,Oro Grande Post Office,34.599292,-117.334452
+F,Silver Lakes Market,34.744662,-117.335407

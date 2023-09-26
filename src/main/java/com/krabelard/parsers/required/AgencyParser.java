@@ -35,14 +35,14 @@ public class AgencyParser implements GtfsCsvParser<Agency> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Agency.builder()
-                                .id(values.get(Headers.AgencyId.value))
+                                .id(CsvUtil.parseNullableString(values.get(Headers.AgencyId.value)))
                                 .name(values.get(Headers.AgencyName.value))
                                 .url(values.get(Headers.AgencyUrl.value))
                                 .timezone(values.get(Headers.AgencyTimezone.value))
-                                .language(values.get(Headers.AgencyLang.value))
-                                .phone(values.get(Headers.AgencyPhone.value))
-                                .fareUrl(values.get(Headers.AgencyFareUrl.value))
-                                .email(values.get(Headers.AgencyEmail.value))
+                                .language(CsvUtil.parseNullableString(values.get(Headers.AgencyLang.value)))
+                                .phone(CsvUtil.parseNullableString(values.get(Headers.AgencyPhone.value)))
+                                .fareUrl(CsvUtil.parseNullableString(values.get(Headers.AgencyFareUrl.value)))
+                                .email(CsvUtil.parseNullableString(values.get(Headers.AgencyEmail.value)))
                                 .build();
                     })
                     .toList();

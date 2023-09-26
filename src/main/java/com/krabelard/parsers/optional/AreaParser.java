@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class AreaParser implements GtfsCsvParser<Area> {
@@ -27,7 +27,7 @@ public class AreaParser implements GtfsCsvParser<Area> {
     }
 
     @Override
-    public Collection<Area> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<Area> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);
@@ -37,7 +37,7 @@ public class AreaParser implements GtfsCsvParser<Area> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Area.builder()
                                 .id(values.get(Headers.AreaId.value))
-                                .name(values.get(Headers.AreaName.value))
+                                .name(CsvUtil.parseNullableString(values.get(Headers.AreaName.value)))
                                 .build();
                     })
                     .toList();

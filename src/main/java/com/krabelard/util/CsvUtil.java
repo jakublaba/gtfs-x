@@ -4,7 +4,6 @@ import com.krabelard.model.enums.Parsable;
 import com.krabelard.parsers.CsvHeaders;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -20,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CsvUtil {
     private static final CSVFormat GTFS_CSV = CSVFormat.DEFAULT
@@ -179,8 +177,12 @@ public final class CsvUtil {
      */
     public static <E extends Enum<E> & Parsable<V>, V> E parseEnum(Class<E> enumClass, V value) {
         for (var e : enumClass.getEnumConstants()) {
-            if (value == null && e.value() == null) {
-                return e;
+            // Special case because an enum might map null
+            if (e.value() == null) {
+                if (value == null) {
+                    return e;
+                }
+                continue;
             }
             if (e.value().equals(value)) {
                 return e;

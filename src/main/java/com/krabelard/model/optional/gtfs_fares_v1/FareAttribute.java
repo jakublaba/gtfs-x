@@ -30,7 +30,7 @@ public class FareAttribute {
      * <p>
      * Identifies a fare class.
      */
-    String id;
+    String fareId;
     /**
      * <code>price</code>
      * <p>

@@ -179,6 +179,9 @@ public final class CsvUtil {
      */
     public static <E extends Enum<E> & Parsable<V>, V> E parseEnum(Class<E> enumClass, V value) {
         for (var e : enumClass.getEnumConstants()) {
+            if (value == null && e.value() == null) {
+                return e;
+            }
             if (e.value().equals(value)) {
                 return e;
             }

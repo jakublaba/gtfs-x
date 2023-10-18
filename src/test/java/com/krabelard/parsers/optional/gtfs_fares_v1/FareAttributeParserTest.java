@@ -22,8 +22,8 @@ class FareAttributeParserTest {
                 .fareId("presto_fare")
                 .price(3.2)
                 .currency("CAD")
-                .paymentMethod(PaymentMethod.BeforeBoarding)
-                .transfers(TransfersAllowed.Unlimited)
+                .paymentMethod(PaymentMethod.BEFORE_BOARDING)
+                .transfers(TransfersAllowed.UNLIMITED)
                 .transferDuration(7200)
                 .build();
         assertEquals(expectedSize, fareAttributes.size());

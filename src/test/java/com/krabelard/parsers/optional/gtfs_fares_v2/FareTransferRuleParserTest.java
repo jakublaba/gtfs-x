@@ -22,8 +22,8 @@ class FareTransferRuleParserTest {
                 .fromLegGroupId("core_local_one_way_trip")
                 .toLegGroupId("core_local_one_way_trip")
                 .durationLimit(5400)
-                .durationLimitType(DurationLimitType.BetweenDepartureAndDeparture)
-                .transferType(TransferType.Recommended)
+                .durationLimitType(DurationLimitType.BETWEEN_DEPARTURE_AND_DEPARTURE)
+                .transferType(TransferType.RECOMMENDED)
                 .transferCount(-1)
                 .build();
         assertEquals(expectedSize, fareTransferRules.size());

@@ -44,7 +44,11 @@ public class FareTransferRuleParser implements GtfsCsvParser<FareTransferRule> {
                                 .durationLimit(CsvUtil.parseNullableInt(values.get(Headers.DURATION_LIMIT.value)))
                                 .durationLimitType(CsvUtil.parseEnum(
                                         DurationLimitType.class,
-                                        CsvUtil.parseNullableInt(values.get(Headers.DURATION_LIMIT.value))
+                                        CsvUtil.parseNullableInt(values.get(Headers.DURATION_LIMIT_TYPE.value))
+                                ))
+                                .transferType(CsvUtil.parseEnum(
+                                        TransferType.class,
+                                        Integer.parseInt(values.get(Headers.FARE_TRANSFER_TYPE.value))
                                 ))
                                 .fareProductId(values.get(Headers.FARE_PRODUCT_ID.value))
                                 .build();

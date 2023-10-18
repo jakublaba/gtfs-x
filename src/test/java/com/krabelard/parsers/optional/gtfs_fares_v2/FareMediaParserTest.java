@@ -20,7 +20,7 @@ class FareMediaParserTest {
         var expectedFareMedia = FareMedia.builder()
                 .id("clipper")
                 .name("Clipper")
-                .mediaType(FareMediaType.PhysicalTransitCard)
+                .mediaType(FareMediaType.PHYSICAL_TRANSIT_CARD)
                 .build();
         assertEquals(expectedSize, fareMedia.size());
         assertEquals(expectedFareMedia, fareMedia.get(0));

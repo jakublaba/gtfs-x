@@ -20,7 +20,7 @@ public class Transfer {
      * <b>Conditionally required</b>
      * <p>
      * Identifies a stop or station where a connection between routes begins. If this field refers to a station, the transfer
-     * rule applies to all its child stops. Referring to a station if forbidden for {@link TransferType#InSeat} and {@link TransferType#ReBoard}.
+     * rule applies to all its child stops. Referring to a station if forbidden for {@link TransferType#IN_SEAT} and {@link TransferType#RE_BOARD}.
      */
     String fromStopId;
     /**
@@ -29,7 +29,7 @@ public class Transfer {
      * <b>Conditionally required</b>
      * <p>
      * Identifies a stop or station where a connection between routes ends. If this field refers to a station, the transfer
-     * rule applies to all its child stops. Referring to a station is forbidden for {@link TransferType#InSeat} and {@link TransferType#ReBoard}.
+     * rule applies to all its child stops. Referring to a station is forbidden for {@link TransferType#IN_SEAT} and {@link TransferType#RE_BOARD}.
      */
     String toStopId;
     /**
@@ -83,7 +83,7 @@ public class Transfer {
      * If both this field and {@link Transfer#toRouteId} are defined, the {@link com.krabelard.model.required.Trip#id}
      * must belong to the {@link com.krabelard.model.required.Route#id}, and {@link Transfer#fromTripId} will take precedence.
      * <p>
-     * <b>Required</b> for {@link TransferType#InSeat} and {@link TransferType#ReBoard}.
+     * <b>Required</b> for {@link TransferType#IN_SEAT} and {@link TransferType#RE_BOARD}.
      */
     String toTripId;
     /**

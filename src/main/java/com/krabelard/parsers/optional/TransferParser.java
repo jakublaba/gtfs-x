@@ -37,17 +37,17 @@ public class TransferParser implements GtfsCsvParser<Transfer> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Transfer.builder()
-                                .fromStopId(CsvUtil.parseNullableString(values.get(Headers.FromStopId.value)))
-                                .toStopId(CsvUtil.parseNullableString(values.get(Headers.ToStopId.value)))
-                                .fromRouteId(CsvUtil.parseNullableString(values.get(Headers.FromRouteId.value)))
-                                .toRouteId(CsvUtil.parseNullableString(values.get(Headers.ToRouteId.value)))
-                                .fromTripId(CsvUtil.parseNullableString(values.get(Headers.FromTripId.value)))
-                                .toTripId(CsvUtil.parseNullableString(values.get(Headers.ToTripId.value)))
+                                .fromStopId(CsvUtil.parseNullableString(values.get(Headers.FROM_STOP_ID.value)))
+                                .toStopId(CsvUtil.parseNullableString(values.get(Headers.TO_STOP_ID.value)))
+                                .fromRouteId(CsvUtil.parseNullableString(values.get(Headers.FROM_ROUTE_ID.value)))
+                                .toRouteId(CsvUtil.parseNullableString(values.get(Headers.TO_ROUTE_ID.value)))
+                                .fromTripId(CsvUtil.parseNullableString(values.get(Headers.FROM_TRIP_ID.value)))
+                                .toTripId(CsvUtil.parseNullableString(values.get(Headers.TO_TRIP_ID.value)))
                                 .transferType(CsvUtil.parseEnum(
                                         TransferType.class,
-                                        Integer.parseInt(values.get(Headers.TransferType.value))
+                                        Integer.parseInt(values.get(Headers.TRANSFER_TYPE.value))
                                 ))
-                                .minTransferTime(CsvUtil.parseNullableInt(values.get(Headers.MinTransferTime.value)))
+                                .minTransferTime(CsvUtil.parseNullableInt(values.get(Headers.MIN_TRANSFER_TIME.value)))
                                 .build();
                     })
                     .toList();
@@ -61,14 +61,14 @@ public class TransferParser implements GtfsCsvParser<Transfer> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        FromStopId("from_stop_id"),
-        ToStopId("to_stop_id"),
-        FromRouteId("from_route_id"),
-        ToRouteId("to_route_id"),
-        FromTripId("from_trip_id"),
-        ToTripId("to_trip_id"),
-        TransferType("transfer_type"),
-        MinTransferTime("min_transfer_time");
+        FROM_STOP_ID("from_stop_id"),
+        TO_STOP_ID("to_stop_id"),
+        FROM_ROUTE_ID("from_route_id"),
+        TO_ROUTE_ID("to_route_id"),
+        FROM_TRIP_ID("from_trip_id"),
+        TO_TRIP_ID("to_trip_id"),
+        TRANSFER_TYPE("transfer_type"),
+        MIN_TRANSFER_TIME("min_transfer_time");
 
         private final String value;
     }

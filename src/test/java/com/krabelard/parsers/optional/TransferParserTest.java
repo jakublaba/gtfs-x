@@ -22,7 +22,7 @@ class TransferParserTest {
                 .toStopId("Yonge")
                 .fromRouteId("line1")
                 .toRouteId("line2")
-                .transferType(TransferType.Recommended)
+                .transferType(TransferType.RECOMMENDED)
                 .build();
         assertEquals(expectedSize, transfers.size());
         assertEquals(expectedTransfer, transfers.get(0));

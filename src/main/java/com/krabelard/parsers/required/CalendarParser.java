@@ -39,37 +39,37 @@ public class CalendarParser implements GtfsCsvParser<Calendar> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Calendar.builder()
-                                .serviceId(values.get(Headers.ServiceId.value))
+                                .serviceId(values.get(Headers.SERVICE_ID.value))
                                 .monday(CsvUtil.parseEnum(
                                         ServiceAvailability.class,
-                                        Integer.parseInt(values.get(Headers.Monday.value))
+                                        Integer.parseInt(values.get(Headers.MONDAY.value))
                                 ))
                                 .tuesday(CsvUtil.parseEnum(
                                         ServiceAvailability.class,
-                                        Integer.parseInt(values.get(Headers.Tuesday.value))
+                                        Integer.parseInt(values.get(Headers.TUESDAY.value))
                                 ))
                                 .wednesday(CsvUtil.parseEnum(
                                         ServiceAvailability.class,
-                                        Integer.parseInt(values.get(Headers.Wednesday.value))
+                                        Integer.parseInt(values.get(Headers.WEDNESDAY.value))
                                 ))
                                 .thursday(CsvUtil.parseEnum(
                                         ServiceAvailability.class,
-                                        Integer.parseInt(values.get(Headers.Thursday.value))
+                                        Integer.parseInt(values.get(Headers.THURSDAY.value))
                                 ))
                                 .friday(CsvUtil.parseEnum(
                                         ServiceAvailability.class,
-                                        Integer.parseInt(values.get(Headers.Friday.value))
+                                        Integer.parseInt(values.get(Headers.FRIDAY.value))
                                 ))
                                 .saturday(CsvUtil.parseEnum(
                                         ServiceAvailability.class,
-                                        Integer.parseInt(values.get(Headers.Saturday.value))
+                                        Integer.parseInt(values.get(Headers.SATURDAY.value))
                                 ))
                                 .sunday(CsvUtil.parseEnum(
                                         ServiceAvailability.class,
-                                        Integer.parseInt(values.get(Headers.Sunday.value))
+                                        Integer.parseInt(values.get(Headers.SUNDAY.value))
                                 ))
-                                .startDate(LocalDate.parse(values.get(Headers.StartDate.value), formatter))
-                                .endDate(LocalDate.parse(values.get(Headers.EndDate.value), formatter))
+                                .startDate(LocalDate.parse(values.get(Headers.START_DATE.value), formatter))
+                                .endDate(LocalDate.parse(values.get(Headers.END_DATE.value), formatter))
                                 .build();
                     })
                     .toList();
@@ -81,16 +81,16 @@ public class CalendarParser implements GtfsCsvParser<Calendar> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        ServiceId("service_id"),
-        Monday("monday"),
-        Tuesday("tuesday"),
-        Wednesday("wednesday"),
-        Thursday("thursday"),
-        Friday("friday"),
-        Saturday("saturday"),
-        Sunday("sunday"),
-        StartDate("start_date"),
-        EndDate("end_date");
+        SERVICE_ID("service_id"),
+        MONDAY("monday"),
+        TUESDAY("tuesday"),
+        WEDNESDAY("wednesday"),
+        THURSDAY("thursday"),
+        FRIDAY("friday"),
+        SATURDAY("saturday"),
+        SUNDAY("sunday"),
+        START_DATE("start_date"),
+        END_DATE("end_date");
 
         private final String value;
     }

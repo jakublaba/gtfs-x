@@ -18,7 +18,7 @@ class TranslationParserTest {
         var translations = TranslationParser.of(TestConstants.FEED_DIR).parse();
         var expectedSize = 1;
         var expectedTranslation = Translation.builder()
-                .tableName(TableName.Stops)
+                .tableName(TableName.STOPS)
                 .fieldName("stop_name")
                 .recordId("S8815040")
                 .language("nl")

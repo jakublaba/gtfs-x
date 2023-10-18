@@ -36,9 +36,9 @@ public class LevelParser implements GtfsCsvParser<Level> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Level.builder()
-                                .id(values.get(Headers.LevelId.value))
-                                .index(Float.parseFloat(values.get(Headers.LevelIndex.value)))
-                                .name(values.get(Headers.LevelName.value))
+                                .id(values.get(Headers.LEVEL_ID.value))
+                                .index(Float.parseFloat(values.get(Headers.LEVEL_INDEX.value)))
+                                .name(values.get(Headers.LEVEL_NAME.value))
                                 .build();
                     })
                     .toList();
@@ -52,9 +52,9 @@ public class LevelParser implements GtfsCsvParser<Level> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        LevelId("level_id"),
-        LevelIndex("level_index"),
-        LevelName("level_name");
+        LEVEL_ID("level_id"),
+        LEVEL_INDEX("level_index"),
+        LEVEL_NAME("level_name");
 
         private final String value;
     }

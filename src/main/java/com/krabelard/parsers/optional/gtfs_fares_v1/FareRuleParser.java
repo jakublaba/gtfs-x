@@ -36,11 +36,11 @@ public class FareRuleParser implements GtfsCsvParser<FareRule> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return FareRule.builder()
-                                .fareId(values.get(Headers.FareId.value))
-                                .routeId(values.get(Headers.RouteId.value))
-                                .originId(values.get(Headers.OriginId.value))
-                                .destinationId(values.get(Headers.DestinationId.value))
-                                .containsId(values.get(Headers.ContainsId.value))
+                                .fareId(values.get(Headers.FARE_ID.value))
+                                .routeId(values.get(Headers.ROUTE_ID.value))
+                                .originId(values.get(Headers.ORIGIN_ID.value))
+                                .destinationId(values.get(Headers.DESTINATION_ID.value))
+                                .containsId(values.get(Headers.CONTAINS_ID.value))
                                 .build();
                     })
                     .toList();
@@ -54,11 +54,11 @@ public class FareRuleParser implements GtfsCsvParser<FareRule> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        FareId("fare_id"),
-        RouteId("route_id"),
-        OriginId("origin_id"),
-        DestinationId("destination_id"),
-        ContainsId("contains_id");
+        FARE_ID("fare_id"),
+        ROUTE_ID("route_id"),
+        ORIGIN_ID("origin_id"),
+        DESTINATION_ID("destination_id"),
+        CONTAINS_ID("contains_id");
 
         private final String value;
     }

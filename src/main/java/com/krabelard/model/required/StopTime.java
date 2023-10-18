@@ -37,12 +37,12 @@ public class StopTime {
      * should be the same.
      * For times occurring after midnight on the service day, enter the time as a value greater than 24:00:00 in HH:MM:SS
      * local time for the day on which the trip schedule begins.
-     * If exact arrival and departure times (<code>{@link StopTime#timePoint}={@link TimePoint#Exact}</code>) are not available,
-     * estimated or interpolated arrival and departure times (<code>{@link StopTime#timePoint}={@link TimePoint#Approximate}</code>) should be provided.
+     * If exact arrival and departure times (<code>{@link StopTime#timePoint}={@link TimePoint#EXACT}</code>) are not available,
+     * estimated or interpolated arrival and departure times (<code>{@link StopTime#timePoint}={@link TimePoint#APPROXIMATE}</code>) should be provided.
      * <br>
      * Required for the first and last stop in a trip (defined by {@link StopTime#stopSequence}).
      * <br>
-     * Required for <code>{@link StopTime#timePoint}={@link TimePoint#Exact}</code>
+     * Required for <code>{@link StopTime#timePoint}={@link TimePoint#EXACT}</code>
      */
     LocalTime arrivalTime;
     /**
@@ -55,10 +55,10 @@ public class StopTime {
      * should be the same.
      * For times occurring after midnight on the service day, enter the time as a value greater than 24:00:00 in HH:MM:SS
      * local time for the day on which the trip schedule begins.
-     * If exact arrival and departure times (<code>{@link StopTime#timePoint}={@link TimePoint#Exact}</code>) are not available,
-     * estimated or interpolated arrival and departure times (<code>{@link StopTime#timePoint}={@link TimePoint#Approximate}</code>) should be provided.
+     * If exact arrival and departure times (<code>{@link StopTime#timePoint}={@link TimePoint#EXACT}</code>) are not available,
+     * estimated or interpolated arrival and departure times (<code>{@link StopTime#timePoint}={@link TimePoint#APPROXIMATE}</code>) should be provided.
      * <br>
-     * Required for <code>{@link StopTime#timePoint}={@link TimePoint#Exact}</code>
+     * Required for <code>{@link StopTime#timePoint}={@link TimePoint#EXACT}</code>
      */
     LocalTime departureTime;
     /**
@@ -67,7 +67,7 @@ public class StopTime {
      * <b>Required</b>
      * <p>
      * Identifies the serviced stop. All stops serviced during a trip must have a record in {@link StopTime} entities.
-     * Referenced locations must be stops/platforms (<code>{@link Stop#locationType}={@link LocationType#StopOrPlatform}</code>).
+     * Referenced locations must be stops/platforms (<code>{@link Stop#locationType}={@link LocationType#STOP_OR_PLATFORM}</code>).
      * A stop may be serviced multiple times in the same trip, and multiple trips and routes may service the same stop.
      */
     String stopId;

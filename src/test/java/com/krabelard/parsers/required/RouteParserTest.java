@@ -8,7 +8,7 @@ import testutil.TestConstants;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RouteParserTest {
+class RouteParserTest {
     @Test
     @SneakyThrows
     void shouldParseCsvCorrectly() {
@@ -19,7 +19,7 @@ public class RouteParserTest {
                 .id("303-20670")
                 .shortName("303")
                 .longName("MAX Orange Brentwood/Saddletowne")
-                .type(RouteType.Bus)
+                .type(RouteType.BUS)
                 .url("www.calgarytransit.com/content/transit/en/home/rider-information/max.html")
                 .color("#ff8000")
                 .textColor("#ffffff")

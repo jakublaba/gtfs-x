@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum FareTransferType {
-    FromPlusCurrent(0),
-    All(1),
-    Current(2);
+    FROM_PLUS_CURRENT(0),
+    ALL(1),
+    CURRENT(2);
 
-    private final int fareTransferType;
+    private final int value;
 }

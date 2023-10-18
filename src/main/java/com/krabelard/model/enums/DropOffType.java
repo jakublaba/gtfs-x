@@ -15,15 +15,15 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum DropOffType implements Parsable<Integer> {
-    DropOff(0),
-    NoDropOff(1),
-    MustPhoneAgency(2),
-    MustCoordinateWithDriver(3);
+    DROP_OFF(0),
+    NO_DROP_OFF(1),
+    MUST_PHONE_AGENCY(2),
+    MUST_COORDINATE_WITH_DRIVER(3);
 
-    private final int pickupType;
+    private final int value;
 
     @Override
     public Integer value() {
-        return pickupType;
+        return value;
     }
 }

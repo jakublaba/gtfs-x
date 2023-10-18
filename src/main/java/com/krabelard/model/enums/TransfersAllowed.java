@@ -14,16 +14,16 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum TransfersAllowed implements Parsable<Integer> {
-    NotAllowed(0),
-    Once(1),
-    Twice(2),
+    NOT_ALLOWED(0),
+    ONCE(1),
+    TWICE(2),
     // According to GTFS reference, empty field means unlimited transfers
-    Unlimited(null);
+    UNLIMITED(null);
 
-    private final Integer transfersAllowed;
+    private final Integer value;
 
     @Override
     public Integer value() {
-        return transfersAllowed;
+        return value;
     }
 }

@@ -11,7 +11,7 @@ import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CalendarDateParserTest {
+class CalendarDateParserTest {
     @Test
     @SneakyThrows
     void shouldParseCsvCorrectly() {
@@ -20,7 +20,7 @@ public class CalendarDateParserTest {
         var expectedCalendarDate = CalendarDate.builder()
                 .serviceId("weekend_service")
                 .date(LocalDate.of(2022, Month.JUNE, 23))
-                .exceptionType(ExceptionType.Removed)
+                .exceptionType(ExceptionType.REMOVED)
                 .build();
         assertEquals(expectedSize, calendarDates.size());
         assertEquals(expectedCalendarDate, calendarDates.get(0));

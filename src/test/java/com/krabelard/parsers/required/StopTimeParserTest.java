@@ -12,7 +12,7 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StopTimeParserTest {
+class StopTimeParserTest {
     @Test
     @SneakyThrows
     void shouldParseCsvCorrectly() {
@@ -24,9 +24,9 @@ public class StopTimeParserTest {
                 .stopSequence(1)
                 .departureTime(LocalTime.of(9, 0, 0))
                 .arrivalTime(LocalTime.of(9, 0, 0))
-                .continuousPickup(PickupType.NoPickup)
-                .continuousDropOff(DropOffType.NoDropOff)
-                .timePoint(TimePoint.Exact)
+                .continuousPickup(PickupType.NO_PICKUP)
+                .continuousDropOff(DropOffType.NO_DROP_OFF)
+                .timePoint(TimePoint.EXACT)
                 .build();
         assertEquals(expectedSize, stopTimes.size());
         assertEquals(expectedStopTime, stopTimes.get(0));

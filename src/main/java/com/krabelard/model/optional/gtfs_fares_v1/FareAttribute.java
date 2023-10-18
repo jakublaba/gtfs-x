@@ -30,7 +30,7 @@ public class FareAttribute {
      * <p>
      * Identifies a fare class.
      */
-    String id;
+    String fareId;
     /**
      * <code>price</code>
      * <p>
@@ -78,7 +78,7 @@ public class FareAttribute {
      * <p>
      * <b>Optional</b>
      * <p>
-     * Length of time in seconds before a transfer expires. When <code>{@link FareAttribute#transfers}={@link TransfersAllowed#NotAllowed}</code>,
+     * Length of time in seconds before a transfer expires. When <code>{@link FareAttribute#transfers}={@link TransfersAllowed#NOT_ALLOWED}</code>,
      * this field may be used to indicate how long a ticket is valid for or it may be left empty.
      */
     Integer transferDuration;

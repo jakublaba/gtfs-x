@@ -4,7 +4,6 @@ import com.krabelard.model.enums.Parsable;
 import com.krabelard.parsers.CsvHeaders;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -20,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CsvUtil {
     private static final CSVFormat GTFS_CSV = CSVFormat.DEFAULT
@@ -47,11 +45,11 @@ public final class CsvUtil {
      *
      * @return {@link Map}, where key is a csv column name, and value is corresponding value from a {@link CSVRecord}
      */
-    public static Map<String, String> extractValues(CSVRecord record, String[] headers) {
+    public static Map<String, String> extractValues(CSVRecord csvRecord, String[] headers) {
         var result = new HashMap<String, String>();
         for (var h : headers) {
             try {
-                var value = record.get(h);
+                var value = csvRecord.get(h);
                 result.put(h, value);
             } catch (IllegalArgumentException ignored) {
                 result.put(h, null);
@@ -179,6 +177,13 @@ public final class CsvUtil {
      */
     public static <E extends Enum<E> & Parsable<V>, V> E parseEnum(Class<E> enumClass, V value) {
         for (var e : enumClass.getEnumConstants()) {
+            // Special case because an enum might map null
+            if (e.value() == null) {
+                if (value == null) {
+                    return e;
+                }
+                continue;
+            }
             if (e.value().equals(value)) {
                 return e;
             }

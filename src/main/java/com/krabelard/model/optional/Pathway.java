@@ -29,11 +29,11 @@ public class Pathway {
      * <p>
      * Location at which the pathway begins.
      * <p>
-     * Must contain a {@link com.krabelard.model.required.Stop#id} that identifies as {@link com.krabelard.model.enums.LocationType#StopOrPlatform},
-     * {@link com.krabelard.model.enums.LocationType#EntranceOrExit}, {@link com.krabelard.model.enums.LocationType#GenericNode}
-     * or {@link com.krabelard.model.enums.LocationType#BoardingArea}.
+     * Must contain a {@link com.krabelard.model.required.Stop#id} that identifies as {@link com.krabelard.model.enums.LocationType#STOP_OR_PLATFORM},
+     * {@link com.krabelard.model.enums.LocationType#ENTRANCE_OR_EXIT}, {@link com.krabelard.model.enums.LocationType#GENERIC_NODE}
+     * or {@link com.krabelard.model.enums.LocationType#BOARDING_AREA}.
      * <p>
-     * Values for {@link com.krabelard.model.enums.LocationType#Station} are forbidden.
+     * Values for {@link com.krabelard.model.enums.LocationType#STATION} are forbidden.
      */
     String fromStopId;
     /**
@@ -65,7 +65,7 @@ public class Pathway {
      * <br>
      * <code>true</code> - Bidirectional pathway that can be used in both directions.
      * <p>
-     * {@link PathwayMode#ExitGate}s must not be bidirectional.
+     * {@link PathwayMode#EXIT_GATE}s must not be bidirectional.
      */
     boolean isBidirectional;
     /**
@@ -76,7 +76,7 @@ public class Pathway {
      * Horizontal length in meters of the pathway from the origin location ({@link Pathway#fromStopId}) to the
      * destination location ({@link Pathway#toStopId}).
      * <p>
-     * This field is recommended for {@link PathwayMode#Walkway}, {@link PathwayMode#FareGate}s and {@link PathwayMode#ExitGate}s.
+     * This field is recommended for {@link PathwayMode#WALKWAY}, {@link PathwayMode#FARE_GATE}s and {@link PathwayMode#EXIT_GATE}s.
      */
     Double length;
     /**
@@ -87,7 +87,7 @@ public class Pathway {
      * Average time in seconds needed to walk through the pathway from the origin location ({@link Pathway#fromStopId})
      * to the destination location ({@link Pathway#toStopId}).
      * <p>
-     * This field is recommended for {@link PathwayMode#MovingSidewalk}s, {@link PathwayMode#Escalator}s and {@link PathwayMode#Elevator}s.
+     * This field is recommended for {@link PathwayMode#MOVING_SIDEWALK}s, {@link PathwayMode#ESCALATOR}s and {@link PathwayMode#ELEVATOR}s.
      */
     Integer traversalTime;
     /**
@@ -101,7 +101,7 @@ public class Pathway {
      * <br>
      * Negative value of this field implies that the rider walk down from {@link Pathway#fromStopId} to {@link Pathway#toStopId}.
      * <p>
-     * This field is recommended for {@link PathwayMode#Stairs}.
+     * This field is recommended for {@link PathwayMode#STAIRS}.
      * <p>
      * If only an estimated stair count can be provided, it is recommended to approximate 15 stairs for 1 floor.
      */
@@ -117,7 +117,7 @@ public class Pathway {
      * <br>
      * <code>float</code> - Slope ratio of the pathway - positive for upwards, negative for downwards.
      * <p>
-     * This field should only be used with {@link PathwayMode#Walkway}s and {@link PathwayMode#MovingSidewalk}s.
+     * This field should only be used with {@link PathwayMode#WALKWAY}s and {@link PathwayMode#MOVING_SIDEWALK}s.
      */
     Float maxSlope;
     /**

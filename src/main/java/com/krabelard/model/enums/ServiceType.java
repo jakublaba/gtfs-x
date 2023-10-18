@@ -14,13 +14,13 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum ServiceType implements Parsable<Integer> {
-    FrequencyBased(0),
-    ScheduleBased(1);
+    FREQUENCY_BASED(0),
+    SCHEDULE_BASED(1);
 
-    private final int serviceType;
+    private final int value;
 
     @Override
     public Integer value() {
-        return serviceType;
+        return value;
     }
 }

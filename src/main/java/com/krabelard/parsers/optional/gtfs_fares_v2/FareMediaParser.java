@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class FareMediaParser implements GtfsCsvParser<FareMedia> {
@@ -28,7 +28,7 @@ public class FareMediaParser implements GtfsCsvParser<FareMedia> {
     }
 
     @Override
-    public Collection<FareMedia> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<FareMedia> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);
@@ -37,11 +37,11 @@ public class FareMediaParser implements GtfsCsvParser<FareMedia> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return FareMedia.builder()
-                                .id(values.get(Headers.FareMediaId.value))
-                                .name(values.get(Headers.FareMediaName.value))
+                                .id(values.get(Headers.FARE_MEDIA_ID.value))
+                                .name(values.get(Headers.FARE_MEDIA_NAME.value))
                                 .mediaType(CsvUtil.parseEnum(
                                         FareMediaType.class,
-                                        Integer.parseInt(values.get(Headers.FareMediaType.value))
+                                        Integer.parseInt(values.get(Headers.FARE_MEDIA_TYPE.value))
                                 ))
                                 .build();
                     })
@@ -56,9 +56,9 @@ public class FareMediaParser implements GtfsCsvParser<FareMedia> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        FareMediaId("fare_media_id"),
-        FareMediaName("fare_media_name"),
-        FareMediaType("fare_media_type");
+        FARE_MEDIA_ID("fare_media_id"),
+        FARE_MEDIA_NAME("fare_media_name"),
+        FARE_MEDIA_TYPE("fare_media_type");
 
         private final String value;
     }

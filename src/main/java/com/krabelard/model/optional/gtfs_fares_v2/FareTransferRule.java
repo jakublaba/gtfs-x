@@ -1,6 +1,7 @@
 package com.krabelard.model.optional.gtfs_fares_v2;
 
 import com.krabelard.model.enums.DurationLimitType;
+import com.krabelard.model.enums.TransferType;
 import lombok.Builder;
 import lombok.Value;
 
@@ -90,6 +91,14 @@ public class FareTransferRule {
      * Forbidden otherwise.
      */
     DurationLimitType durationLimitType;
+    /**
+     * <code>fare_transfer_type</code>
+     * <p>
+     * <b>Required</b>
+     * <p>
+     * Indicates the cost processing method of transferring between legs in a journey.
+     */
+    TransferType transferType;
     /**
      * <code>fare_product_id</code>
      * <p>

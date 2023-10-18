@@ -17,15 +17,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public enum FareMediaType implements Parsable<Integer> {
-    None(0),
-    PhysicalTransitCard(2),
-    cEMV(3),
-    MobileApp(4);
+    NONE(0),
+    PHYSICAL_TRANSIT_CARD(2),
+    C_EMV(3),
+    MOBILE_APP(4);
 
-    private final int fareMediaType;
+    private final int value;
 
     @Override
     public Integer value() {
-        return fareMediaType;
+        return value;
     }
 }

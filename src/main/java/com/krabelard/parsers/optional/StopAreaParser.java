@@ -36,8 +36,8 @@ public class StopAreaParser implements GtfsCsvParser<StopArea> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return StopArea.builder()
-                                .areaId(values.get(Headers.AreaId.value))
-                                .stopId(values.get(Headers.StopId.value))
+                                .areaId(values.get(Headers.AREA_ID.value))
+                                .stopId(values.get(Headers.STOP_ID.value))
                                 .build();
                     })
                     .toList();
@@ -51,8 +51,8 @@ public class StopAreaParser implements GtfsCsvParser<StopArea> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        AreaId("area_id"),
-        StopId("stop_id");
+        AREA_ID("area_id"),
+        STOP_ID("stop_id");
 
         private final String value;
     }

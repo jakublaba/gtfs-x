@@ -37,27 +37,27 @@ public class StopParser implements GtfsCsvParser<Stop> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Stop.builder()
-                                .id(values.get(Headers.StopId.value))
-                                .code(CsvUtil.parseNullableString(values.get(Headers.StopCode.value)))
-                                .name(CsvUtil.parseNullableString(values.get(Headers.StopName.value)))
-                                .ttsName(CsvUtil.parseNullableString(values.get(Headers.TtsStopName.value)))
-                                .description(CsvUtil.parseNullableString(values.get(Headers.StopDescription.value)))
-                                .latitude(CsvUtil.parseNullableDouble(values.get(Headers.StopLatitude.value)))
-                                .longitude(CsvUtil.parseNullableDouble(values.get(Headers.StopLongitude.value)))
-                                .zoneId(CsvUtil.parseNullableString(values.get(Headers.ZoneId.value)))
-                                .url(CsvUtil.parseNullableString(values.get(Headers.StopUrl.value)))
+                                .id(values.get(Headers.STOP_ID.value))
+                                .code(CsvUtil.parseNullableString(values.get(Headers.STOP_CODE.value)))
+                                .name(CsvUtil.parseNullableString(values.get(Headers.STOP_NAME.value)))
+                                .ttsName(CsvUtil.parseNullableString(values.get(Headers.TTS_STOP_NAME.value)))
+                                .description(CsvUtil.parseNullableString(values.get(Headers.STOP_DESCRIPTION.value)))
+                                .latitude(CsvUtil.parseNullableDouble(values.get(Headers.STOP_LATITUDE.value)))
+                                .longitude(CsvUtil.parseNullableDouble(values.get(Headers.STOP_LONGITUDE.value)))
+                                .zoneId(CsvUtil.parseNullableString(values.get(Headers.ZONE_ID.value)))
+                                .url(CsvUtil.parseNullableString(values.get(Headers.STOP_URL.value)))
                                 .locationType(CsvUtil.parseEnum(
                                         LocationType.class,
-                                        CsvUtil.parseNullableInt(values.get(Headers.LocationType.value))
+                                        CsvUtil.parseNullableInt(values.get(Headers.LOCATION_TYPE.value))
                                 ))
-                                .parentId(CsvUtil.parseNullableString(values.get(Headers.ParentStation.value)))
-                                .timezone(CsvUtil.parseNullableString(values.get(Headers.StopTimezone.value)))
+                                .parentId(CsvUtil.parseNullableString(values.get(Headers.PARENT_STATION.value)))
+                                .timezone(CsvUtil.parseNullableString(values.get(Headers.STOP_TIMEZONE.value)))
                                 .wheelchairBoarding(CsvUtil.parseEnum(
                                         WheelchairBoarding.class,
-                                        CsvUtil.parseNullableInt(values.get(Headers.WheelchairBoarding.value))
+                                        CsvUtil.parseNullableInt(values.get(Headers.WHEELCHAIR_BOARDING.value))
                                 ))
-                                .levelId(CsvUtil.parseNullableString(values.get(Headers.LevelId.value)))
-                                .platformCode(CsvUtil.parseNullableString(values.get(Headers.PlatformCode.value)))
+                                .levelId(CsvUtil.parseNullableString(values.get(Headers.LEVEL_ID.value)))
+                                .platformCode(CsvUtil.parseNullableString(values.get(Headers.PLATFORM_CODE.value)))
                                 .build();
                     })
                     .toList();
@@ -69,21 +69,21 @@ public class StopParser implements GtfsCsvParser<Stop> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        StopId("stop_id"),
-        StopCode("stop_code"),
-        StopName("stop_name"),
-        TtsStopName("tts_stop_name"),
-        StopDescription("stop_desc"),
-        StopLatitude("stop_lat"),
-        StopLongitude("stop_lon"),
-        ZoneId("zone_id"),
-        StopUrl("stop_url"),
-        LocationType("location_type"),
-        ParentStation("parent_station"),
-        StopTimezone("stop_timezone"),
-        WheelchairBoarding("wheelchair_boarding"),
-        LevelId("level_id"),
-        PlatformCode("platform_code");
+        STOP_ID("stop_id"),
+        STOP_CODE("stop_code"),
+        STOP_NAME("stop_name"),
+        TTS_STOP_NAME("tts_stop_name"),
+        STOP_DESCRIPTION("stop_desc"),
+        STOP_LATITUDE("stop_lat"),
+        STOP_LONGITUDE("stop_lon"),
+        ZONE_ID("zone_id"),
+        STOP_URL("stop_url"),
+        LOCATION_TYPE("location_type"),
+        PARENT_STATION("parent_station"),
+        STOP_TIMEZONE("stop_timezone"),
+        WHEELCHAIR_BOARDING("wheelchair_boarding"),
+        LEVEL_ID("level_id"),
+        PLATFORM_CODE("platform_code");
 
         private final String value;
     }

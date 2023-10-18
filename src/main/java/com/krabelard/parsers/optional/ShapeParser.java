@@ -36,11 +36,11 @@ public class ShapeParser implements GtfsCsvParser<Shape> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Shape.builder()
-                                .id(values.get(Headers.ShapeId.value))
-                                .ptLatitude(Double.parseDouble(values.get(Headers.ShapePtLat.value)))
-                                .ptLongitude(Double.parseDouble(values.get(Headers.ShapePtLon.value)))
-                                .ptSequence(Integer.parseInt(values.get(Headers.ShapePtSequence.value)))
-                                .distTraveled(CsvUtil.parseNullableDouble(values.get(Headers.ShapeDistTraveled.value)))
+                                .id(values.get(Headers.SHAPE_ID.value))
+                                .ptLatitude(Double.parseDouble(values.get(Headers.SHAPE_PT_LAT.value)))
+                                .ptLongitude(Double.parseDouble(values.get(Headers.SHAPE_PT_LON.value)))
+                                .ptSequence(Integer.parseInt(values.get(Headers.SHAPE_PT_SEQUENCE.value)))
+                                .distTraveled(CsvUtil.parseNullableDouble(values.get(Headers.SHAPE_DIST_TRAVELED.value)))
                                 .build();
                     })
                     .toList();
@@ -54,11 +54,11 @@ public class ShapeParser implements GtfsCsvParser<Shape> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        ShapeId("shape_id"),
-        ShapePtLat("shape_pt_lat"),
-        ShapePtLon("shape_pt_lon"),
-        ShapePtSequence("shape_pt_sequence"),
-        ShapeDistTraveled("shape_dist_traveled");
+        SHAPE_ID("shape_id"),
+        SHAPE_PT_LAT("shape_pt_lat"),
+        SHAPE_PT_LON("shape_pt_lon"),
+        SHAPE_PT_SEQUENCE("shape_pt_sequence"),
+        SHAPE_DIST_TRAVELED("shape_dist_traveled");
 
         private final String value;
     }

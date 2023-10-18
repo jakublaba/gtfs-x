@@ -45,8 +45,8 @@ public class Stop {
      * Name of the location. The {@link Stop#name} should match the agency's rider-facing name for the location as printed
      * on a timetable, published online, or represented on signage. For translations, use {@link Translation} entities.
      * <br>
-     * Required for locations which are stops ({@link LocationType#StopOrPlatform}), stations ({@link LocationType#Station})
-     * or entrances/exits ({@link LocationType#EntranceOrExit}).
+     * Required for locations which are stops ({@link LocationType#STOP_OR_PLATFORM}), stations ({@link LocationType#STATION})
+     * or entrances/exits ({@link LocationType#ENTRANCE_OR_EXIT}).
      */
     String name;
     /**
@@ -74,12 +74,12 @@ public class Stop {
      * <p>
      * Latitude of the location.
      * <br>
-     * For stops/platform ({@link LocationType#StopOrPlatform}) and boarding areas ({@link LocationType#BoardingArea}),
+     * For stops/platform ({@link LocationType#STOP_OR_PLATFORM}) and boarding areas ({@link LocationType#BOARDING_AREA}),
      * the coordinates must be the ones of the bus pole - if exists - and otherwise of where the travelers are boarding
      * the vehicle (on the sidewalk or the platform, and not on the roadway or the track where the vehicle stops).
      * <br>
-     * Required for locations which are stops ({@link LocationType#StopOrPlatform}), stations ({@link LocationType#Station})
-     * or entrances/exits ({@link LocationType#EntranceOrExit}).
+     * Required for locations which are stops ({@link LocationType#STOP_OR_PLATFORM}), stations ({@link LocationType#STATION})
+     * or entrances/exits ({@link LocationType#ENTRANCE_OR_EXIT}).
      */
     Double latitude;
     /**
@@ -89,12 +89,12 @@ public class Stop {
      * <p>
      * Longitude of the location.
      * <br>
-     * For stops/platform ({@link LocationType#StopOrPlatform}) and boarding areas ({@link LocationType#BoardingArea}),
+     * For stops/platform ({@link LocationType#STOP_OR_PLATFORM}) and boarding areas ({@link LocationType#BOARDING_AREA}),
      * the coordinates must be the ones of the bus pole - if exists - and otherwise of where the travelers are boarding
      * the vehicle (on the sidewalk or the platform, and not on the roadway or the track where the vehicle stops).
      * <br>
-     * Required for locations which are stops ({@link LocationType#StopOrPlatform}), stations ({@link LocationType#Station})
-     * or entrances/exits ({@link LocationType#EntranceOrExit}).
+     * Required for locations which are stops ({@link LocationType#STOP_OR_PLATFORM}), stations ({@link LocationType#STATION})
+     * or entrances/exits ({@link LocationType#ENTRANCE_OR_EXIT}).
      */
     Double longitude;
     /**
@@ -129,10 +129,10 @@ public class Stop {
      * <b>Conditionally required</b>
      * <p>
      * Defines a hierarchy between the different locations defined by {@link Stop} entities. It contains the ID of the parent location, as followed:
-     * <li>{@link LocationType#StopOrPlatform} - contains ID of a parent station.</li>
-     * <li>{@link LocationType#Station} - this field must be empty.</li>
-     * <li>{@link LocationType#EntranceOrExit} or {@link LocationType#GenericNode} - contains ID of a parent station.</li>
-     * <li>{@link LocationType#BoardingArea} - contains ID of a parent platform.</li>
+     * <li>{@link LocationType#STOP_OR_PLATFORM} - contains ID of a parent station.</li>
+     * <li>{@link LocationType#STATION} - this field must be empty.</li>
+     * <li>{@link LocationType#ENTRANCE_OR_EXIT} or {@link LocationType#GENERIC_NODE} - contains ID of a parent station.</li>
+     * <li>{@link LocationType#BOARDING_AREA} - contains ID of a parent platform.</li>
      */
     String parentId;
     /**

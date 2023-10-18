@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class FareLegRuleParser implements GtfsCsvParser<FareLegRule> {
@@ -27,7 +27,7 @@ public class FareLegRuleParser implements GtfsCsvParser<FareLegRule> {
     }
 
     @Override
-    public Collection<FareLegRule> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<FareLegRule> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);
@@ -36,11 +36,11 @@ public class FareLegRuleParser implements GtfsCsvParser<FareLegRule> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return FareLegRule.builder()
-                                .legGroupId(values.get(Headers.LegGroupId.value))
-                                .networkId(values.get(Headers.NetworkId.value))
-                                .fromAreaId(values.get(Headers.FromAreaId.value))
-                                .toAreaId(values.get(Headers.ToAreaId.value))
-                                .fareProductId(values.get(Headers.FareProductId.value))
+                                .legGroupId(values.get(Headers.LEG_GROUP_ID.value))
+                                .networkId(values.get(Headers.NETWORK_ID.value))
+                                .fromAreaId(values.get(Headers.FROM_AREA_ID.value))
+                                .toAreaId(values.get(Headers.TO_AREA_ID.value))
+                                .fareProductId(values.get(Headers.FARE_PRODUCT_ID.value))
                                 .build();
                     })
                     .toList();
@@ -54,13 +54,13 @@ public class FareLegRuleParser implements GtfsCsvParser<FareLegRule> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        LegGroupId("leg_group_id"),
-        NetworkId("network_id"),
-        FromAreaId("from_area_id"),
-        ToAreaId("to_area_id"),
-        FromTimeframeGroupId("from_timeframe_group_id"),
-        ToTimeframeGroupId("to_timeframe_group_id"),
-        FareProductId("fare_product_id");
+        LEG_GROUP_ID("leg_group_id"),
+        NETWORK_ID("network_id"),
+        FROM_AREA_ID("from_area_id"),
+        TO_AREA_ID("to_area_id"),
+        FROM_TIMEFRAME_GROUP_ID("from_timeframe_group_id"),
+        TO_TIMEFRAME_GROUP_ID("to_timeframe_group_id"),
+        FARE_PRODUCT_ID("fare_product_id");
 
         private final String value;
     }

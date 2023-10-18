@@ -39,11 +39,11 @@ public class CalendarDateParser implements GtfsCsvParser<CalendarDate> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return CalendarDate.builder()
-                                .serviceId(values.get(Headers.ServiceId.value))
-                                .date(LocalDate.parse(values.get(Headers.Date.value), format))
+                                .serviceId(values.get(Headers.SERVICE_ID.value))
+                                .date(LocalDate.parse(values.get(Headers.DATE.value), format))
                                 .exceptionType(CsvUtil.parseEnum(
                                         ExceptionType.class,
-                                        Integer.parseInt(values.get(Headers.ExceptionType.value))
+                                        Integer.parseInt(values.get(Headers.EXCEPTION_TYPE.value))
                                 ))
                                 .build();
                     })
@@ -56,9 +56,9 @@ public class CalendarDateParser implements GtfsCsvParser<CalendarDate> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        ServiceId("service_id"),
-        Date("date"),
-        ExceptionType("exception_type");
+        SERVICE_ID("service_id"),
+        DATE("date"),
+        EXCEPTION_TYPE("exception_type");
 
         private final String value;
     }

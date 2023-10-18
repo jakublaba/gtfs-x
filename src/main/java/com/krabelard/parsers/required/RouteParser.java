@@ -38,28 +38,28 @@ public class RouteParser implements GtfsCsvParser<Route> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Route.builder()
-                                .id(values.get(Headers.RouteId.value))
-                                .agencyId(CsvUtil.parseNullableString(values.get(Headers.AgencyId.value)))
-                                .shortName(CsvUtil.parseNullableString(values.get(Headers.RouteShortName.value)))
-                                .longName(CsvUtil.parseNullableString(values.get(Headers.RouteLongName.value)))
-                                .description(CsvUtil.parseNullableString(values.get(Headers.RouteDescription.value)))
+                                .id(values.get(Headers.ROUTE_ID.value))
+                                .agencyId(CsvUtil.parseNullableString(values.get(Headers.AGENCY_ID.value)))
+                                .shortName(CsvUtil.parseNullableString(values.get(Headers.ROUTE_SHORT_NAME.value)))
+                                .longName(CsvUtil.parseNullableString(values.get(Headers.ROUTE_LONG_NAME.value)))
+                                .description(CsvUtil.parseNullableString(values.get(Headers.ROUTE_DESCRIPTION.value)))
                                 .type(CsvUtil.parseEnum(
                                         RouteType.class,
-                                        Integer.parseInt(values.get(Headers.RouteType.value))
+                                        Integer.parseInt(values.get(Headers.ROUTE_TYPE.value))
                                 ))
-                                .url(CsvUtil.parseNullableString(values.get(Headers.RouteUrl.value)))
-                                .color(CsvUtil.parseNullableString(values.get(Headers.RouteColor.value)))
-                                .textColor(CsvUtil.parseNullableString(values.get(Headers.RouteTextColor.value)))
-                                .sortOrder(CsvUtil.parseNullableInt(values.get(Headers.RouteSortOrder.value)))
+                                .url(CsvUtil.parseNullableString(values.get(Headers.ROUTE_URL.value)))
+                                .color(CsvUtil.parseNullableString(values.get(Headers.ROUTE_COLOR.value)))
+                                .textColor(CsvUtil.parseNullableString(values.get(Headers.ROUTE_TEXT_COLOR.value)))
+                                .sortOrder(CsvUtil.parseNullableInt(values.get(Headers.ROUTE_SORT_ORDER.value)))
                                 .continuousPickup(CsvUtil.parseEnum(
                                         PickupType.class,
-                                        CsvUtil.parseNullableInt(values.get(Headers.ContinuousPickup.value))
+                                        CsvUtil.parseNullableInt(values.get(Headers.CONTINUOUS_PICKUP.value))
                                 ))
                                 .continuousDropOff(CsvUtil.parseEnum(
                                         DropOffType.class,
-                                        CsvUtil.parseNullableInt(values.get(Headers.ContinuousDropOff.value))
+                                        CsvUtil.parseNullableInt(values.get(Headers.CONTINUOUS_DROP_OFF.value))
                                 ))
-                                .networkId(CsvUtil.parseNullableString(values.get(Headers.NetworkId.value)))
+                                .networkId(CsvUtil.parseNullableString(values.get(Headers.NETWORK_ID.value)))
                                 .build();
                     })
                     .toList();
@@ -71,19 +71,19 @@ public class RouteParser implements GtfsCsvParser<Route> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        RouteId("route_id"),
-        AgencyId("agency_id"),
-        RouteShortName("route_short_name"),
-        RouteLongName("route_long_name"),
-        RouteDescription("route_desc"),
-        RouteType("route_type"),
-        RouteUrl("route_url"),
-        RouteColor("route_color"),
-        RouteTextColor("route_text_color"),
-        RouteSortOrder("route_sort_order"),
-        ContinuousPickup("continuous_pickup"),
-        ContinuousDropOff("continuous_drop_off"),
-        NetworkId("network_id");
+        ROUTE_ID("route_id"),
+        AGENCY_ID("agency_id"),
+        ROUTE_SHORT_NAME("route_short_name"),
+        ROUTE_LONG_NAME("route_long_name"),
+        ROUTE_DESCRIPTION("route_desc"),
+        ROUTE_TYPE("route_type"),
+        ROUTE_URL("route_url"),
+        ROUTE_COLOR("route_color"),
+        ROUTE_TEXT_COLOR("route_text_color"),
+        ROUTE_SORT_ORDER("route_sort_order"),
+        CONTINUOUS_PICKUP("continuous_pickup"),
+        CONTINUOUS_DROP_OFF("continuous_drop_off"),
+        NETWORK_ID("network_id");
 
         private final String value;
     }

@@ -35,14 +35,14 @@ public class AgencyParser implements GtfsCsvParser<Agency> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Agency.builder()
-                                .id(CsvUtil.parseNullableString(values.get(Headers.AgencyId.value)))
-                                .name(values.get(Headers.AgencyName.value))
-                                .url(values.get(Headers.AgencyUrl.value))
-                                .timezone(values.get(Headers.AgencyTimezone.value))
-                                .language(CsvUtil.parseNullableString(values.get(Headers.AgencyLang.value)))
-                                .phone(CsvUtil.parseNullableString(values.get(Headers.AgencyPhone.value)))
-                                .fareUrl(CsvUtil.parseNullableString(values.get(Headers.AgencyFareUrl.value)))
-                                .email(CsvUtil.parseNullableString(values.get(Headers.AgencyEmail.value)))
+                                .id(CsvUtil.parseNullableString(values.get(Headers.AGENCY_ID.value)))
+                                .name(values.get(Headers.AGENCY_NAME.value))
+                                .url(values.get(Headers.AGENCY_URL.value))
+                                .timezone(values.get(Headers.AGENCY_TIMEZONE.value))
+                                .language(CsvUtil.parseNullableString(values.get(Headers.AGENCY_LANG.value)))
+                                .phone(CsvUtil.parseNullableString(values.get(Headers.AGENCY_PHONE.value)))
+                                .fareUrl(CsvUtil.parseNullableString(values.get(Headers.AGENCY_FARE_URL.value)))
+                                .email(CsvUtil.parseNullableString(values.get(Headers.AGENCY_EMAIL.value)))
                                 .build();
                     })
                     .toList();
@@ -54,14 +54,14 @@ public class AgencyParser implements GtfsCsvParser<Agency> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        AgencyId("agency_id"),
-        AgencyName("agency_name"),
-        AgencyUrl("agency_url"),
-        AgencyTimezone("agency_timezone"),
-        AgencyLang("agency_lang"),
-        AgencyPhone("agency_phone"),
-        AgencyFareUrl("agency_fare_url"),
-        AgencyEmail("agency_email");
+        AGENCY_ID("agency_id"),
+        AGENCY_NAME("agency_name"),
+        AGENCY_URL("agency_url"),
+        AGENCY_TIMEZONE("agency_timezone"),
+        AGENCY_LANG("agency_lang"),
+        AGENCY_PHONE("agency_phone"),
+        AGENCY_FARE_URL("agency_fare_url"),
+        AGENCY_EMAIL("agency_email");
 
         private final String value;
     }

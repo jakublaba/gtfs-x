@@ -12,13 +12,13 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum Direction implements Parsable<Integer> {
-    Outbound(0),
-    Inbound(1);
+    OUTBOUND(0),
+    INBOUND(1);
 
-    private final int direction;
+    private final int value;
 
     @Override
     public Integer value() {
-        return direction;
+        return value;
     }
 }

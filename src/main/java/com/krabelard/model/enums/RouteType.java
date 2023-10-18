@@ -20,21 +20,21 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum RouteType implements Parsable<Integer> {
-    LightRail(0),
-    UndergroundRail(1),
-    Rail(2),
-    Bus(3),
-    Ferry(4),
-    CableTram(5),
-    AerialLift(6),
-    Funicular(7),
-    Trolleybus(11),
-    Monorail(12);
+    LIGHT_RAIL(0),
+    UNDERGROUND_RAIL(1),
+    RAIL(2),
+    BUS(3),
+    FERRY(4),
+    CABLE_TRAM(5),
+    AERIAL_LIFT(6),
+    FUNICULAR(7),
+    TROLLEYBUS(11),
+    MONORAIL(12);
 
-    private final int routeType;
+    private final int value;
 
     @Override
     public Integer value() {
-        return routeType;
+        return value;
     }
 }

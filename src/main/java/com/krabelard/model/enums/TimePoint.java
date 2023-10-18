@@ -12,13 +12,13 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum TimePoint implements Parsable<Integer> {
-    Approximate(0),
-    Exact(1);
+    APPROXIMATE(0),
+    EXACT(1);
 
-    private final int timePoint;
+    private final int value;
 
     @Override
     public Integer value() {
-        return timePoint;
+        return value;
     }
 }

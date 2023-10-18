@@ -8,7 +8,7 @@ import testutil.TestConstants;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TripParserTest {
+class TripParserTest {
     @Test
     @SneakyThrows
     void shouldParseCsvCorrectly() {
@@ -19,7 +19,7 @@ public class TripParserTest {
                 .serviceId("weekend_service")
                 .id("60270564")
                 .headSign("MAX ORANGE SADDLETOWNE")
-                .direction(Direction.Outbound)
+                .direction(Direction.OUTBOUND)
                 .shapeId("3030026")
                 .build();
         assertEquals(expectedSize, trips.size());

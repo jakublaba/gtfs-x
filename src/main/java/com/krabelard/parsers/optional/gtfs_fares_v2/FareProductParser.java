@@ -36,11 +36,11 @@ public class FareProductParser implements GtfsCsvParser<FareProduct> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return FareProduct.builder()
-                                .id(values.get(Headers.FareProductId.value))
-                                .name(values.get(Headers.FareProductName.value))
-                                .fareMediaId(values.get(Headers.FareMediaId.value))
-                                .amount(Double.parseDouble(values.get(Headers.Amount.value)))
-                                .currency(values.get(Headers.Currency.value))
+                                .id(values.get(Headers.FARE_PRODUCT_ID.value))
+                                .name(values.get(Headers.FARE_PRODUCT_NAME.value))
+                                .fareMediaId(values.get(Headers.FARE_MEDIA_ID.value))
+                                .amount(Double.parseDouble(values.get(Headers.AMOUNT.value)))
+                                .currency(values.get(Headers.CURRENCY.value))
                                 .build();
                     })
                     .toList();
@@ -54,11 +54,11 @@ public class FareProductParser implements GtfsCsvParser<FareProduct> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        FareProductId("fare_product_id"),
-        FareProductName("fare_product_name"),
-        FareMediaId("fare_media_id"),
-        Amount("amount"),
-        Currency("currency");
+        FARE_PRODUCT_ID("fare_product_id"),
+        FARE_PRODUCT_NAME("fare_product_name"),
+        FARE_MEDIA_ID("fare_media_id"),
+        AMOUNT("amount"),
+        CURRENCY("currency");
 
         private final String value;
     }

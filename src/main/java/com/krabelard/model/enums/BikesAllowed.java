@@ -13,13 +13,13 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum BikesAllowed implements Parsable<Integer> {
-    NoInfo(0),
-    Allowed(1),
-    NotAllowed(2);
+    NO_INFO(0),
+    ALLOWED(1),
+    NOT_ALLOWED(2);
 
-    private final int bikesAllowed;
+    private final int value;
 
     public Integer value() {
-        return bikesAllowed;
+        return value;
     }
 }

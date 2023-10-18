@@ -14,15 +14,15 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum DurationLimitType implements Parsable<Integer> {
-    BetweenDepartureAndArrival(0),
-    BetweenDepartureAndDeparture(1),
-    BetweenArrivalAndDeparture(2),
-    BetweenArrivalAndArrival(3);
+    BETWEEN_DEPARTURE_AND_ARRIVAL(0),
+    BETWEEN_DEPARTURE_AND_DEPARTURE(1),
+    BETWEEN_ARRIVAL_AND_DEPARTURE(2),
+    BETWEEN_ARRIVAL_AND_ARRIVAL(3);
 
-    private final int durationLimitType;
+    private final int value;
 
     @Override
     public Integer value() {
-        return durationLimitType;
+        return value;
     }
 }

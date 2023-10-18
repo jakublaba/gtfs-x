@@ -36,8 +36,8 @@ public class AreaParser implements GtfsCsvParser<Area> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Area.builder()
-                                .id(values.get(Headers.AreaId.value))
-                                .name(CsvUtil.parseNullableString(values.get(Headers.AreaName.value)))
+                                .id(values.get(Headers.AREA_ID.value))
+                                .name(CsvUtil.parseNullableString(values.get(Headers.AREA_NAME.value)))
                                 .build();
                     })
                     .toList();
@@ -51,8 +51,8 @@ public class AreaParser implements GtfsCsvParser<Area> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        AreaId("area_id"),
-        AreaName("area_name");
+        AREA_ID("area_id"),
+        AREA_NAME("area_name");
 
         private final String value;
     }

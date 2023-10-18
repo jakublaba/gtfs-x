@@ -7,7 +7,7 @@ import testutil.TestConstants;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StopParserTest {
+class StopParserTest {
     @Test
     @SneakyThrows
     void shouldParseCsvCorrectly() {

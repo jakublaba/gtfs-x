@@ -80,7 +80,7 @@ public class Trip {
      * Identifies the block to which the trip belongs. A block consists of single trip or many sequential trips made using
      * the same vehicle, defined by shared service days and this field. This field may have trips with different service days,
      * making distinct blocks. See the <a href=https://gtfs.org/schedule/reference/#example-blocks-and-service-day>example</a>.
-     * To provide in-seat transfers information, {@link Transfer} entities or <code>{@link Transfer#transferType}={@link TransferType#InSeat}</code>
+     * To provide in-seat transfers information, {@link Transfer} entities or <code>{@link Transfer#transferType}={@link TransferType#IN_SEAT}</code>
      * should be provided instead.
      */
     String blockId;

@@ -23,14 +23,14 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum WheelchairBoarding implements Parsable<Integer> {
-    NoInfoOrInherit(0),
-    Possible(1),
-    NotPossible(2);
+    NO_INFO_OR_INHERIT(0),
+    POSSIBLE(1),
+    NOT_POSSIBLE(2);
 
-    private final int wheelchairBoarding;
+    private final int value;
 
     @Override
     public Integer value() {
-        return wheelchairBoarding;
+        return value;
     }
 }

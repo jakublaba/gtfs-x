@@ -9,9 +9,10 @@ import java.nio.file.NoSuchFileException;
 import java.time.LocalDate;
 import java.time.Month;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class FeedInfoParserTest {
+class FeedInfoParserTest {
     @Test
     @SneakyThrows
     void shouldParseCsvCorrectly() {
@@ -25,6 +26,8 @@ public class FeedInfoParserTest {
                 .feedEndDate(LocalDate.of(2016, Month.DECEMBER, 1))
                 .feedVersion("0.5")
                 .build();
+        assertEquals(expectedSize, feedInfo.size());
+        assertEquals(expectedFeedInfo, feedInfo.get(0));
     }
 
     @Test

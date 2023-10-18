@@ -13,14 +13,14 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum WheelchairAccessibility implements Parsable<Integer> {
-    NoInfo(0),
-    Accessible(1),
-    NotAccessible(2);
+    NO_INFO(0),
+    ACCESSIBLE(1),
+    NOT_ACCESSIBLE(2);
 
-    private final int accessibility;
+    private final int value;
 
     @Override
     public Integer value() {
-        return accessibility;
+        return value;
     }
 }

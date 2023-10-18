@@ -12,13 +12,13 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum PaymentMethod implements Parsable<Integer> {
-    OnBoard(0),
-    BeforeBoarding(1);
+    ON_BOARD(0),
+    BEFORE_BOARDING(1);
 
-    private final int paymentMethod;
+    private final int value;
 
     @Override
     public Integer value() {
-        return paymentMethod;
+        return value;
     }
 }

@@ -10,7 +10,7 @@ import java.nio.file.NoSuchFileException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class AreaParserTest {
+class AreaParserTest {
     @Test
     @SneakyThrows
     void shouldParseCsvCorrectly() {

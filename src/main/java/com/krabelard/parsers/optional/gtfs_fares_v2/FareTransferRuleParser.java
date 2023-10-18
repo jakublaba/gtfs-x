@@ -1,6 +1,7 @@
 package com.krabelard.parsers.optional.gtfs_fares_v2;
 
 import com.krabelard.model.enums.DurationLimitType;
+import com.krabelard.model.enums.TransferType;
 import com.krabelard.model.optional.gtfs_fares_v2.FareTransferRule;
 import com.krabelard.parsers.CsvHeaders;
 import com.krabelard.parsers.GtfsCsvParser;
@@ -12,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 public class FareTransferRuleParser implements GtfsCsvParser<FareTransferRule> {
@@ -28,7 +29,7 @@ public class FareTransferRuleParser implements GtfsCsvParser<FareTransferRule> {
     }
 
     @Override
-    public Collection<FareTransferRule> parse() throws GtfsParsingException, NoSuchFileException {
+    public List<FareTransferRule> parse() throws GtfsParsingException, NoSuchFileException {
         try {
             log.info("Parsing {}", csv);
             var headers = CsvUtil.headersAsStrings(Headers.class);

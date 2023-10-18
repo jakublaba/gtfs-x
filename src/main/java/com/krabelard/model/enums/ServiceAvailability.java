@@ -16,13 +16,13 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum ServiceAvailability implements Parsable<Integer> {
-    NotAvailable(0),
-    Available(1);
+    NOT_AVAILABLE(0),
+    AVAILABLE(1);
 
-    private final int availability;
+    private final int value;
 
     @Override
     public Integer value() {
-        return availability;
+        return value;
     }
 }

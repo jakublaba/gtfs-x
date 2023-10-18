@@ -34,7 +34,7 @@ public class FareMedia {
      * <p>
      * <b>Optional</b>
      * <p>
-     * Name of the fare media. For fare media which are transit cards ({@link FareMediaType#cEMV}) or mobile apps ({@link FareMediaType#MobileApp}),
+     * Name of the fare media. For fare media which are transit cards ({@link FareMediaType#C_EMV}) or mobile apps ({@link FareMediaType#MOBILE_APP}),
      * this field should be included and should match the rider-facing name used by the organizations delivering them.
      */
     String name;

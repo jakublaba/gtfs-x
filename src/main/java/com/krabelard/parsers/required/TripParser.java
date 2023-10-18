@@ -38,24 +38,24 @@ public class TripParser implements GtfsCsvParser<Trip> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return Trip.builder()
-                                .routeId(values.get(Headers.RouteId.value))
-                                .serviceId(values.get(Headers.ServiceId.value))
-                                .id(values.get(Headers.TripId.value))
-                                .headSign(CsvUtil.parseNullableString(values.get(Headers.TripHeadsign.value)))
-                                .shortName(CsvUtil.parseNullableString(values.get(Headers.TripShortName.value)))
+                                .routeId(values.get(Headers.ROUTE_ID.value))
+                                .serviceId(values.get(Headers.SERVICE_ID.value))
+                                .id(values.get(Headers.TRIP_ID.value))
+                                .headSign(CsvUtil.parseNullableString(values.get(Headers.TRIP_HEADSIGN.value)))
+                                .shortName(CsvUtil.parseNullableString(values.get(Headers.TRIP_SHORT_NAME.value)))
                                 .direction(CsvUtil.parseEnum(
                                         Direction.class,
-                                        CsvUtil.parseNullableInt(values.get(Headers.DirectionId.value))
+                                        CsvUtil.parseNullableInt(values.get(Headers.DIRECTION_ID.value))
                                 ))
-                                .blockId(CsvUtil.parseNullableString(values.get(Headers.BlockId.value)))
-                                .shapeId(CsvUtil.parseNullableString(values.get(Headers.ShapeId.value)))
+                                .blockId(CsvUtil.parseNullableString(values.get(Headers.BLOCK_ID.value)))
+                                .shapeId(CsvUtil.parseNullableString(values.get(Headers.SHAPE_ID.value)))
                                 .wheelchairAccessible(CsvUtil.parseEnum(
                                         WheelchairAccessibility.class,
-                                        CsvUtil.parseNullableInt(values.get(Headers.WheelchairAccessible.value))
+                                        CsvUtil.parseNullableInt(values.get(Headers.WHEELCHAIR_ACCESSIBLE.value))
                                 ))
                                 .bikesAllowed(CsvUtil.parseEnum(
                                         BikesAllowed.class,
-                                        CsvUtil.parseNullableInt(values.get(Headers.BikesAllowed.value))
+                                        CsvUtil.parseNullableInt(values.get(Headers.BIKES_ALLOWED.value))
                                 ))
                                 .build();
                     })
@@ -68,16 +68,16 @@ public class TripParser implements GtfsCsvParser<Trip> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        RouteId("route_id"),
-        ServiceId("service_id"),
-        TripId("trip_id"),
-        TripHeadsign("trip_headsign"),
-        TripShortName("trip_short_name"),
-        DirectionId("direction_id"),
-        BlockId("block_id"),
-        ShapeId("shape_id"),
-        WheelchairAccessible("wheelchair_accessible"),
-        BikesAllowed("bikes_allowed");
+        ROUTE_ID("route_id"),
+        SERVICE_ID("service_id"),
+        TRIP_ID("trip_id"),
+        TRIP_HEADSIGN("trip_headsign"),
+        TRIP_SHORT_NAME("trip_short_name"),
+        DIRECTION_ID("direction_id"),
+        BLOCK_ID("block_id"),
+        SHAPE_ID("shape_id"),
+        WHEELCHAIR_ACCESSIBLE("wheelchair_accessible"),
+        BIKES_ALLOWED("bikes_allowed");
 
         private final String value;
     }

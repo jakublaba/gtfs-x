@@ -63,7 +63,7 @@ public class Translation {
      * only field of a table's primary keys, as defined in the primary key attribute for each table.
      * <p>
      * <b>Conditionally required</b>:
-     * <li><b>Forbidden</b> if {@link Translation#tableName} is {@link TableName#FeedInfo}.</li>
+     * <li><b>Forbidden</b> if {@link Translation#tableName} is {@link TableName#FEED_INFO}.</li>
      * <li><b>Forbidden</b> if {@link Translation#fieldValue} is defined.</li>
      * <li><b>Required</b> if {@link Translation#fieldValue} is empty.</li>
      */
@@ -77,7 +77,7 @@ public class Translation {
      * Therefore, the value in this field is the secondary ID of the table.
      * <p>
      * <b>Conditionally required</b>:
-     * <li><b>Forbidden</b> if {@link Translation#tableName} is {@link TableName#FeedInfo}</li>
+     * <li><b>Forbidden</b> if {@link Translation#tableName} is {@link TableName#FEED_INFO}</li>
      * <li><b>Forbidden</b> if {@link Translation#fieldValue} is defined</li>
      * <li><b>Required</b> if {@link Translation#fieldValue} is not defined</li>
      */
@@ -99,7 +99,7 @@ public class Translation {
      * {@link Translation#recordId}), the rule with {@link Translation#recordId} takes precedence.
      * <p>
      * <b>Conditionally required</b>:
-     * <li><b>Forbidden</b> if {@link Translation#tableName} is {@link TableName#FeedInfo}.</li>
+     * <li><b>Forbidden</b> if {@link Translation#tableName} is {@link TableName#FEED_INFO}.</li>
      * <li><b>Forbidden</b> if {@link Translation#recordId} is defined.</li>
      * <li><b>Required</b> if {@link Translation#recordId} is not defined.</li>
      */

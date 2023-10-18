@@ -7,20 +7,20 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum TableName implements Parsable<String> {
-    Agency("agency"),
-    Stops("stops"),
-    Routes("routes"),
-    Trips("trips"),
-    StopTimes("stop_times"),
-    Pathways("pathways"),
-    Levels("levels"),
-    FeedInfo("feed_info"),
-    Attributions("attributions");
+    AGENCY("agency"),
+    STOPS("stops"),
+    ROUTES("routes"),
+    TRIPS("trips"),
+    STOP_TIMES("stop_times"),
+    PATHWAYS("pathways"),
+    LEVELS("levels"),
+    FEED_INFO("feed_info"),
+    ATTRIBUTIONS("attributions");
 
-    private final String tableName;
+    private final String value;
 
     @Override
     public String value() {
-        return tableName;
+        return value;
     }
 }

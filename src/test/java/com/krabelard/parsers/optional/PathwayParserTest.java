@@ -21,7 +21,7 @@ class PathwayParserTest {
                 .id("stairsA")
                 .fromStopId("90")
                 .toStopId("95")
-                .mode(PathwayMode.Stairs)
+                .mode(PathwayMode.STAIRS)
                 .isBidirectional(true)
                 .build();
         assertEquals(expectedSize, pathways.size());

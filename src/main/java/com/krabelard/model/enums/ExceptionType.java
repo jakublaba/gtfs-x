@@ -16,13 +16,13 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum ExceptionType implements Parsable<Integer> {
-    Added(1),
-    Removed(2);
+    ADDED(1),
+    REMOVED(2);
 
-    private final int exceptionType;
+    private final int value;
 
     @Override
     public Integer value() {
-        return exceptionType;
+        return value;
     }
 }

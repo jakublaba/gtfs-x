@@ -45,11 +45,11 @@ public final class CsvUtil {
      *
      * @return {@link Map}, where key is a csv column name, and value is corresponding value from a {@link CSVRecord}
      */
-    public static Map<String, String> extractValues(CSVRecord record, String[] headers) {
+    public static Map<String, String> extractValues(CSVRecord csvRecord, String[] headers) {
         var result = new HashMap<String, String>();
         for (var h : headers) {
             try {
-                var value = record.get(h);
+                var value = csvRecord.get(h);
                 result.put(h, value);
             } catch (IllegalArgumentException ignored) {
                 result.put(h, null);

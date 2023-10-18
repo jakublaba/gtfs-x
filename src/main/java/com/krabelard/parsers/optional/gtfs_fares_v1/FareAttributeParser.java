@@ -38,19 +38,19 @@ public class FareAttributeParser implements GtfsCsvParser<FareAttribute> {
                     .map(r -> {
                         var values = CsvUtil.extractValues(r, headers);
                         return FareAttribute.builder()
-                                .fareId(values.get(Headers.FareId.value))
-                                .price(Double.parseDouble(values.get(Headers.Price.value)))
-                                .currency(values.get(Headers.CurrencyType.value))
+                                .fareId(values.get(Headers.FARE_ID.value))
+                                .price(Double.parseDouble(values.get(Headers.PRICE.value)))
+                                .currency(values.get(Headers.CURRENCY_TYPE.value))
                                 .paymentMethod(CsvUtil.parseEnum(
                                         PaymentMethod.class,
-                                        Integer.parseInt(values.get(Headers.PaymentMethod.value))
+                                        Integer.parseInt(values.get(Headers.PAYMENT_METHOD.value))
                                 ))
                                 .transfers(CsvUtil.parseEnum(
                                         TransfersAllowed.class,
-                                        CsvUtil.parseNullableInt(values.get(Headers.Transfers.value))
+                                        CsvUtil.parseNullableInt(values.get(Headers.TRANSFERS.value))
                                 ))
-                                .agencyId(values.get(Headers.AgencyId.value))
-                                .transferDuration(CsvUtil.parseNullableInt(values.get(Headers.TransferDuration.value)))
+                                .agencyId(values.get(Headers.AGENCY_ID.value))
+                                .transferDuration(CsvUtil.parseNullableInt(values.get(Headers.TRANSFER_DURATION.value)))
                                 .build();
                     })
                     .toList();
@@ -64,13 +64,13 @@ public class FareAttributeParser implements GtfsCsvParser<FareAttribute> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        FareId("fare_id"),
-        Price("price"),
-        CurrencyType("currency_type"),
-        PaymentMethod("payment_method"),
-        Transfers("transfers"),
-        AgencyId("agency_id"),
-        TransferDuration("transfer_duration");
+        FARE_ID("fare_id"),
+        PRICE("price"),
+        CURRENCY_TYPE("currency_type"),
+        PAYMENT_METHOD("payment_method"),
+        TRANSFERS("transfers"),
+        AGENCY_ID("agency_id"),
+        TRANSFER_DURATION("transfer_duration");
 
         private final String value;
     }

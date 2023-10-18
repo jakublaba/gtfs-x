@@ -19,17 +19,17 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum TransferType implements Parsable<Integer> {
-    Recommended(0),
-    Timed(1),
-    RequiresMinimumTime(2),
-    NotPossible(3),
-    InSeat(4),
-    ReBoard(5);
+    RECOMMENDED(0),
+    TIMED(1),
+    REQUIRES_MINIMUM_TIME(2),
+    NOT_POSSIBLE(3),
+    IN_SEAT(4),
+    RE_BOARD(5);
 
-    private final int transferType;
+    private final int value;
 
     @Override
     public Integer value() {
-        return transferType;
+        return value;
     }
 }

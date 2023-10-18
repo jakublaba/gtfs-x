@@ -18,16 +18,16 @@ import lombok.AllArgsConstructor;
  */
 @AllArgsConstructor
 public enum LocationType implements Parsable<Integer> {
-    StopOrPlatform(0),
-    Station(1),
-    EntranceOrExit(2),
-    GenericNode(3),
-    BoardingArea(4);
+    STOP_OR_PLATFORM(0),
+    STATION(1),
+    ENTRANCE_OR_EXIT(2),
+    GENERIC_NODE(3),
+    BOARDING_AREA(4);
 
-    private final int locationType;
+    private final int value;
 
     @Override
     public Integer value() {
-        return locationType;
+        return value;
     }
 }

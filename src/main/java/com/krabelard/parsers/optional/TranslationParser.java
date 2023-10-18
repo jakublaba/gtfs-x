@@ -39,14 +39,14 @@ public class TranslationParser implements GtfsCsvParser<Translation> {
                         return Translation.builder()
                                 .tableName(CsvUtil.parseEnum(
                                         TableName.class,
-                                        values.get(Headers.TableName.value)
+                                        values.get(Headers.TABLE_NAME.value)
                                 ))
-                                .fieldName(values.get(Headers.FieldName.value))
-                                .language(values.get(Headers.Language.value))
-                                .translation(values.get(Headers.Translation.value))
-                                .recordId(CsvUtil.parseNullableString(values.get(Headers.RecordId.value)))
-                                .recordSubId(CsvUtil.parseNullableString(values.get(Headers.RecordSubId.value)))
-                                .fieldValue(CsvUtil.parseNullableString(values.get(Headers.FieldValue.value)))
+                                .fieldName(values.get(Headers.FIELD_NAME.value))
+                                .language(values.get(Headers.LANGUAGE.value))
+                                .translation(values.get(Headers.TRANSLATION.value))
+                                .recordId(CsvUtil.parseNullableString(values.get(Headers.RECORD_ID.value)))
+                                .recordSubId(CsvUtil.parseNullableString(values.get(Headers.RECORD_SUB_ID.value)))
+                                .fieldValue(CsvUtil.parseNullableString(values.get(Headers.FIELD_VALUE.value)))
                                 .build();
                     })
                     .toList();
@@ -60,13 +60,13 @@ public class TranslationParser implements GtfsCsvParser<Translation> {
     @RequiredArgsConstructor
     @Getter
     private enum Headers implements CsvHeaders {
-        TableName("table_name"),
-        FieldName("field_name"),
-        Language("language"),
-        Translation("translation"),
-        RecordId("record_id"),
-        RecordSubId("record_sub_id"),
-        FieldValue("field_value");
+        TABLE_NAME("table_name"),
+        FIELD_NAME("field_name"),
+        LANGUAGE("language"),
+        TRANSLATION("translation"),
+        RECORD_ID("record_id"),
+        RECORD_SUB_ID("record_sub_id"),
+        FIELD_VALUE("field_value");
 
         private final String value;
     }

@@ -21,18 +21,18 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum PathwayMode implements Parsable<Integer> {
-    Walkway(1),
-    Stairs(2),
-    MovingSidewalk(3),
-    Escalator(4),
-    Elevator(5),
-    FareGate(6),
-    ExitGate(7);
+    WALKWAY(1),
+    STAIRS(2),
+    MOVING_SIDEWALK(3),
+    ESCALATOR(4),
+    ELEVATOR(5),
+    FARE_GATE(6),
+    EXIT_GATE(7);
 
-    private final int pathwayMode;
+    private final int value;
 
     @Override
     public Integer value() {
-        return pathwayMode;
+        return value;
     }
 }
